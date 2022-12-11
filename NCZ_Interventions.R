@@ -40,10 +40,11 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
  
  # Make expert table of end use allocations for processing interventions 
- TSUS_EPA_DATA_SHORT_ALL
- 
- 
- 
+ TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
+ TSUS_EPA_DATA_SHORT_ALL %>% 
+   group_by(Building, Month) %>% 
+   summarise( Elect = mean(`Electric - Grid
+(kBtu)`))
  
  # Make an export table to excel for interventions
  
