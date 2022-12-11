@@ -35,16 +35,37 @@ for (i  in 2:length(TSUS_EPA_DATA_SHEETS)) {
 spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DATA_SHORT_ALL 
  TSUS_EPA_DATA_SHORT_ALL %>% 
   select(2,1,3:ncol(TSUS_EPA_DATA_SHORT_ALL)) %>% 
-  arrange(Building, Month)-> TSUS_EPA_DATA_SHORT_ALL
+  arrange(Building, Month) %>% 
+   mutate(DateM = month(Month), DateY = year(Month)) %>% 
+   filter(DateY > 2017 & DateY < 2020) %>% 
+   select(1,10,9, 3:8) -> TSUS_EPA_DATA_SHORT_ALL
+ 
+ TSUS_EPA_DATA_SHORT_ALL %>% 
+   group_by(Building, DateM) %>% 
+   summarise(Elect_kBTU = mean(`Electric - Grid\r\n(kBtu)`, na.rm=TRUE),
+             NGas_kbtu = mean(`Natural Gas\r\n(kBtu)`, na.rm=TRUE),
+             Steam_btu = mean(`District Steam\r\n(kBtu)`, na.rm=TRUE),
+             Oil2_btu = mean(`Fuel Oil (No. 2)\r\n(kBtu)`, na.rm=TRUE),
+             Oil4_btu = mean(`Fuel Oil (No. 4)\r\n(kBtu)`, na.rm=TRUE),
+             Diesel_btu = mean(`Diesel\r\n(kBtu)`, na.rm=TRUE)) -> TSUS_EPA_DATA_SHORT_ALL
+   
+   
+   
+   
+
+ 
+ 
+ 
+ 
+ 
  remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
  
  
- # Make expert table of end use allocations for processing interventions 
- TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
- TSUS_EPA_DATA_SHORT_ALL %>% 
-   group_by(Building, Month) %>% 
-   summarise( Elect = mean(`Electric - Grid
-(kBtu)`))
+ # Make export table of end use allocations for processing interventions 
+# TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
+# TSUS_EPA_DATA_SHORT_ALL %>% 
+#   group_by(Building, Month)  
+#   summarise( Elect = mean(`Electric - Grid(kBtu)`))
  
  # Make an export table to excel for interventions
  
