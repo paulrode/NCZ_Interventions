@@ -39,6 +39,8 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    mutate(DateM = month(Month), DateY = year(Month)) %>% 
    filter(DateY > 2017 & DateY < 2020) %>% 
    select(1,10,9, 3:8) -> TSUS_EPA_DATA_SHORT_ALL
+remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
+ 
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
    group_by(Building, DateM) %>% 
@@ -48,18 +50,18 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
              Oil2_btu = mean(`Fuel Oil (No. 2)\r\n(kBtu)`, na.rm=TRUE),
              Oil4_btu = mean(`Fuel Oil (No. 4)\r\n(kBtu)`, na.rm=TRUE),
              Diesel_btu = mean(`Diesel\r\n(kBtu)`, na.rm=TRUE)) -> TSUS_EPA_DATA_SHORT_ALL
-   
-   
-   
-   
+ TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
+ TSUS_EPA_DATA_SHORT_ALL %>% 
+     mutate(Total_btu = Elect_kBTU + NGas_kbtu + Steam_btu + Oil2_btu + Oil4_btu + Diesel_btu) -> TSUS_EPA_DATA_SHORT_ALL
 
- 
- 
- 
- 
- 
- remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
- 
+TSUS_EPA_DATA_SHORT_ALL %>% 
+  group_by(Building) %>% 
+  summarise(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base" = min(Total_btu)) -> TSUS_EPA_DATA_SHORT_ALL
+
+TSUS_EPA_DATA_SHORT_ALL %>% 
+  mutate(use = ifelse(DateM %in% c(1,2,3,11,12,10), "H", "C")) -> TSUS_EPA_DATA_SHORT_ALL
+
+myfile %>% mutate(V5 = ifelse(V1 == 1 & V2 != 4, 1, ifelse(V2 == 4 & V3 != 1, 2, 0)))
  
  # Make export table of end use allocations for processing interventions 
 # TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
