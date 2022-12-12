@@ -13,7 +13,9 @@ if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
 options(dplyr.summarise.inform = FALSE)  # Suppress text in Knit printout. 
 
-
+#
+# This script will push out to interventions. 
+#
 
 # Read in data
 # Import first sheet
@@ -59,18 +61,19 @@ TSUS_EPA_DATA_SHORT_ALL %>%
   summarise(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base" = min(Total_btu)) -> TSUS_EPA_DATA_SHORT_ALL
 
 TSUS_EPA_DATA_SHORT_ALL %>% 
-  mutate(use = ifelse(DateM %in% c(1,2,3,11,12,10), "H", "C")) -> TSUS_EPA_DATA_SHORT_ALL
+  mutate(use = ifelse(Base == Total_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
 
-myfile %>% mutate(V5 = ifelse(V1 == 1 & V2 != 4, 1, ifelse(V2 == 4 & V3 != 1, 2, 0)))
+TSUS_EPA_DATA_SHORT_ALL %>% 
+  group_by(Building, use) %>% 
+  summarise(Elect = sum(Elect_kBTU), NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) -> EndUseAllocation
+
+
  
- # Make export table of end use allocations for processing interventions 
-# TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
-# TSUS_EPA_DATA_SHORT_ALL %>% 
-#   group_by(Building, Month)  
-#   summarise( Elect = mean(`Electric - Grid(kBtu)`))
- 
- # Make an export table to excel for interventions
- 
+# Make interventions table in excel and read here, then pull in EndUseAllocations 
+
+# Make a building data file and input here. Ease building will have sf for ratioing costs and a configuration code
+
+
  
  
 
