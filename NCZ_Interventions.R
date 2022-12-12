@@ -6,6 +6,7 @@ my_packages <- c("tidyverse", "vroom" , "timetk", "janitor" , "glue" , "tsibble"
 invisible( lapply(my_packages, require, character.only = TRUE))
 
 #Set up environment 
+`%notin%` <- Negate(`%in%`)
 place <- "Home"  #Where are we working today. 
 # place <- "work"
 if (place == "Home"){setwd("C:/Users/paulr/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/Documents/R/ElectricSupplyOptions")}
@@ -67,13 +68,24 @@ TSUS_EPA_DATA_SHORT_ALL %>%
   group_by(Building, use) %>% 
   summarise(Elect = sum(Elect_kBTU), NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) -> EndUseAllocation
 
+#Buildings with missing data not making it though analysis. 
+(TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
+#"1395 Crossman"   "66 Hudson Blvd."
 
- 
+
 # Make interventions table in excel and read here, then pull in EndUseAllocations 
 
+
+
 # Make a building data file and input here. Ease building will have sf for ratioing costs and a configuration code
+#Building Data File 
+data.frame(Building = unique(EndUseAllocation$Building), `Asset Type` = rep("office", 67), SQFT = rep(0,67), CITY = rep("city", 67) ) -> BuildingData
+write_excel_csv(BuildingData, "data/BuildingData.csv")
 
 
- 
- 
+#Building Configuration File 
+data.frame(Building = unique(EndUseAllocation$Building),  Heating = rep("type", 67), Cooling = rep("type", 67), DomesticHotWater = rep("type", 67),CoolingTower = rep("type", 67) ) -> BuildingConfiguration
+write_excel_csv(BuildingConfiguration, "data/BuildingConfiguration.csv")
+remove(BuildingData, BuildingConfiguration,  TSUS_EPA_DATA_LONG_ALL, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
+#Building Intervention File 
