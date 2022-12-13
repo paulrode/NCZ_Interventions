@@ -7,9 +7,9 @@ invisible( lapply(my_packages, require, character.only = TRUE))
 
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
-place <- "Home"  #Where are we working today. 
-# place <- "work"
-if (place == "Home"){setwd("C:/Users/paulr/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/Documents/R/ElectricSupplyOptions")}
+# place <- "Home"  #Where are we working today. 
+ place <- "work"
+if (place == "Home"){setwd("C:/Users/paulr/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
 options(dplyr.summarise.inform = FALSE)  # Suppress text in Knit printout. 
@@ -84,7 +84,7 @@ BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet
 
 #Building Configuration File 
 data.frame(Building = unique(EndUseAllocation$Building),  Heating = rep("type", 67), Cooling = rep("type", 67), DomesticHotWater = rep("type", 67),CoolingTower = rep("type", 67) ) -> BuildingConfiguration
-write_excel_csv(BuildingConfiguration, "data/BuildingConfiguration.csv")
+write.csv(BuildingConfiguration, "C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions/data/BuildingConfiguration.csv")
 remove(BuildingData, BuildingConfiguration,  TSUS_EPA_DATA_LONG_ALL, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
 
