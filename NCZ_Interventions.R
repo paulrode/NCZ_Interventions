@@ -79,13 +79,13 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 
 # Make a building data file and input here. Ease building will have sf for ratioing costs and a configuration code
 #Building Data File 
-data.frame(Building = unique(EndUseAllocation$Building), `Asset Type` = rep("office", 67), SQFT = rep(0,67), CITY = rep("city", 67) ) -> BuildingData
-write_excel_csv(BuildingData, "data/BuildingData.csv")
+BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet = 1)
 
 
 #Building Configuration File 
 data.frame(Building = unique(EndUseAllocation$Building),  Heating = rep("type", 67), Cooling = rep("type", 67), DomesticHotWater = rep("type", 67),CoolingTower = rep("type", 67) ) -> BuildingConfiguration
 write_excel_csv(BuildingConfiguration, "data/BuildingConfiguration.csv")
 remove(BuildingData, BuildingConfiguration,  TSUS_EPA_DATA_LONG_ALL, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
+
 
 #Building Intervention File 
