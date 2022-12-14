@@ -7,8 +7,8 @@ invisible( lapply(my_packages, require, character.only = TRUE))
 
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
-# place <- "Home"  #Where are we working today. 
- place <- "work"
+ place <- "Home"  #Where are we working today. 
+# place <- "work"
 if (place == "Home"){setwd("C:/Users/paulr/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
@@ -66,7 +66,12 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 
 TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building, use) %>% 
-  summarise(Elect = sum(Elect_kBTU), NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) -> EndUseAllocation
+  summarise(Elect = sum(Elect_kBTU), NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) %>% 
+  mutate("Elect_kWH" = Elect/3.418, "Steam_Mlb" = Steam/1194) %>% 
+  select(Building, use, Elect_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Total) -> EndUseAllocation
+
+
+
 
 #Buildings with missing data not making it though analysis. 
 (TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
@@ -81,10 +86,14 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 #Building Data File 
 BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet = 1)
 
+#Join BuildingData with EndUseAllocation 
+left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
 #Building Configuration File 
-data.frame(Building = unique(EndUseAllocation$Building),  Heating = rep("type", 67), Cooling = rep("type", 67), DomesticHotWater = rep("type", 67),CoolingTower = rep("type", 67) ) -> BuildingConfiguration
-write.csv(BuildingConfiguration, "C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions/data/BuildingConfiguration.csv")
+#data.frame(Building = unique(EndUseAllocation$Building),  Heating = rep("type", 67), Cooling = rep("type", 67), DomesticHotWater = rep("type", 67),CoolingTower = rep("type", 67) ) -> BuildingConfiguration
+#write.csv(BuildingConfiguration, "C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions/data/BuildingConfiguration.csv")
+
+
 remove(BuildingData, BuildingConfiguration,  TSUS_EPA_DATA_LONG_ALL, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
 
