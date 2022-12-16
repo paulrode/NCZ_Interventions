@@ -1,14 +1,14 @@
 
 # Load packages 
 
-my_packages <- c("tidyverse", "vroom" , "timetk", "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", "tsibbledata", "knitr", "formattable", "scales", "kable", "kableExtra", "dplyr", "gridExtra")   
+my_packages <- c("tidyverse", "vroom" , "timetk", "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", "tsibbledata", "knitr", "formattable", "scales", "kable", "tidyr" ,"kableExtra", "dplyr", "gridExtra")   
 
 invisible( lapply(my_packages, require, character.only = TRUE))
 
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
- place <- "Home"  #Where are we working today. 
-# place <- "work"
+# place <- "Home"  #Where are we working today. 
+ place <- "work"
 if (place == "Home"){setwd("C:/Users/paulr/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
@@ -21,7 +21,7 @@ options(dplyr.summarise.inform = FALSE)  # Suppress text in Knit printout.
 # Read in data
 # Import first sheet
 TSUS_EPA_DATA_SHEETS <-excel_sheets("data/Energy Star_Energy Use by Calendar Month_US Properties.xlsx")
-"TSUS_EPA_DATA" <- read_excel("data/Energy Star_Energy Use by Calendar Month_US Properties.xlsx",skip = 5, na = "Not Available", sheet = 1)
+TSUS_EPA_DATA <- read_excel("data/Energy Star_Energy Use by Calendar Month_US Properties.xlsx",skip = 5, na = "Not Available", sheet = 1)
 apply(TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)], 2, function(row) as.numeric(row)) -> TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)]
 gather(TSUS_EPA_DATA, key = "CarbonSource", value = "Value", -Month) %>% 
 mutate(Building = TSUS_EPA_DATA_SHEETS[1])-> TSUS_EPA_DATA_LONG
@@ -47,12 +47,12 @@ remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
    group_by(Building, DateM) %>% 
-   summarise(Elect_kBTU = mean(`Electric - Grid\r\n(kBtu)`, na.rm=TRUE),
-             NGas_kbtu = mean(`Natural Gas\r\n(kBtu)`, na.rm=TRUE),
-             Steam_btu = mean(`District Steam\r\n(kBtu)`, na.rm=TRUE),
-             Oil2_btu = mean(`Fuel Oil (No. 2)\r\n(kBtu)`, na.rm=TRUE),
-             Oil4_btu = mean(`Fuel Oil (No. 4)\r\n(kBtu)`, na.rm=TRUE),
-             Diesel_btu = mean(`Diesel\r\n(kBtu)`, na.rm=TRUE)) -> TSUS_EPA_DATA_SHORT_ALL
+   summarise(Elect_kBTU = sum(`Electric - Grid\r\n(kBtu)`/2, na.rm=TRUE),
+             NGas_kbtu = sum(`Natural Gas\r\n(kBtu)`/2, na.rm=TRUE),
+             Steam_btu = sum(`District Steam\r\n(kBtu)`/2, na.rm=TRUE),
+             Oil2_btu = sum(`Fuel Oil (No. 2)\r\n(kBtu)`/2, na.rm=TRUE),
+             Oil4_btu = sum(`Fuel Oil (No. 4)\r\n(kBtu)`/2, na.rm=TRUE),
+             Diesel_btu = sum(`Diesel\r\n(kBtu)`/2, na.rm=TRUE)) -> TSUS_EPA_DATA_SHORT_ALL
  TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
  TSUS_EPA_DATA_SHORT_ALL %>% 
      mutate(Total_btu = Elect_kBTU + NGas_kbtu + Steam_btu + Oil2_btu + Oil4_btu + Diesel_btu) -> TSUS_EPA_DATA_SHORT_ALL
@@ -94,7 +94,19 @@ left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 #write.csv(BuildingConfiguration, "C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions/data/BuildingConfiguration.csv")
 
 
-remove(BuildingData, BuildingConfiguration,  TSUS_EPA_DATA_LONG_ALL, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
+remove(BuildingData, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
 
 #Building Intervention File 
+Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 16, na = "Not Available", sheet = 1) 
+
+
+#apply(TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)], 2, function(row) as.numeric(row)) -> TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)]
+
+
+
+EndUseAllocation %>% 
+  gather(key = use, value = value, -Building) -> testfit1
+testfit1 %>% 
+  spread(key = use, value = value) -> testfit2
+
