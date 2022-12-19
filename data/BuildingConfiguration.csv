@@ -1,68 +1,68 @@
-"","Building","Heating","Cooling","DomesticHotWater","CoolingTower"
-"1","10 and 30 South Wacker","type","type","type","type"
-"2","10900 Wilshire","type","type","type","type"
-"3","1099 New York Ave.","type","type","type","type"
-"4","11 West 42nd Street","type","type","type","type"
-"5","1120 G Street, NW","type","type","type","type"
-"6","11975 W Bluff Creek Drive ","type","type","type","type"
-"7","11985 W Bluff Creek Drive","type","type","type","type"
-"8","11995 W Bluff Creek Drive","type","type","type","type"
-"9","12005 W Bluff Creek Drive","type","type","type","type"
-"10","1201 F St.","type","type","type","type"
-"11","12015 W Bluff Creek Drive","type","type","type","type"
-"12","12105 West Waterfront Drive","type","type","type","type"
-"13","12126 West Waterfront Drive","type","type","type","type"
-"14","125 High Street","type","type","type","type"
-"15","1275 Crossman","type","type","type","type"
-"16","1345 Crossman","type","type","type","type"
-"17","1375 Crossman","type","type","type","type"
-"18","160 Spear","type","type","type","type"
-"19","1717 Penn Ave.","type","type","type","type"
-"20","1730 Penn Ave.","type","type","type","type"
-"21","1747 Penn Ave.","type","type","type","type"
-"22","175 Varick","type","type","type","type"
-"23","1775 Penn Ave. ","type","type","type","type"
-"24","1919 Penn Ave.","type","type","type","type"
-"25","2000 K","type","type","type","type"
-"26","2050 M Street","type","type","type","type"
-"27","222 N LaSalle","type","type","type","type"
-"28","222 Second Street","type","type","type","type"
-"29","28-10 Jackson Ave","type","type","type","type"
-"30","28-30 Jackson Ave","type","type","type","type"
-"31","28-40 Jackson Ave","type","type","type","type"
-"32","300 Park","type","type","type","type"
-"33","333 Bush","type","type","type","type"
-"34","400 Castro","type","type","type","type"
-"35","407 N Maple","type","type","type","type"
-"36","520 Madison","type","type","type","type"
-"37","520 Pike Tower","type","type","type","type"
-"38","525 W Monroe","type","type","type","type"
-"39","595 Market","type","type","type","type"
-"40","6430 Sunset","type","type","type","type"
-"41","900 19th Street","type","type","type","type"
-"42","Arboretum Courtyard","type","type","type","type"
-"43","Bala I","type","type","type","type"
-"44","Bala II","type","type","type","type"
-"45","Bala III","type","type","type","type"
-"46","Beverly Place","type","type","type","type"
-"47","Chrysler East Building","type","type","type","type"
-"48","CitySpire","type","type","type","type"
-"49","GAC","type","type","type","type"
-"50","Hearst Tower","type","type","type","type"
-"51","Hearst Warehouse","type","type","type","type"
-"52","International Square","type","type","type","type"
-"53","Longridge","type","type","type","type"
-"54","Maple Plaza","type","type","type","type"
-"55","Metlife Building","type","type","type","type"
-"56","One Bush","type","type","type","type"
-"57","One Channel Center","type","type","type","type"
-"58","One Channel Center Parking","type","type","type","type"
-"59","One Federal","type","type","type","type"
-"60","Reston Crossing I","type","type","type","type"
-"61","Reston Crossing II","type","type","type","type"
-"62","Sunset Tower Parking","type","type","type","type"
-"63","The Franklin","type","type","type","type"
-"64","The JACX","type","type","type","type"
-"65","Torrey Plaza (A)","type","type","type","type"
-"66","Torrey Plaza (B)","type","type","type","type"
-"67","Torrey Plaza (C)","type","type","type","type"
+,Building,Heating,Cooling,DomesticHotWater,CoolingTower,,,Heating,,,,,,,,,,,,
+1,10 and 30 South Wacker,type,type,type,type,,,Ngas Boiler,,,,,,,,,,,,
+2,10900 Wilshire,type,type,type,type,,,Oil Boiler,,,,,,,,,,,,
+3,1099 New York Ave.,type,type,type,type,,,District Steam,,,,,,,,,,,,
+4,11 West 42nd Street,type,type,type,type,,,Elect Coils,,,,,,,,,,,,
+5,"1120 G Street, NW",type,type,type,type,,,VRF Heat Pumps,,,,,,,,,,,,
+6,11975 W Bluff Creek Drive ,type,type,type,type,,,GeoThermal Heat Pumps,,,,,,,,,,,,
+7,11985 W Bluff Creek Drive,type,type,type,type,,,Solar Thermal,,,,,,,,,,,,
+8,11995 W Bluff Creek Drive,type,type,type,type,,,,,,,,,,,,,,,
+9,12005 W Bluff Creek Drive,type,type,type,type,,,,,,,,,,,,,,,
+10,1201 F St.,type,type,type,type,,,,,,,,,,,,,,,
+11,12015 W Bluff Creek Drive,type,type,type,type,,,,,,,,,,,,,,,
+12,12105 West Waterfront Drive,type,type,type,type,,,,,,,,,,,,,,,
+13,12126 West Waterfront Drive,type,type,type,type,,,,,,,,,,,,,,,
+14,125 High Street,type,type,type,type,,,,,,,,,,,,,,,
+15,1275 Crossman,type,type,type,type,,,,,,,,,,,,,,,
+16,1345 Crossman,type,type,type,type,,,,int1,int2,int3,int4,int5,int6,int7,int8,int9,int10,int11,int12
+17,1375 Crossman,type,type,type,type,,building,cooling,,,,,,,,,,,,
+18,160 Spear,type,type,type,type,,building,heating,,,,,,,,,,,,
+19,1717 Penn Ave.,type,type,type,type,,building,base,,,,,,,,,,,,
+20,1730 Penn Ave.,type,type,type,type,,,,,,,,,,,,,,,
+21,1747 Penn Ave.,type,type,type,type,,,,,,,,,,,,,,,
+22,175 Varick,type,type,type,type,,,,,,,,,,,,,,,
+23,1775 Penn Ave. ,type,type,type,type,,,,,,,,,,,,,,,
+24,1919 Penn Ave.,type,type,type,type,,,,,,,,,,,,,,,
+25,2000 K,type,type,type,type,,,,,,,,,,,,,,,
+26,2050 M Street,type,type,type,type,,,,,,,,,,,,,,,
+27,222 N LaSalle,type,type,type,type,,,,,,,,,,,,,,,
+28,222 Second Street,type,type,type,type,,,,,,,,,,,,,,,
+29,28-10 Jackson Ave,type,type,type,type,,,,,,,,,,,,,,,
+30,28-30 Jackson Ave,type,type,type,type,,,,,,,,,,,,,,,
+31,28-40 Jackson Ave,type,type,type,type,,,,,,,,,,,,,,,
+32,300 Park,type,type,type,type,,,,,,,,,,,,,,,
+33,333 Bush,type,type,type,type,,,,,,,,,,,,,,,
+34,400 Castro,type,type,type,type,,,,,,,,,,,,,,,
+35,407 N Maple,type,type,type,type,,,,,,,,,,,,,,,
+36,520 Madison,type,type,type,type,,,,,,,,,,,,,,,
+37,520 Pike Tower,type,type,type,type,,,,,,,,,,,,,,,
+38,525 W Monroe,type,type,type,type,,,,,,,,,,,,,,,
+39,595 Market,type,type,type,type,,,,,,,,,,,,,,,
+40,6430 Sunset,type,type,type,type,,,,,,,,,,,,,,,
+41,900 19th Street,type,type,type,type,,,,,,,,,,,,,,,
+42,Arboretum Courtyard,type,type,type,type,,,,,,,,,,,,,,,
+43,Bala I,type,type,type,type,,,,,,,,,,,,,,,
+44,Bala II,type,type,type,type,,,,,,,,,,,,,,,
+45,Bala III,type,type,type,type,,,,,,,,,,,,,,,
+46,Beverly Place,type,type,type,type,,,,,,,,,,,,,,,
+47,Chrysler East Building,type,type,type,type,,,,,,,,,,,,,,,
+48,CitySpire,type,type,type,type,,,,,,,,,,,,,,,
+49,GAC,type,type,type,type,,,,,,,,,,,,,,,
+50,Hearst Tower,type,type,type,type,,,,,,,,,,,,,,,
+51,Hearst Warehouse,type,type,type,type,,,,,,,,,,,,,,,
+52,International Square,type,type,type,type,,,,,,,,,,,,,,,
+53,Longridge,type,type,type,type,,,,,,,,,,,,,,,
+54,Maple Plaza,type,type,type,type,,,,,,,,,,,,,,,
+55,Metlife Building,type,type,type,type,,,,,,,,,,,,,,,
+56,One Bush,type,type,type,type,,,,,,,,,,,,,,,
+57,One Channel Center,type,type,type,type,,,,,,,,,,,,,,,
+58,One Channel Center Parking,type,type,type,type,,,,,,,,,,,,,,,
+59,One Federal,type,type,type,type,,,,,,,,,,,,,,,
+60,Reston Crossing I,type,type,type,type,,,,,,,,,,,,,,,
+61,Reston Crossing II,type,type,type,type,,,,,,,,,,,,,,,
+62,Sunset Tower Parking,type,type,type,type,,,,,,,,,,,,,,,
+63,The Franklin,type,type,type,type,,,,,,,,,,,,,,,
+64,The JACX,type,type,type,type,,,,,,,,,,,,,,,
+65,Torrey Plaza (A),type,type,type,type,,,,,,,,,,,,,,,
+66,Torrey Plaza (B),type,type,type,type,,,,,,,,,,,,,,,
+67,Torrey Plaza (C),type,type,type,type,,,,,,,,,,,,,,,
