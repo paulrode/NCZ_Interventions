@@ -1,0 +1,199 @@
+"","Building","use","Elect_kWH","Steam_Mlb","Elect","NGas","Steam","Oil2","Oil4","Diesel","Total","Asset.Type","SQFT","CITY","...5"
+"1","10 and 30 South Wacker","Base Loads",2754294.90930369,0,9414180,189373.05,0,0,0,6444.6,9609997.65,"office",2879120.28,"Chicago",NA
+"2","10 and 30 South Wacker","Cooling Loads",20480116.5301346,0,70001038.3,976390.4,0,0,0,32223,71009651.7,"office",2879120.28,"Chicago",NA
+"3","10 and 30 South Wacker","Heating Loads",28048559.6693973,0,95869976.95,1112728.5,0,0,0,38667.6,97021373.05,"office",2879120.28,"Chicago",NA
+"4","10900 Wilshire","Base Loads",221719.046225863,0,757835.7,8270.3,0,0,0,0,766106,"office",236087,"Los Angeles",NA
+"5","10900 Wilshire","Cooling Loads",1179385.91281451,0,4031141.05,218316.8,0,0,0,0,4249457.85,"office",236087,"Los Angeles",NA
+"6","10900 Wilshire","Heating Loads",1309322.7472206,0,4475265.15,1268059.8,0,0,0,0,5743324.95,"office",236087,"Los Angeles",NA
+"7","1099 New York Ave.","Base Loads",428669.280280866,0,1465191.6,0,0,0,0,0,1465191.6,"office",180271,"Washington, D.C.",NA
+"8","1099 New York Ave.","Cooling Loads",2340686.30778233,0,8000465.8,0,0,0,0,0,8000465.8,"office",180271,"Washington, D.C.",NA
+"9","1099 New York Ave.","Heating Loads",2813503.56933879,0,9616555.2,71795.75,0,0,0,0,9688350.95,"office",180271,"Washington, D.C.",NA
+"10","11 West 42nd Street","Base Loads",330498.873610298,0,1129645.15,6396771.9,0,0,0,0,7526417.05,"office",958862,"New York",NA
+"11","11 West 42nd Street","Cooling Loads",1628213.8970158,0,5565235.1,54214016.3,0,0,0,0,59779251.4,"office",958862,"New York",NA
+"12","11 West 42nd Street","Heating Loads",1742687.56582797,0,5956506.1,87695376.3,0,0,0,0,93651882.4,"office",958862,"New York",NA
+"13","1120 G Street, NW","Base Loads",268787.390286717,0,918715.3,80961.1,0,0,0,0,999676.4,"office",135096,"Washington, D.C.",NA
+"14","1120 G Street, NW","Cooling Loads",2207541.04739614,0,7545375.3,150918.45,0,0,0,0,7696293.75,"office",135096,"Washington, D.C.",NA
+"15","1120 G Street, NW","Heating Loads",1543117.10064365,0,5274374.25,1646342.6,0,0,0,0,6920716.85,"office",135096,"Washington, D.C.",NA
+"16","11975 W Bluff Creek Drive ","Base Loads",91138.8531304857,0,311512.6,51703.4,0,0,0,0,363216,NA,NA,NA,NA
+"17","11975 W Bluff Creek Drive ","Cooling Loads",511142.086015214,0,1747083.65,254843.15,0,0,0,0,2001926.8,NA,NA,NA,NA
+"18","11975 W Bluff Creek Drive ","Heating Loads",599021.78174371,0,2047456.45,705588.5,0,0,0,0,2753044.95,NA,NA,NA,NA
+"19","11985 W Bluff Creek Drive","Base Loads",58849.4733762434,0,201147.5,112215.85,0,0,0,0,313363.35,"office",42887,"Los Angeles",NA
+"20","11985 W Bluff Creek Drive","Cooling Loads",363089.877121123,0,1241041.2,454471.9,0,0,0,0,1695513.1,"office",42887,"Los Angeles",NA
+"21","11985 W Bluff Creek Drive","Heating Loads",382338.853130486,0,1306834.2,912690.5,0,0,0,0,2219524.7,"office",42887,"Los Angeles",NA
+"22","11995 W Bluff Creek Drive","Base Loads",51675.9362200117,0,176628.35,17762.7,0,0,0,0,194391.05,"office",44657,"Los Angeles",NA
+"23","11995 W Bluff Creek Drive","Cooling Loads",272531.802223523,0,931513.7,127481,0,0,0,0,1058994.7,"office",44657,"Los Angeles",NA
+"24","11995 W Bluff Creek Drive","Heating Loads",287486.161497952,0,982627.7,438321.2,0,0,0,0,1420948.9,"office",44657,"Los Angeles",NA
+"25","12005 W Bluff Creek Drive","Base Loads",47669.6606202458,0,162934.9,6589.1,0,0,0,0,169524,"office",36438,"Los Angeles",NA
+"26","12005 W Bluff Creek Drive","Cooling Loads",268527.472205968,0,917826.9,170041.5,0,0,0,0,1087868.4,"office",36438,"Los Angeles",NA
+"27","12005 W Bluff Creek Drive","Heating Loads",296145.026331188,0,1012223.7,558669.05,0,0,0,0,1570892.75,"office",36438,"Los Angeles",NA
+"28","1201 F St.","Base Loads",379283.703920421,0,1296391.7,8240.35,0,0,0,0,1304632.05,"office",244653,"Washington, D.C.",NA
+"29","1201 F St.","Cooling Loads",2174554.06670568,0,7432625.8,29800.45,0,0,0,0,7462426.25,"office",244653,"Washington, D.C.",NA
+"30","1201 F St.","Heating Loads",2427938.20947923,0,8298692.8,53594.75,0,0,0,0,8352287.55,"office",244653,"Washington, D.C.",NA
+"31","12015 W Bluff Creek Drive","Base Loads",29851.6091281451,0,102032.8,25944,0,0,0,0,127976.8,"office",36392,"Los Angeles",NA
+"32","12015 W Bluff Creek Drive","Cooling Loads",162648.741954359,0,555933.4,198558.95,0,0,0,0,754492.35,"office",36392,"Los Angeles",NA
+"33","12015 W Bluff Creek Drive","Heating Loads",167860.503218256,0,573747.2,354745.45,0,0,0,0,928492.65,"office",36392,"Los Angeles",NA
+"34","12105 West Waterfront Drive","Base Loads",63465.4915155061,0,216925.05,0,0,0,0,0,216925.05,"office",296319,"Los Angeles",NA
+"35","12105 West Waterfront Drive","Cooling Loads",655158.031012288,0,2239330.15,0,0,0,0,0,2239330.15,"office",296319,"Los Angeles",NA
+"36","12105 West Waterfront Drive","Heating Loads",693930.354008192,0,2371853.95,0,0,0,0,0,2371853.95,"office",296319,"Los Angeles",NA
+"37","12126 West Waterfront Drive","Base Loads",13176.8285547104,0,45038.4,0,0,0,0,0,45038.4,"office",129313,"Los Angeles",NA
+"38","12126 West Waterfront Drive","Cooling Loads",134591.895845524,0,460035.1,0,0,0,0,0,460035.1,"office",129313,"Los Angeles",NA
+"39","12126 West Waterfront Drive","Heating Loads",156063.648332358,0,533425.55,0,0,0,0,0,533425.55,"office",129313,"Los Angeles",NA
+"40","125 High Street","Base Loads",0,0,0,0,0,0,0,0,0,"office",1486596,"Boston",NA
+"41","1275 Crossman","Base Loads",1043484.34757168,0,3566629.5,77653.35,0,0,0,0,3644282.85,"office",0,"city","Don't own anymore (Sunnyvale campus)"
+"42","1275 Crossman","Cooling Loads",14247913.370392,0,48699367.9,301110.1,0,0,0,0,49000478,"office",0,"city","Don't own anymore (Sunnyvale campus)"
+"43","1275 Crossman","Heating Loads",11890591.2229374,0,40642040.8,741919.35,0,0,0,0,41383960.15,"office",0,"city","Don't own anymore (Sunnyvale campus)"
+"44","1345 Crossman","Base Loads",195985.561732007,0,669878.65,212081.55,0,0,0,0,881960.2,"office",0,"city","Don't own anymore (Sunnyvale campus)"
+"45","1345 Crossman","Cooling Loads",1032592.48098303,0,3529401.1,1199760.4,0,0,0,0,4729161.5,"office",0,"city","Don't own anymore (Sunnyvale campus)"
+"46","1345 Crossman","Heating Loads",1217451.94558221,0,4161250.75,2899701.15,0,0,0,0,7060951.9,"office",0,"city","Don't own anymore (Sunnyvale campus)"
+"47","1375 Crossman","Base Loads",209267.539496782,0,715276.45,120112.45,0,0,0,0,835388.9,"office",0,"city","Don't own anymore (Sunnyvale campus)"
+"48","1375 Crossman","Cooling Loads",1033397.16208309,0,3532151.5,894468.05,0,0,0,0,4426619.55,"office",0,"city","Don't own anymore (Sunnyvale campus)"
+"49","1375 Crossman","Heating Loads",1236668.81217086,0,4226934,2222381.85,0,0,0,0,6449315.85,"office",0,"city","Don't own anymore (Sunnyvale campus)"
+"50","160 Spear","Base Loads",231137.068461088,0,790026.5,226829.45,0,0,0,0,1016855.95,"office",303429,"San Francisco",NA
+"51","160 Spear","Cooling Loads",1558585.15213575,0,5327244.05,1286340.15,0,0,0,0,6613584.2,"office",303429,"San Francisco",NA
+"52","160 Spear","Heating Loads",1272543.51960211,0,4349553.75,1589989.65,0,0,0,0,5939543.4,"office",303429,"San Francisco",NA
+"53","1717 Penn Ave.","Base Loads",362177.135751902,0,1237921.45,0,0,0,0,0,1237921.45,"office",202183,"Washington, D.C.",NA
+"54","1717 Penn Ave.","Cooling Loads",1882843.68051492,0,6435559.7,0,0,0,0,0,6435559.7,"office",202183,"Washington, D.C.",NA
+"55","1717 Penn Ave.","Heating Loads",2800901.94558221,0,9573482.85,0,0,0,0,0,9573482.85,"office",202183,"Washington, D.C.",NA
+"56","1730 Penn Ave.","Base Loads",386030.675833821,0,1319452.85,0,0,0,0,0,1319452.85,"office",268704,"Washington, D.C.",NA
+"57","1730 Penn Ave.","Cooling Loads",2578293.88531305,0,8812608.5,0,0,0,0,2710.1,8815318.6,"office",268704,"Washington, D.C.",NA
+"58","1730 Penn Ave.","Heating Loads",2153711.70275015,0,7361386.6,0,0,0,0,1940.5,7363327.1,"office",268704,"Washington, D.C.",NA
+"59","1747 Penn Ave.","Base Loads",241376.141018139,0,825023.65,16785.05,0,0,0,0,841808.7,"office",167926,"Washington, D.C.",NA
+"60","1747 Penn Ave.","Cooling Loads",1380293.50497367,0,4717843.2,78403.75,0,0,0,0,4796246.95,"office",167926,"Washington, D.C.",NA
+"61","1747 Penn Ave.","Heating Loads",1801379.08133411,0,6157113.7,119131.95,0,0,0,0,6276245.65,"office",167926,"Washington, D.C.",NA
+"62","175 Varick","Base Loads",110599.253949678,0,378028.25,52.2,0,0,0,0,378080.45,"office",176119,"New York",NA
+"63","175 Varick","Cooling Loads",771478.964306612,0,2636915.1,112.8,0,0,365365,0,3002392.9,"office",176119,"New York",NA
+"64","175 Varick","Heating Loads",766960.196021065,0,2621469.95,891.7,0,0,5930009.1,0,8552370.75,"office",176119,"New York",NA
+"65","1775 Penn Ave. ","Base Loads",212508.908718549,0,726355.45,0,0,0,0,0,726355.45,NA,NA,NA,NA
+"66","1775 Penn Ave. ","Cooling Loads",1244991.88121709,0,4255382.25,0,0,0,0,0,4255382.25,NA,NA,NA,NA
+"67","1775 Penn Ave. ","Heating Loads",1437836.6442364,0,4914525.65,0,0,0,0,0,4914525.65,NA,NA,NA,NA
+"68","1919 Penn Ave.","Base Loads",338211.966062025,0,1156008.5,8250.8,0,0,0,0,1164259.3,"office",290069,"Washington, D.C.",NA
+"69","1919 Penn Ave.","Cooling Loads",1815694.16325336,0,6206042.65,94781.15,0,0,0,0,6300823.8,"office",290069,"Washington, D.C.",NA
+"70","1919 Penn Ave.","Heating Loads",2060313.70684611,0,7042152.25,1989862.25,0,0,0,0,9032014.5,"office",290069,"Washington, D.C.",NA
+"71","2000 K","Base Loads",197488.677589233,0,675016.3,19452.8,0,0,0,0,694469.1,"office",234278,"Washington, D.C.",NA
+"72","2000 K","Cooling Loads",1028219.03159743,0,3514452.65,81534.6,0,0,0,0,3595987.25,"office",234278,"Washington, D.C.",NA
+"73","2000 K","Heating Loads",1420684.65476887,0,4855900.15,681855.55,0,0,0,0,5537755.7,"office",234278,"Washington, D.C.",NA
+"74","2050 M Street","Base Loads",0,0,0,0,0,0,0,0,0,"office",340507,"Washington, D.C.",NA
+"75","2050 M Street","Heating Loads",101684.040374488,0,347556.05,0,0,0,0,0,347556.05,"office",340507,"Washington, D.C.",NA
+"76","222 N LaSalle","Base Loads",1049324.60503218,0,3586591.5,0,0,0,0,0,3586591.5,"office",1018838,"Chicago",NA
+"77","222 N LaSalle","Cooling Loads",7263119.04622586,0,24825340.9,0,0,40020,0,0,24865360.9,"office",1018838,"Chicago",NA
+"78","222 N LaSalle","Heating Loads",7978765.81334114,0,27271421.55,0,0,0,0,0,27271421.55,"office",1018838,"Chicago",NA
+"79","222 Second Street","Base Loads",432679.856641311,0,1478899.75,91363.3,0,0,0,0,1570263.05,"office",453000,"San Francisco",NA
+"80","222 Second Street","Cooling Loads",2287070.58221182,0,7817207.25,459376.05,0,0,0,0,8276583.3,"office",453000,"San Francisco",NA
+"81","222 Second Street","Heating Loads",2612055.95377414,0,8928007.25,1631049,0,0,0,0,10559056.25,"office",453000,"San Francisco",NA
+"82","28-10 Jackson Ave","Base Loads",376786.512580456,0,1287856.3,347744.65,0,0,0,0,1635600.95,"office",595200,"New York",NA
+"83","28-10 Jackson Ave","Cooling Loads",1957629.3885313,0,6691177.25,2404017.15,0,0,0,0,9095194.4,"office",595200,"New York",NA
+"84","28-10 Jackson Ave","Heating Loads",1984301.0093622,0,6782340.85,7201118.3,0,0,0,0,13983459.15,"office",595200,"New York",NA
+"85","28-30 Jackson Ave","Base Loads",294501.0093622,0,1006604.45,647595.4,0,0,0,0,1654199.85,"office",659780,"New York",NA
+"86","28-30 Jackson Ave","Cooling Loads",2159699.25394968,0,7381852.05,2166034.25,0,0,0,0,9547886.3,"office",659780,"New York",NA
+"87","28-30 Jackson Ave","Heating Loads",2043470.93329432,0,6984583.65,7306491.1,0,0,0,0,14291074.75,"office",659780,"New York",NA
+"88","28-40 Jackson Ave","Base Loads",358134.932709187,0,1224105.2,337456.75,0,0,0,0,1561561.95,"office",540627,"New York",NA
+"89","28-40 Jackson Ave","Cooling Loads",1886442.71503803,0,6447861.2,2367904.2,0,0,0,0,8815765.4,"office",540627,"New York",NA
+"90","28-40 Jackson Ave","Heating Loads",1939923.58104154,0,6630658.8,7122089.05,0,0,0,0,13752747.85,"office",540627,"New York",NA
+"91","300 Park","Base Loads",776022.717963721,507.478350083752,2652445.65,220279.4,605929.15,0,0,0,3478654.2,"office",777658,"New York",NA
+"92","300 Park","Cooling Loads",5389361.62960796,5303.96595477387,18420838.05,1325851.2,6332935.35,0,0,0,26079624.6,"office",777658,"New York",NA
+"93","300 Park","Heating Loads",4087698.20070216,4567.30376884422,13971752.45,983852.7,5453360.7,0,0,0,20408965.85,"office",777658,"New York",NA
+"94","333 Bush","Base Loads",388082.723815097,0,1326466.75,479850.65,0,0,0,0,1806317.4,"office",597694,"San Francisco",NA
+"95","333 Bush","Cooling Loads",1936477.45757753,0,6618879.95,3436844.5,0,0,0,0,10055724.45,"office",597694,"San Francisco",NA
+"96","333 Bush","Heating Loads",2257771.91339965,0,7717064.4,4966557.3,0,0,0,0,12683621.7,"office",597694,"San Francisco",NA
+"97","400 Castro","Base Loads",229273.698069046,0,783657.5,167350.2,0,0,0,0,951007.7,"office",138762,"San Francisco",NA
+"98","400 Castro","Cooling Loads",1171587.44880047,0,4004485.9,986693.2,0,0,0,0,4991179.1,"office",138762,"San Francisco",NA
+"99","400 Castro","Heating Loads",1265914.39438268,0,4326895.4,2243055.65,0,0,0,0,6569951.05,"office",138762,"San Francisco",NA
+"100","407 N Maple","Base Loads",105437.390286717,0,360385,112676.1,0,0,0,0,473061.1,"office",163811,"Los Angeles",NA
+"101","407 N Maple","Cooling Loads",944074.23932124,0,3226845.75,161895.2,0,0,0,0,3388740.95,"office",163811,"Los Angeles",NA
+"102","407 N Maple","Heating Loads",660156.641310708,0,2256415.4,503211.1,0,0,0,0,2759626.5,"office",163811,"Los Angeles",NA
+"103","520 Madison","Base Loads",1660463.48741954,449.36486599665,5675464.2,306018.35,536541.65,0,0,0,6518024.2,"office",1049000,"New York",NA
+"104","520 Madison","Cooling Loads",8301194.54359274,4023.02345058626,28373482.95,1543515.15,4803490,0,0,0,34720488.1,"office",1049000,"New York",NA
+"105","520 Madison","Heating Loads",8352222.36688122,21180.6517169179,28547896.05,2075379.7,25289698.15,0,0,0,55912973.9,"office",1049000,"New York",NA
+"106","520 Pike Tower","Base Loads",423243.958455237,0,1446647.85,0,0,0,0,0,1446647.85,"office",425829,"Seattle",NA
+"107","520 Pike Tower","Cooling Loads",2210381.69982446,0,7555084.65,0,0,0,0,0,7555084.65,"office",425829,"Seattle",NA
+"108","520 Pike Tower","Heating Loads",2915623.82972499,0,9965602.25,0,0,0,0,0,9965602.25,"office",425829,"Seattle",NA
+"109","525 W Monroe","Base Loads",952024.23932124,0,3254018.85,65148.55,0,0,0,2266.5,3321433.9,"office",1028492,"Chicago",NA
+"110","525 W Monroe","Cooling Loads",5587158.22118198,0,19096906.8,374400.85,0,0,0,5148,19476455.65,"office",1028492,"Chicago",NA
+"111","525 W Monroe","Heating Loads",8983303.90579286,0,30704932.75,442148.2,0,0,0,10334.9,31157415.85,"office",1028492,"Chicago",NA
+"112","595 Market","Base Loads",410011.439438268,451.214991624791,1401419.1,0,538750.7,0,0,0,1940169.8,"office",429572,"San Francisco",NA
+"113","595 Market","Cooling Loads",2835552.80866004,3108.18094639866,9691919.5,0,3711168.05,0,0,0,13403087.55,"office",429572,"San Francisco",NA
+"114","595 Market","Heating Loads",2261328.17437098,3245.9168760469,7729219.7,0,3875624.75,0,0,0,11604844.45,"office",429572,"San Francisco",NA
+"115","6430 Sunset","Base Loads",450406.070801638,0,1539487.95,18286.2,0,0,0,0,1557774.15,"office",202444,"Los Angeles",NA
+"116","6430 Sunset","Cooling Loads",2264781.31948508,0,7741022.55,564940.4,0,0,0,0,8305962.95,"office",202444,"Los Angeles",NA
+"117","6430 Sunset","Heating Loads",2541271.56231714,0,8686066.2,1570046.55,0,0,0,0,10256112.75,"office",202444,"Los Angeles",NA
+"118","900 19th Street","Base Loads",80971.7378583967,0,276761.4,0,0,0,0,0,276761.4,"office",115272,"Washington, D.C.",NA
+"119","900 19th Street","Cooling Loads",530249.648917496,0,1812393.3,0,0,0,0,0,1812393.3,"office",115272,"Washington, D.C.",NA
+"120","900 19th Street","Heating Loads",687219.148624927,0,2348915.05,0,0,0,0,0,2348915.05,"office",115272,"Washington, D.C.",NA
+"121","Arboretum Courtyard","Base Loads",138441.764189585,0,473193.95,81999.9,0,0,0,0,555193.85,"office",147000,"Los Angeles",NA
+"122","Arboretum Courtyard","Cooling Loads",804541.003510825,0,2749921.15,264184.45,0,0,0,0,3014105.6,"office",147000,"Los Angeles",NA
+"123","Arboretum Courtyard","Heating Loads",819231.963136337,0,2800134.85,906973.2,0,0,0,0,3707108.05,"office",147000,"Los Angeles",NA
+"124","Bala I","Base Loads",526349.093036864,0,1799061.2,83266.95,0,0,0,0,1882328.15,"office",400386,"Bala Cynwyd",NA
+"125","Bala I","Cooling Loads",2914586.49795202,0,9962056.65,693492.05,0,0,0,0,10655548.7,"office",400386,"Bala Cynwyd",NA
+"126","Bala I","Heating Loads",3252184.66939731,0,11115967.2,8387999.15,0,632638,0,0,20136604.35,"office",400386,"Bala Cynwyd",NA
+"127","Bala II","Base Loads",445150.336454067,0,1521523.85,68048.95,0,0,0,0,1589572.8,"office",290011,"Bala Cynwyd",NA
+"128","Bala II","Cooling Loads",2857221.03569339,0,9765981.5,516746.95,0,0,0,276000,10558728.45,"office",290011,"Bala Cynwyd",NA
+"129","Bala II","Heating Loads",2631358.66003511,0,8993983.9,7132844.95,0,0,0,661319,16788147.85,"office",290011,"Bala Cynwyd",NA
+"130","Bala III","Base Loads",446652.823288473,0,1526659.35,0,0,0,0,0,1526659.35,"office",394764,"Bala Cynwyd",NA
+"131","Bala III","Cooling Loads",2889233.54300761,0,9875400.25,0,0,0,0,0,9875400.25,"office",394764,"Bala Cynwyd",NA
+"132","Bala III","Heating Loads",3277190.374488,0,11201436.7,0,0,0,0,0,11201436.7,"office",394764,"Bala Cynwyd",NA
+"133","Beverly Place","Base Loads",64455.9684025746,0,220310.5,7121.1,0,0,0,0,227431.6,"office",132289,"Los Angeles",NA
+"134","Beverly Place","Cooling Loads",494905.251609128,0,1691586.15,31761.65,0,0,0,0,1723347.8,"office",132289,"Los Angeles",NA
+"135","Beverly Place","Heating Loads",405005.119953189,0,1384307.5,30747.25,0,0,0,0,1415054.75,"office",132289,"Los Angeles",NA
+"136","Chrysler East Building","Base Loads",715673.537156232,544.97851758794,2446172.15,0,650704.35,0,0,0,3096876.5,"office",770389,"New York",NA
+"137","Chrysler East Building","Cooling Loads",4348390.88648332,9897.65016750419,14862800.05,0,11817794.3,0,0,0,26680594.35,"office",770389,"New York",NA
+"138","Chrysler East Building","Heating Loads",4638216.06202458,8017.81051088777,15853422.5,0,9573265.75,0,0,0,25426688.25,"office",770389,"New York",NA
+"139","CitySpire","Base Loads",669741.530134581,203.625041876047,2289176.55,12750,243128.3,0,0,0,2545054.85,"office",370758,"New York",NA
+"140","CitySpire","Cooling Loads",4507151.44821533,8.65506700167504,15405443.65,61454.35,10334.15,0,0,0,15477232.15,"office",370758,"New York",NA
+"141","CitySpire","Heating Loads",4455137.96079579,4443.75569514238,15227661.55,78070.4,5305844.3,0,0,0,20611576.25,"office",370758,"New York",NA
+"142","GAC","Base Loads",1386349.56114687,0,4738542.8,0,0,0,0,0,4738542.8,"office",648000,"Stamford",NA
+"143","GAC","Cooling Loads",7311259.12814511,0,24989883.7,0,0,1805316,0,0,26795199.7,"office",648000,"Stamford",NA
+"144","GAC","Heating Loads",7737993.56348742,0,26448462,0,0,10641386.95,0,0,37089848.95,"office",648000,"Stamford",NA
+"145","Hearst Tower","Base Loads",980892.42246928,475.999958123953,3352690.3,131533.2,568343.95,0,0,0,4052567.45,"office",839272,"New York",NA
+"146","Hearst Tower","Cooling Loads",6301784.14277355,4463.50004187605,21539498.2,755033.4,5329419.05,0,0,0,27623950.65,"office",839272,"New York",NA
+"147","Hearst Tower","Heating Loads",4485197.01579871,14402.5296901173,15330403.4,648021.6,17196620.45,0,0,0,33175045.45,"office",839272,"New York",NA
+"148","Hearst Warehouse","Base Loads",3600.55588063195,0,12306.7,1828.25,0,0,0,0,14134.95,"office",106583,"New York",NA
+"149","Hearst Warehouse","Cooling Loads",17862.7413692218,0,61054.85,477701.2,0,0,0,0,538756.05,"office",106583,"New York",NA
+"150","Hearst Warehouse","Heating Loads",33796.7963721475,0,115517.45,3880423,0,0,0,0,3995940.45,"office",106583,"New York",NA
+"151","International Square","Base Loads",1669142.11527209,0,5705127.75,0,0,0,0,0,5705127.75,"office",1167626,"Washington, D.C.",NA
+"152","International Square","Cooling Loads",9099803.8033938,0,31103129.4,0,0,0,0,0,31103129.4,"office",1167626,"Washington, D.C.",NA
+"153","International Square","Heating Loads",11161362.3171445,0,38149536.4,0,0,0,0,0,38149536.4,"office",1167626,"Washington, D.C.",NA
+"154","Longridge","Base Loads",419859.537741369,0,1435079.9,86684.95,0,0,0,0,1521764.85,"office",313882,"Stamford",NA
+"155","Longridge","Cooling Loads",2160779.57870099,0,7385544.6,2112652.55,0,0,0,0,9498197.15,"office",313882,"Stamford",NA
+"156","Longridge","Heating Loads",2350885.31304857,0,8035326,14873366.45,0,0,0,0,22908692.45,"office",313882,"Stamford",NA
+"157","Maple Plaza","Base Loads",165271.737858397,0,564898.8,67475.25,0,0,0,0,632374.05,"office",289542,"Los Angeles",NA
+"158","Maple Plaza","Cooling Loads",1183767.05675834,0,4046115.8,517096.1,0,0,0,0,4563211.9,"office",289542,"Los Angeles",NA
+"159","Maple Plaza","Heating Loads",882813.736102984,0,3017457.35,452417,0,0,0,0,3469874.35,"office",289542,"Los Angeles",NA
+"160","Metlife Building","Base Loads",3535062.37565828,5440.18844221106,12082843.2,619548.15,6495585,0,0,0,19197976.35,"office",3091809,"New York",NA
+"161","Metlife Building","Cooling Loads",19832853.3645407,76433.416080402,67788692.8,2931754.1,91261498.8,0,0,0,161981945.7,"office",3091809,"New York",NA
+"162","Metlife Building","Heating Loads",22180643.6658865,87746.7923366834,75813440.05,3762981.2,104769670.05,0,0,0,184346091.3,"office",3091809,"New York",NA
+"163","One Bush","Base Loads",336024.414862493,366.725837520938,1148531.45,0,437870.65,0,0,0,1586402.1,"office",451725,"San Francisco",NA
+"164","One Bush","Cooling Loads",2267854.812756,1935.80489949749,7751527.75,0,2311351.05,0,0,0,10062878.8,"office",451725,"San Francisco",NA
+"165","One Bush","Heating Loads",2710352.00409596,3144.60025125628,9263983.15,0,3754652.7,0,0,0,13018635.85,"office",451725,"San Francisco",NA
+"166","One Channel Center","Base Loads",457668.329432417,0,1564310.35,106790.45,0,0,0,0,1671100.8,"office",501650,"Boston",NA
+"167","One Channel Center","Cooling Loads",2514863.50204798,0,8595803.45,1227167.4,0,0,0,0,9822970.85,"office",501650,"Boston",NA
+"168","One Channel Center","Heating Loads",2792738.50204798,0,9545580.2,2418223.25,0,0,0,0,11963803.45,"office",501650,"Boston",NA
+"169","One Channel Center Parking","Base Loads",20794.836161498,0,71076.75,0,0,0,0,0,71076.75,"office",342090,"Boston",NA
+"170","One Channel Center Parking","Cooling Loads",131369.938560562,0,449022.45,0,0,0,0,0,449022.45,"office",342090,"Boston",NA
+"171","One Channel Center Parking","Heating Loads",295446.606202458,0,1009836.5,0,0,0,0,0,1009836.5,"office",342090,"Boston",NA
+"172","One Federal","Base Loads",1627388.32650673,373.419346733668,5562413.3,0,445862.7,0,0,0,6008276,"office",1118355,"Boston",NA
+"173","One Federal","Cooling Loads",8476308.87946167,7370.53760469012,28972023.75,0,8800421.9,0,0,0,37772445.65,"office",1118355,"Boston",NA
+"174","One Federal","Heating Loads",9354874.21006436,28811.2032663317,31974960.05,0,34400576.7,0,0,0,66375536.75,"office",1118355,"Boston",NA
+"175","Reston Crossing I","Base Loads",216239.745465184,0,739107.45,8478.5,0,0,0,0,747585.95,"office",160938,"Reston",NA
+"176","Reston Crossing I","Cooling Loads",1353594.14862493,0,4626584.8,62287.3,0,0,0,0,4688872.1,"office",160938,"Reston",NA
+"177","Reston Crossing I","Heating Loads",1204744.03159743,0,4117815.1,201880.75,0,0,0,0,4319695.85,"office",160938,"Reston",NA
+"178","Reston Crossing II","Base Loads",181431.451141018,0,620132.7,31156.6,0,0,0,0,651289.3,"office",187255,"Reston",NA
+"179","Reston Crossing II","Cooling Loads",982181.846108835,0,3357097.55,218272.85,0,0,0,0,3575370.4,"office",187255,"Reston",NA
+"180","Reston Crossing II","Heating Loads",1371639.87712112,0,4688265.1,453693.1,0,0,0,0,5141958.2,"office",187255,"Reston",NA
+"181","Sunset Tower Parking","Base Loads",8051.03861907548,0,27518.45,0,0,0,0,0,27518.45,"office",110080,"Los Angeles",NA
+"182","Sunset Tower Parking","Cooling Loads",52608.8209479228,0,179816.95,0,0,0,0,0,179816.95,"office",110080,"Los Angeles",NA
+"183","Sunset Tower Parking","Heating Loads",46531.5242832065,0,159044.75,0,0,0,0,0,159044.75,"office",110080,"Los Angeles",NA
+"184","The Franklin","Base Loads",3139639.59918081,0,10731288.15,76077.9,0,0,0,0,10807366.05,"office",3117492,"Chicago",NA
+"185","The Franklin","Cooling Loads",19247767.3932124,0,65788868.95,359854,0,0,0,0,66148722.95,"office",3117492,"Chicago",NA
+"186","The Franklin","Heating Loads",26938958.0310123,0,92077358.55,462729.9,0,0,0,0,92540088.45,"office",3117492,"Chicago",NA
+"187","The JACX","Base Loads",70044.7630193095,0,239413,210733.2,0,0,0,0,450146.2,"office",1188749,"New York",NA
+"188","The JACX","Cooling Loads",526877.691632534,0,1800867.95,1859577.3,0,0,0,0,3660445.25,"office",1188749,"New York",NA
+"189","The JACX","Heating Loads",1098802.26740784,0,3755706.15,7720686.35,0,0,0,0,11476392.5,"office",1188749,"New York",NA
+"190","Torrey Plaza (A)","Base Loads",13902.4136922177,0,47518.45,3927.9,0,0,0,0,51446.35,"office",60253,"San Diego",NA
+"191","Torrey Plaza (A)","Cooling Loads",72681.2024575775,0,248424.35,31231.65,0,0,0,0,279656,"office",60253,"San Diego",NA
+"192","Torrey Plaza (A)","Heating Loads",80663.7507314219,0,275708.7,171581.4,0,0,0,0,447290.1,"office",60253,"San Diego",NA
+"193","Torrey Plaza (B)","Base Loads",38818.7097717964,0,132682.35,24250,0,0,0,0,156932.35,"office",89132,"San Diego",NA
+"194","Torrey Plaza (B)","Cooling Loads",491809.172030427,0,1681003.75,21650,0,0,0,0,1702653.75,"office",89132,"San Diego",NA
+"195","Torrey Plaza (B)","Heating Loads",298866.559391457,0,1021525.9,78744,0,0,0,0,1100269.9,"office",89132,"San Diego",NA
+"196","Torrey Plaza (C)","Base Loads",77226.4335868929,0,263959.95,6600,0,0,0,0,270559.95,"office",75450,"San Diego",NA
+"197","Torrey Plaza (C)","Cooling Loads",577534.362200117,0,1974012.45,5981,0,0,0,0,1979993.45,"office",75450,"San Diego",NA
+"198","Torrey Plaza (C)","Heating Loads",476861.029842013,0,1629911,35851.5,0,0,0,0,1665762.5,"office",75450,"San Diego",NA

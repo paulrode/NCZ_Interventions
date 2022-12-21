@@ -91,7 +91,7 @@ left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
 #Building Configuration File 
 #data.frame(Building = unique(EndUseAllocation$Building),  Heating = rep("type", 67), Cooling = rep("type", 67), DomesticHotWater = rep("type", 67),CoolingTower = rep("type", 67) ) -> BuildingConfiguration
-#write.csv(BuildingConfiguration, "C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions/data/BuildingConfiguration.csv")
+write.csv(EndUseAllocation, "C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions/data/EndUseAllocation.csv")
 
 
 remove(BuildingData, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
