@@ -94,6 +94,8 @@ left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 write.csv(EndUseAllocation, "C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions/data/EndUseAllocation.csv")
 
 
+
+
 remove(BuildingData, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
 
