@@ -112,6 +112,6 @@ EndUseAllocation %>%
   gather(key = "Load", value = value, 3:12) -> testfit1
 
 
-spread(testfit1, key=Load, value=value) -> testfit2
+spread(testfit1, key=use, value=value) -> testfit2
 
 
