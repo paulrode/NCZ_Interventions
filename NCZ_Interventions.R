@@ -91,7 +91,7 @@ left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
 #Building Configuration File 
 #data.frame(Building = unique(EndUseAllocation$Building),  Heating = rep("type", 67), Cooling = rep("type", 67), DomesticHotWater = rep("type", 67),CoolingTower = rep("type", 67) ) -> BuildingConfiguration
-write.csv(EndUseAllocation, "C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions/data/EndUseAllocation.csv")
+# write.csv(EndUseAllocation, "C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions/data/EndUseAllocation.csv")
 
 
 
@@ -108,6 +108,10 @@ Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 
 
 
 EndUseAllocation %>% 
-  gather(key = "LoadGroup", value = value, 3:15) -> testfit1
+  select(-12,-14,-15) %>% 
+  gather(key = "Load", value = value, 3:12) -> testfit1
+
+
+spread(testfit1, key=Load, value=value) -> testfit2
 
 
