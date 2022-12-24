@@ -109,9 +109,9 @@ Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 
 
 EndUseAllocation %>% 
   select(-12,-14,-15) %>% 
-  gather(key = "Load", value = value, 3:12) -> testfit1
-
-
-spread(testfit1, key=use, value=value) -> testfit2
+  select(1,2,12,3:11) %>% 
+  gather(key = "Load", value = value, 4:12)  %>% 
+  filter(value != 0 ) %>% 
+  spread(key=use, value=value, fill = 0) -> testfit1
 
 
