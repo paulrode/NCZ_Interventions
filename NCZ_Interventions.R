@@ -110,8 +110,16 @@ Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 
 EndUseAllocation %>% 
   select(-12,-14,-15) %>% 
   select(1,2,12,3:11) %>% 
-  gather(key = "Load", value = value, 4:12)  %>% 
+  gather(key = "Load", value = value, 4:12) %>% 
   filter(value != 0 ) %>% 
   spread(key=use, value=value, fill = 0) -> testfit1
 
+length(unique(EndUseAllocation$Building))
+unique(EndUseAllocation$Building)
 
+#Interventions %>% select(Building, Savings, Order, `Intervention Name`) -> InterventionsA
+
+right_join(testfit1, Interventions, by = "Building") -> testfit2
+
+testfit2 %>% 
+  spread(key = Savings, value = value)
