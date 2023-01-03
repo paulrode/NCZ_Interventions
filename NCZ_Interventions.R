@@ -1,7 +1,10 @@
 
 # Load packages 
 
-my_packages <- c("tidyverse", "vroom" , "timetk", "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", "tsibbledata", "knitr", "formattable", "scales", "kable", "tidyr" ,"kableExtra", "dplyr", "gridExtra")   
+my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", 
+                 "tsibbledata", "knitr", "formattable", "scales", "tidyr" ,"kableExtra", "dplyr", "gridExtra")   
+
+# Took these out but need to keep them front of mind "timetk" , "recipes" 
 
 invisible( lapply(my_packages, require, character.only = TRUE))
 
@@ -100,7 +103,11 @@ remove(BuildingData, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 
 
 #Building Intervention File 
-Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 16, na = "Not Available", sheet = 1) 
+Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 16, na = "Not Available", sheet = 1)%>% 
+  select(1:12) %>% 
+  select( -6, -7, -8,-12) %>% 
+  select(1, 4,2,3,5,6,7,8)
+
 
 
 #apply(TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)], 2, function(row) as.numeric(row)) -> TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)]
@@ -109,7 +116,9 @@ Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 
 
 EndUseAllocation %>% 
   select(-5, -7, -11, -12,-14,-15) %>% 
-  select(1,2,9,3:8) %>% 
+  select(1,2,9,3:8) -> EndUseAllocation
+
+EndUseAllocation %>% 
   gather(key = "Load", value = value, 4:9) %>% 
   filter(value != 0 ) %>% 
   spread(key=use, value=value, fill = 0) -> testfit1
@@ -119,7 +128,10 @@ unique(EndUseAllocation$Building)
 
 #Interventions %>% select(Building, Savings, Order, `Intervention Name`) -> InterventionsA
 
-right_join(testfit1, Interventions, by = "Building") -> testfit2
+right_join(testfit1, Interventions, by = "Building") -> Savings
+remove(testfit1)
 
-testfit2 %>% 
-  spread(key = Savings, value = value)
+#Savings %>% 
+
+    
+
