@@ -131,7 +131,24 @@ unique(EndUseAllocation$Building)
 right_join(testfit1, Interventions, by = "Building") -> Savings
 remove(testfit1)
 
+# a <- 1:10
+# [1]  1  2  3  4  5  6  7  8  9 10
+#  Reduce("+",a)
+# [1] 55
+#  Reduce(sum,a) #1+2+3+4+5+6+7+8+9+10=55
+# [1] 55
+
+# Use custom defined function:
+  
+# Reduce(function(x,y){x * 2 + y},a) #((1 * 2 + 3) * 2 + 3) * 2 + 3 ....
+# [1] 2036
+
 #Savings %>% 
 
+Savings$`Base Loads`[1] * Savings$`Change in Electricity Consumption Reduction (kWh)`[1] -> I_Saved[1]
+
+for(i in 2:length(Savings$`Intervention Name`)){ 
+  (Savings$`Change in Electricity Consumption Reduction (kWh)`[i] - I_Saved[i-1] ) * Savings$`Base Loads`[i] -> I_Saved;
+  Savings$`Base Loads 2` <- Savings$`Base Loads` - I_Saved }
     
 
