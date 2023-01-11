@@ -148,7 +148,7 @@ remove(testfit1)
 Savings$`Base Loads` * Savings$`Change in Electricity Consumption Reduction (kWh)` -> Savings$I_Saved
 
 for(i in 2:length(Savings$`Intervention Name`)){ 
-  Savings$`Base Loads`[i]- Savings$`Change in Electricity Consumption Reduction (kWh)`[i-1] -> Savings$`Base Loads`[i]
+  Savings$`Base Loads`[i]- Savings$I_Saved[i-1] -> Savings$`Base Loads`[i]
   Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$I_Saved[i]
     }
     
