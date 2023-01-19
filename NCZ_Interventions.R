@@ -145,13 +145,26 @@ remove(testfit1)
 
 #Savings %>% 
 
-Savings$`Base Loads` * Savings$`Change in Electricity Consumption Reduction (kWh)` -> Savings$I_Saved
 
-for(i in 2:length(Savings$`Intervention Name`)){ 
-  if(Savings$Savings == "Base"){
-   Savings$`Base Loads`[i]- Savings$I_Saved[i-1] -> Savings$`Base Loads`[i]
-  Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$I_Saved[i] 
-  } else {Savings$`Base Loads`[i]- Savings$I_Saved[i-1] -> Savings$`Base Loads`[i]
-    Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$I_Saved[i] }}
+
+for(i in 1:length(Savings$`Intervention Name`)-1) { 
+  if(Savings$Savings == "Base") {
+    Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base
+    Savings$`Base Loads`[i] - Savings$Saved_Base -> Savings$`Base Loads`[i+1]
     
-
+  } else if(Savings$Savings == "Cooling") { 
+    Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base
+    Savings$`Base Loads`[i] - Savings$Saved_Base -> Savings$`Base Loads`[i+1]
+    
+  } else if(Savings$Savings == "Heating") {
+    Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base
+    Savings$`Base Loads`[i] - Savings$Saved_Base -> Savings$`Base Loads`[i+1]
+    
+  } else if(Savings$Savings == "Heating & Cooling") {
+    Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base
+    Savings$`Base Loads`[i] - Savings$Saved_Base -> Savings$`Base Loads`[i+1]
+    
+  } else if(Savings$Savings == "Heating & Cooling & Base") {  
+    Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base
+    Savings$`Base Loads`[i] - Savings$Saved_Base -> Savings$`Base Loads`[i+1]
+  }}
