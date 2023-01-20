@@ -171,4 +171,8 @@ for(i in 1:length(Savings$`Intervention Name`)-1) {
     Savings$`Base Loads`[i] - Savings$Saved_Base -> Savings$`Base Loads`[i+1]
     Savings$`Cooling Loads`[i] - Savings$`Cooling Loads`[i] -> Savings$`Cooling Loads`[i+1]
     Savings$`Heating Loads`[i] - Savings$`Heating Loads` -> Savings$`Heating Loads`[i+1]
-  }
+}
+
+
+###
+
