@@ -150,21 +150,25 @@ remove(testfit1)
 for(i in 1:length(Savings$`Intervention Name`)-1) { 
   if(Savings$Savings == "Base") {
     Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base
-    Savings$`Base Loads`[i] - Savings$Saved_Base -> Savings$`Base Loads`[i+1]
+    
     
   } else if(Savings$Savings == "Cooling") { 
-    Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base
-    Savings$`Base Loads`[i] - Savings$Saved_Base -> Savings$`Base Loads`[i+1]
+    Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$`Cooling Loads`
+    
     
   } else if(Savings$Savings == "Heating") {
-    Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base
-    Savings$`Base Loads`[i] - Savings$Saved_Base -> Savings$`Base Loads`[i+1]
+    Savings$`Heating Loads` * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Heating
+    
     
   } else if(Savings$Savings == "Heating & Cooling") {
-    Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base
-    Savings$`Base Loads`[i] - Savings$Saved_Base -> Savings$`Base Loads`[i+1]
+    Savings$`Heating Loads` * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Heating
+    Savings$`Cooling Loads` * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Cooling
+    
     
   } else if(Savings$Savings == "Heating & Cooling & Base") {  
     Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base
+  }
     Savings$`Base Loads`[i] - Savings$Saved_Base -> Savings$`Base Loads`[i+1]
-  }}
+    Savings$`Cooling Loads`[i] - Savings$`Cooling Loads`[i] -> Savings$`Cooling Loads`[i+1]
+    Savings$`Heating Loads`[i] - Savings$`Heating Loads` -> Savings$`Heating Loads`[i+1]
+  }
