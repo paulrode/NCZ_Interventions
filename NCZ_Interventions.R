@@ -128,23 +128,13 @@ unique(EndUseAllocation$Building)
 
 #Interventions %>% select(Building, Savings, Order, `Intervention Name`) -> InterventionsA
 
-right_join(testfit1, Interventions, by = "Building") -> Savings
+right_join(testfit1, Interventions, by = "Building") %>% 
+  na.omit() -> Savings
 remove(testfit1)
-
-# a <- 1:10
-# [1]  1  2  3  4  5  6  7  8  9 10
-#  Reduce("+",a)
-# [1] 55
-#  Reduce(sum,a) #1+2+3+4+5+6+7+8+9+10=55
-# [1] 55
-
-# Use custom defined function:
-  
-# Reduce(function(x,y){x * 2 + y},a) #((1 * 2 + 3) * 2 + 3) * 2 + 3 ....
-# [1] 2036
-
-#Savings %>% 
-
+unique(Savings$Load) -> loads
+length(loads) -> fuels
+length(Savings$Load) -> rows
+rows/fuels
 
 
 for(i in 1:length(Savings$`Intervention Name`)-1) { 
