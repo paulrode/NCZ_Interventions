@@ -130,6 +130,11 @@ unique(EndUseAllocation$Building)
 
 right_join(testfit1, Interventions, by = "Building") %>% 
   na.omit() -> Savings
+
+
+Savings %>% 
+  mutate("Saved_Base" = 0, "Saved_Cooling" = 0, "Saved_Heating" = 0) -> Savings
+
 remove(testfit1)
 unique(Savings$Load) -> loads
 length(loads) -> fuels
@@ -138,7 +143,22 @@ rows/fuels
 
 for(i in 1:length(Savings$Load)) { 
   if(Savings$Savings[i] == "Base")  {Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base[i]
-  }else{Savings$Saved_Base[i] <- 0}}
+  }else{
+  
+  if(Savings$Savings[i] == "Cooling")  {Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Cooling[i]
+  }else{
+  
+  if(Savings$Savings[i] == "Heating")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Heating[i]
+  }else{
+  
+  if(Savings$Savings[i] == "Heating & Cooling")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Heating[i]
+    Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Cooling[i]
+  }else{
+  
+  if(Savings$Savings[i] == "Heating & Cooling & Base")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Heating[i]
+    Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Cooling[i]
+    Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base[i]
+  }}}}}}
   
     
     
