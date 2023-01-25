@@ -158,7 +158,12 @@ for(i in 1:length(Savings$Load)) {
   if(Savings$Savings[i] == "Heating & Cooling & Base")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Heating[i]
     Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Cooling[i]
     Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base[i]
-  }}}}}}
+  }}}}}
+  
+  if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Base Loads`[i] - Savings$Saved_Base[i] -> Savings$`Base Loads`[i+1]
+    
+    
+    }  }
   
     
     
