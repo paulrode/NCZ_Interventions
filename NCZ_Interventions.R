@@ -45,7 +45,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    mutate(DateM = month(Month), DateY = year(Month)) %>% 
    filter(DateY > 2017 & DateY < 2020) %>% 
    select(1,10,9, 3:8) -> TSUS_EPA_DATA_SHORT_ALL
-remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
+ remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
  
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
@@ -142,28 +142,29 @@ length(Savings$Load) -> rows
 rows/fuels
 
 for(i in 1:length(Savings$Load)) { 
-  if(Savings$Savings[i] == "Base")  {Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base[i]
+  if(Savings$Savings[i] == "Base")  {Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Base[i]
   }else{
   
-  if(Savings$Savings[i] == "Cooling")  {Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Cooling[i]
+  if(Savings$Savings[i] == "Cooling")  {Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Cooling[i]
   }else{
   
-  if(Savings$Savings[i] == "Heating")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Heating[i]
+  if(Savings$Savings[i] == "Heating")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
   }else{
   
-  if(Savings$Savings[i] == "Heating & Cooling")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Heating[i]
-    Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Cooling[i]
+  if(Savings$Savings[i] == "Heating & Cooling")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Heating[i]
+    Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
   }else{
   
-  if(Savings$Savings[i] == "Heating & Cooling & Base")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Heating[i]
-    Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Cooling[i]
-    Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] * 100 -> Savings$Saved_Base[i]
+  if(Savings$Savings[i] == "Heating & Cooling & Base")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
+    Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
+    Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Base[i]
   }}}}}
   
   if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Base Loads`[i] - Savings$Saved_Base[i] -> Savings$`Base Loads`[i+1]
+  if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Cooling Loads`[i] - Savings$Saved_Cooling[i] -> Savings$`Cooling Loads`[i+1]  
+  if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Heating Loads`[i] - Savings$Saved_Heating[i] -> Savings$`Heating Loads`[i+1]    
     
-    
-    }  }
+    }}}}
   
     
     
