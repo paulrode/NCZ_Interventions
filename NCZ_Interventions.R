@@ -183,6 +183,10 @@ for(i in 1:length(Savings$Load)) {
   if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Base Loads`[i] - Savings$Saved_Base[i] -> Savings$`Base Loads`[i+1]
   if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Cooling Loads`[i] - Savings$Saved_Cooling[i] -> Savings$`Cooling Loads`[i+1]  
   if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Heating Loads`[i] - Savings$Saved_Heating[i] -> Savings$`Heating Loads`[i+1]    
+  
+  # addig logic for electrification interventions for cooling and heating. In heating I want to carry over steam or gas btu's as electric add at a ratio of efficiencies. 
+    # same for cooling. If I have a cooling measure I will put in 1 which means remaining steam is converted to zero and electric add at efficieny placed in electric kwh change column. 
+    
     
     }}}}}
   
