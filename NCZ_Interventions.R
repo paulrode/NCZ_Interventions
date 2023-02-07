@@ -135,7 +135,7 @@ right_join(testfit1, Interventions, by = "Building") %>%
 Savings %>% 
   mutate("Saved_Base" = 0, "Saved_Cooling" = 0, "Saved_Heating" = 0) -> Savings
 
-remove(testfit1)
+#remove(testfit1)
 unique(Savings$Load) -> loads
 length(loads) -> fuels
 length(Savings$Load) -> rows
@@ -191,5 +191,5 @@ for(i in 1:length(Savings$Load)) {
     }}}}}
   
     
-    
-    
+
+ write.csv(testfit1, "C:/Users/paulr/Documents/R/NCZ_Interventions/testfit.csv")
