@@ -223,6 +223,9 @@ for(i in 1:length(Savings$Load)) {
     
     }}}}}
   
-    
+#  Logic for electrification. 
+#  For heating Electrification. 
+#  For cooling Electrification.
+#  For DHW Electrification. 
 
 
