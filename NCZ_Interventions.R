@@ -224,8 +224,8 @@ for(i in 1:length(Savings$Load)) {
     }}}}}
   
 #  Logic for electrification. 
-#  For heating Electrification. 
-#  For cooling Electrification.
-#  For DHW Electrification. 
+#  For heating Electrification. Look at change in kWh and interpret as electric conversion COP. 
+#  For cooling Electrification. Same as heating look at change in kWh and interpert as COP. 
+#  For DHW Electrification. Interpert converstion efficiency as COP in the electric column. 
 
 
