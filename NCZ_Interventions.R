@@ -173,7 +173,10 @@ for(i in 1:length(Savings$Load)) {
       Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
       Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Base[i]
   }else{
-  if(Savings$Savings[i] == "Base" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Base[i]
+  
+    
+    
+    if(Savings$Savings[i] == "Base" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Base[i]
   }else{ 
   if(Savings$Savings[i] == "Base" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification") {Savings$`Base Loads`[i] * Savings$`Change in Steam Consumption, kLbs`[i] -> Savings$Saved_Base[i]
   }else{ 
@@ -227,6 +230,13 @@ for(i in 1:length(Savings$Load)) {
 #  For heating Electrification. Look at change in kWh and interpret as electric conversion COP. 
 #  For cooling Electrification. Same as heating look at change in kWh and interpret as COP. 
 #  For DHW Electrification. Interpret conversion efficiency as COP in the electric column. 
-#  Electrification can only be heating or cooling but not both for now. Handle them seperatly. 
+#  Electrification can only be heating or cooling but not both for now. Handle them separately.
+# Combinations: 
+# steam -> electric heat, savings load = steam 
+# steam -> electric cooling, savings load = steam
+# steam -> electric DHW, savings load = steam 
+# gas -> electric heat, savings load = gas
+# gas -> electric cooling, savings load = gas
+# gas -> electric DHW, savings load = gas 
 
 
