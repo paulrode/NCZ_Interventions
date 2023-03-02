@@ -232,11 +232,22 @@ for(i in 1:length(Savings$Load)) {
 #  For DHW Electrification. Interpret conversion efficiency as COP in the electric column. 
 #  Electrification can only be heating or cooling but not both for now. Handle them separately.
 # Combinations: 
-# steam -> electric heat, savings load = steam 
-# steam -> electric cooling, savings load = steam
-# steam -> electric DHW, savings load = steam 
-# gas -> electric heat, savings load = gas
-# gas -> electric cooling, savings load = gas
-# gas -> electric DHW, savings load = gas 
 
+# Load = Steam -> steam to electric heat 
+#put COP of electric heat in change in electric and zero out steam heat in heating loads.  
+
+# Load = steam -> steam cooling to electric cooling
+#put COP of electric heat in change in electric and zero out steam cooling in cooling loads 
+
+# Load = steam -> steam DHW to electric DHW 
+#put COP of electric heat in change in electric and zero out steam loads in base  
+
+# Load = gas -> gas boilers to electric heat
+#put COP of electric heat in electric and zero out steam 
+
+# Load = gas -> gas chillers to electric cooling
+#put COP of electric heat in electric and zero out steam 
+
+# Load = gas -> gas boilers for DHW to electric DHW
+#put COP of electric heat in electric and zero out steam 
 
