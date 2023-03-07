@@ -227,27 +227,29 @@ for(i in 1:length(Savings$Load)) {
     }}}}}
   
 #  Logic for electrification. Starting at line 176 for adding logic to electrification. 
-#  For heating Electrification. Look at change in kWh and interpret as electric conversion COP. 
-#  For cooling Electrification. Same as heating look at change in kWh and interpret as COP. 
-#  For DHW Electrification. Interpret conversion efficiency as COP in the electric column. 
 #  Electrification can only be heating or cooling but not both for now. Handle them separately.
+#  Electrification measures are to be at the bottom of all other interventions per fuel grouping. Need 
+#  to sort interventions so these electrificaiton measures are at the bottom of each fuel group. 
+#  use group by load, and then arrange() for the electrificaiton on Savings before other looping is done. 
+
+
 # Combinations: 
 
-# Load = Steam -> steam to electric heat 
-#put COP of electric heat in change in electric and zero out steam heat in heating loads.  
+# Load = Steam & Savings = heating  -> steam heat to electric heat
+# Use COP to differentiate electric coils, or heat pumps. put COP of electric heat in change in electric and zero out steam heat in heating loads.  
 
-# Load = steam -> steam cooling to electric cooling
+# Load = steam & Savings = Cooling -> steam cooling to electric cooling
 #put COP of electric heat in change in electric and zero out steam cooling in cooling loads 
 
-# Load = steam -> steam DHW to electric DHW 
+# Load = steam & Savings = Base -> steam DHW to electric DHW 
 #put COP of electric heat in change in electric and zero out steam loads in base  
 
-# Load = gas -> gas boilers to electric heat
-#put COP of electric heat in electric and zero out steam 
+# Load = gas & Savings = Heating -> gas boilers to electric heat
+#put COP of electric heat in electric and zero out gas heating
 
-# Load = gas -> gas chillers to electric cooling
-#put COP of electric heat in electric and zero out steam 
+# Load = gas & Savings = Cooling -> gas chillers to electric cooling
+#put COP of electric heat in electric and zero out gas cooling 
 
-# Load = gas -> gas boilers for DHW to electric DHW
+# Load = gas & Savings = Base -> gas boilers for DHW to electric DHW
 #put COP of electric heat in electric and zero out steam 
 
