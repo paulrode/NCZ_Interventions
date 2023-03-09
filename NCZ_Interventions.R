@@ -107,7 +107,8 @@ Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 
   select(1, 4,2,3,5,6,7,8)
-
+##### Reorder Interventions Here
+Interventions <-Interventions %>% arrange('Description of Measure'(starts_with("Electrification")))
 
 
 #apply(TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)], 2, function(row) as.numeric(row)) -> TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)]
@@ -126,7 +127,7 @@ EndUseAllocation %>%
 length(unique(EndUseAllocation$Building))
 unique(EndUseAllocation$Building)
 
-#Interventions %>% select(Building, Savings, Order, `Intervention Name`) -> InterventionsA
+# Joining Interventions Here To Savings
 
 right_join(testfit1, Interventions, by = "Building") %>% 
   na.omit() -> Savings
