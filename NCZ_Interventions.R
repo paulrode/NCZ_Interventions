@@ -108,7 +108,7 @@ Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 
   select( -6, -7, -8,-12) %>% 
   select(1, 4,2,3,5,6,7,8)
 ##### Reorder Interventions Here
-Interventions <-Interventions %>% arrange('Description of Measure'(starts_with("Electrification")))
+Interventions <-Interventions %>% arrange(Order)
 
 
 #apply(TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)], 2, function(row) as.numeric(row)) -> TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)]
