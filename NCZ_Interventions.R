@@ -174,8 +174,6 @@ for(i in 1:length(Savings$Load)) {
       Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
       Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Base[i]
   }else{
-  
-    
     
     if(Savings$Savings[i] == "Base" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Base[i]
   }else{ 
@@ -243,7 +241,7 @@ for(i in 1:length(Savings$Load)) {
 #put COP of electric heat in change in electric and zero out steam cooling in cooling loads 
 
 # Load = steam & Savings = Base -> steam DHW to electric DHW 
-#put COP of electric heat in change in electric and zero out steam loads in base  
+#put COP of electric heat in change in electric and zero out steam loads in base. 
 
 # Load = gas & Savings = Heating -> gas boilers to electric heat
 #put COP of electric heat in electric and zero out gas heating
