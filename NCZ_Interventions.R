@@ -176,54 +176,54 @@ for(i in 1:length(Savings$Load)) {
   }else{
     
     if(Savings$Savings[i] == "Base" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Base[i]
-  }else{ 
-  if(Savings$Savings[i] == "Base" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification") {Savings$`Base Loads`[i] * Savings$`Change in Steam Consumption, kLbs`[i] -> Savings$Saved_Base[i]
-  }else{ 
+    }else{ 
+      if(Savings$Savings[i] == "Base" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification") {Savings$`Base Loads`[i] * Savings$`Change in Steam Consumption, kLbs`[i] -> Savings$Saved_Base[i]
+      }else{ 
+        
+        if(Savings$Savings[i] == "Cooling" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Cooling[i]
           
-  if(Savings$Savings[i] == "Cooling" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Cooling[i]
-  
-  }else{
+        }else{
+          
+          if(Savings$Savings[i] == "Cooling" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Cooling[i]
             
-  if(Savings$Savings[i] == "Cooling" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Cooling[i]
-  
-  }else{
+          }else{
+            
+            if(Savings$Savings[i] == "Heating" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
               
-  if(Savings$Savings[i] == "Heating" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
-  
-  }else{
+            }else{
+              
+              if(Savings$Savings[i] == "Heating" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification" )  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
+              }else{
                 
-  if(Savings$Savings[i] == "Heating" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification" )  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
-  }else{
+                if(Savings$Savings[i] == "Heating & Cooling" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Heating[i]
+                  Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
+                }else{
                   
-  if(Savings$Savings[i] == "Heating & Cooling" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Heating[i]
+                  if(Savings$Savings[i] == "Heating & Cooling" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Heating[i]
                     Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
-  }else{
+                  }else{
                     
-  if(Savings$Savings[i] == "Heating & Cooling" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Heating[i]
+                    if(Savings$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
                       Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
-  }else{
+                      Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Base[i]
+                    }else{
                       
-  if(Savings$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
+                      if(Savings$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
                         Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
                         Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Base[i]
-  }else{
                         
-  if(Savings$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
-                          Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
-                          Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Base[i]
-                          
-  
-   }}}}}}}}}}}}}}}}}}}
-  
-  if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Base Loads`[i] - Savings$Saved_Base[i] -> Savings$`Base Loads`[i+1]
-  if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Cooling Loads`[i] - Savings$Saved_Cooling[i] -> Savings$`Cooling Loads`[i+1]  
-  if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Heating Loads`[i] - Savings$Saved_Heating[i] -> Savings$`Heating Loads`[i+1]    
-  
-  # addig logic for electrification interventions for cooling and heating. In heating I want to carry over steam or gas btu's as electric add at a ratio of efficiencies. 
-    # same for cooling. If I have a cooling measure I will put in 1 which means remaining steam is converted to zero and electric add at efficieny placed in electric kwh change column. 
-    
-    
-    }}}}}
+                        
+                      }}}}}}}}}}}}}}}}}}}
+      
+      if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Base Loads`[i] - Savings$Saved_Base[i] -> Savings$`Base Loads`[i+1]
+        if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Cooling Loads`[i] - Savings$Saved_Cooling[i] -> Savings$`Cooling Loads`[i+1]  
+          if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Heating Loads`[i] - Savings$Saved_Heating[i] -> Savings$`Heating Loads`[i+1]    
+            
+            # addig logic for electrification interventions for cooling and heating. In heating I want to carry over steam or gas btu's as electric add at a ratio of efficiencies. 
+            # same for cooling. If I have a cooling measure I will put in 1 which means remaining steam is converted to zero and electric add at efficieny placed in electric kwh change column. 
+            
+            
+          }}}}}
   
 #  Logic for electrification. Starting at line 176 for adding logic to electrification. 
 #  Electrification can only be heating or cooling but not both for now. Handle them separately.
