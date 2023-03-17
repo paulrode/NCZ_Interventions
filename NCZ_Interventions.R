@@ -134,7 +134,8 @@ right_join(testfit1, Interventions, by = "Building") %>%
 
 
 Savings %>% 
-  mutate("Saved_Base" = 0, "Saved_Cooling" = 0, "Saved_Heating" = 0) -> Savings
+  mutate("Saved_Base" = 0, "Saved_Cooling" = 0, "Saved_Heating" = 0) %>% 
+  arrange(desc(Load))-> Savings
 
 EndUseAllocation_Wide <- testfit1
 remove(testfit1)
