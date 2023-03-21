@@ -226,11 +226,22 @@ for(i in 1:length(Savings$Load)) {
             
           }}}}}
   
-#  Logic for electrification. Starting at line 176 for adding logic to electrification. 
+#  Logic for electrification. Starting at line 176 for adding logic to electrification measures.
+
 #  Electrification can only be heating or cooling but not both for now. Handle them separately.
-#  Electrification measures are to be at the bottom of all other interventions per fuel grouping. Need 
-#  to sort interventions so these electrificaiton measures are at the bottom of each fuel group. 
-#  use group by load, and then arrange() for the electrificaiton on Savings before other looping is done. 
+
+#  Electrification measures are to be at the bottom of all other interventions per fuel grouping. 
+
+#  Sort the intervention listing so Electric is at the bottom of the fuel group. 
+
+#  Order the if else statements to match the order of the load types. 
+
+#  For each electrification measures zero out the thermal fuel and store that much in a variable that matches the measure
+# description. Use this for the additional electric. 
+
+# Put in logic to carry forward the thermal amount to use when electrification measures are stacked one on the other. 
+
+# Correct the calculations. Will have to add kWh to the catagory then back solve for the % add to place a number in the "change in" column. 
 
 
 # Combinations: 
