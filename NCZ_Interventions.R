@@ -182,7 +182,7 @@ for(i in 1:length(Savings$Load)) {
     
     }else{ 
  
-      if(Savings$Savings[i] == "Base" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification") {Savings$`Base Loads`[i] * Savings$`Change in Steam Consumption, kLbs`[i] -> Savings$Saved_Base[i]
+      if(Savings$Savings[i] == "Base" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification") {Savings$`Base Loads`[i]  -> Savings$Saved_Base[i]; (Savings$Saved_Base * -1 * 293.07 -> Savings$`Change in Electricity Consumption Reduction (kWh)`[i])  
       
       }else{ 
           
@@ -226,32 +226,13 @@ for(i in 1:length(Savings$Load)) {
       
       if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Base Loads`[i] - Savings$Saved_Base[i] -> Savings$`Base Loads`[i+1]
         if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Cooling Loads`[i] - Savings$Saved_Cooling[i] -> Savings$`Cooling Loads`[i+1]  
-          if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Heating Loads`[i] - Savings$Saved_Heating[i] -> Savings$`Heating Loads`[i+1]    
-            
-            # addig logic for electrification interventions for cooling and heating. In heating I want to carry over steam or gas btu's as electric add at a ratio of efficiencies. 
-            # same for cooling. If I have a cooling measure I will put in 1 which means remaining steam is converted to zero and electric add at efficieny placed in electric kwh change column. 
-            
+          if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Heating Loads`[i] - Savings$Saved_Heating[i] -> Savings$`Heating Loads`[i+1]   
             
           }}}}}
   
 #  Logic for electrification. Starting at line 176 for adding logic to electrification measures.
-
-#  Electrification can only be heating or cooling but not both for now. Handle them separately.
-
-#  Electrification measures are to be at the bottom of all other interventions per fuel grouping. 
-
-#  Sort the intervention listing so Electric is at the bottom of the fuel group. 
-
-#  Order the if else statements to match the order of the load types. 
-
-#  For each electrification measures zero out the thermal fuel and store that much in a variable that matches the measure
-# description. Use this for the additional electric. 
-
-# Put in logic to carry forward the thermal amount to use when electrification measures are stacked one on the other. 
-
-# Correct the calculations. Will have to add kWh to the catagory then back solve for the % add to place a number in the "change in" column. 
-
-
+# working line 185 for way to get 2 actions in an if else statement. 
+#  
 # Combinations: 
 
 # Load = Steam & Savings = heating  -> steam heat to electric heat
