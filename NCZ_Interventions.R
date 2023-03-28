@@ -229,6 +229,9 @@ for(i in 1:length(Savings$Load)) {
           if (Savings$Load[i] == Savings$Load[i+1] & i< length(Savings$Load))  {Savings$`Heating Loads`[i] - Savings$Saved_Heating[i] -> Savings$`Heating Loads`[i+1]   
             
           }}}}}
+
+Savings %>% 
+  pivot_wider(names_from = Load, values_from = 4:7) -> Savings2
   
 #  Logic for electrification. Starting at line 176 for adding logic to electrification measures.
 # working line 185 for way to get 2 actions in an if else statement. 
