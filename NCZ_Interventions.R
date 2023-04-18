@@ -176,6 +176,8 @@ for(i in 1:length(Savings$Load)) {
       Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Base[i]
   }else{
     
+
+    
     if(Savings$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
       Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
       Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Base[i]
@@ -199,13 +201,15 @@ for(i in 1:length(Savings$Load)) {
                   
                   }else{
                     
-                    if(Savings$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
-                      Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
-                      Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Base[i]
+                    if(Savings$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i];
+                      Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i];
+                      Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Base[i];
+                      100 -> This_is_Correct
                     
                     }else{
                       
-                      if(Savings$Savings[i] == "Heating" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
+                      if(Savings$Savings[i] == "Heating" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i];
+                        101 -> DoesThisShowUp
                      
                     }else{
                          
@@ -233,8 +237,8 @@ for(i in 1:length(Savings$Load)) {
 Savings %>% 
   pivot_wider(names_from = Load, values_from = 4:7) -> Savings2
   
-#  Logic for electrification. Starting at line 176 for adding logic to electrification measures.
-# working line 185 for way to get 2 actions in an if else statement. 
+#  Logic for electrification. Starting at line 181 for adding logic to electrification measures.
+
 #  
 # Combinations: 
 
