@@ -237,7 +237,8 @@ for(i in 1:length(Savings$Load)) {
 Savings %>% 
   pivot_wider(names_from = Load, values_from = 4:7) -> Savings2
   
-#  Logic for electrification. Starting at line 181 for adding logic to electrification measures.
+#  Logic for electrification. Starting at line 181 for adding logic to electrification measures. Look at making the if statement call up a
+# function that does the calculations. 
 
 #  
 # Combinations: 
