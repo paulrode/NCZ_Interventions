@@ -143,6 +143,7 @@ unique(Savings$Load) -> loads
 length(loads) -> fuels
 length(Savings$Load) -> rows
 rows/fuels
+Electrification_f <- function(i){a <- i + 2* i}
 
 for(i in 1:length(Savings$Load)) { 
   if(Savings$Savings[i] == "Base" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] != "Electrification")  {Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Base[i]
@@ -187,8 +188,12 @@ for(i in 1:length(Savings$Load)) {
       if(Savings$Savings[i] == "Base" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification") {Savings$`Base Loads`[i]  -> Savings$Saved_Base[i]; (Savings$Saved_Base * -1 * 293.07 -> Savings$`Change in Electricity Consumption Reduction (kWh)`[i])  
       
       }else{ 
-          
-          if(Savings$Savings[i] == "Cooling" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification")  {Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Cooling[i]
+  
+        
+        
+        
+          if(Savings$Savings[i] == "Cooling" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] == "Electrification") { print(i)
+            #{Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Cooling[i]
             
           }else{
               
@@ -238,7 +243,8 @@ Savings %>%
   pivot_wider(names_from = Load, values_from = 4:7) -> Savings2
   
 #  Logic for electrification. Starting at line 181 for adding logic to electrification measures. Look at making the if statement call up a
-# function that does the calculations. 
+# function that does the calculations. The function would do the following:
+#lets first try a simple funciton that assigns i to and 2i to variables.
 
 #  
 # Combinations: 
