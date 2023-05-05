@@ -137,6 +137,7 @@ Savings %>%
   mutate("Saved_Base" = 0, "Saved_Cooling" = 0, "Saved_Heating" = 0) %>% 
   arrange(desc(Load))-> Savings
 
+
 EndUseAllocation_Wide <- testfit1
 remove(testfit1)
 unique(Savings$Load) -> loads
@@ -144,6 +145,10 @@ length(loads) -> fuels
 length(Savings$Load) -> rows
 rows/fuels
 Electrification_f <- function(i){a <- i + 2* i}
+
+Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings2 
+Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings
+
 
 for(i in 1:length(Savings$Load)) { 
   if(Savings$Savings[i] == "Base" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] != "Electrification")  {Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Base[i]
@@ -171,7 +176,7 @@ for(i in 1:length(Savings$Load)) {
   if(Savings$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Elect_kWH" & Savings$`Intervention Name`[i] != "Electrification")  {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
     Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
     Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Base[i]
-  }else{(Savings$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] != "Electrification"){Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
+  }else{(Savings$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Steam_Mlb" & Savings$`Intervention Name`[i] != "Electrification") {Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings$Saved_Heating[i]
       Savings$`Cooling Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Cooling[i]
       Savings$`Base Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Base[i]}
                       }}}}}}}}}}
