@@ -155,7 +155,9 @@ for(i in 1:length(Savings_Measures$Load)) {
   if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Elect_kWH" )  {Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Base[i]
     }else{ 
     
-  if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Steam_Mlb" ) {Savings_Measures$`Base Loads`[i] * 0 -> Savings_Measures$Saved_Base[i]
+  if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Steam_Mlb" ) {Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs`[i] -> Savings_Measures$Saved_Base[i];
+    Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] - 171 -> Savings_Measures$`Base Loads`[i]
+    
     }else{ 
   
   if(Savings_Measures$Savings[i] == "Cooling" & Savings_Measures$Load[i] == "Elect_kWH" )  {Savings_Measures$`Cooling Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Cooling[i]
