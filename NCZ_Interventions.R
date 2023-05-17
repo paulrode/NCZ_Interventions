@@ -219,6 +219,7 @@ rm(Savings)
 
 
 # true up equations 
+# develop electrification logic. Filter elec electrification measures out. 
 # get output dataframe made 
 
 
