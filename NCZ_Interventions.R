@@ -154,32 +154,32 @@ Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Me
 for(i in 1:length(Savings_Measures$Load)) { 
   if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Elect_kWH" )  {
     Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Base[i];
-    Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] - 171 -> Savings_Measures$`Base Loads`[i+1]
+    Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] -> Savings_Measures$`Base Loads`[i+1]
   }else{ 
     
   if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Steam_Mlb" ) {
     Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs`[i] -> Savings_Measures$Saved_Base[i];
-    Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] - 171 -> Savings_Measures$`Base Loads`[i+1]
+    Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] -> Savings_Measures$`Base Loads`[i+1]
   }else{ 
   
   if(Savings_Measures$Savings[i] == "Cooling" & Savings_Measures$Load[i] == "Elect_kWH" )  {
     Savings_Measures$`Cooling Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Cooling[i];
-    Savings_Measures$`Cooling Loads`[i] - Savings_Measures$`Cooling Loads`[i] - 171 -> Savings_Measures$`Cooling Loads`[i+1]
+    Savings_Measures$`Cooling Loads`[i] - Savings_Measures$`Cooling Loads`[i] -> Savings_Measures$`Cooling Loads`[i+1]
   }else{
     
   if(Savings_Measures$Savings[i] == "Cooling" & Savings_Measures$Load[i] == "Steam_Mlb" )  {
     Savings_Measures$`Cooling Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Cooling[i];
-    Savings_Measures$`Cooling Loads`[i] - Savings_Measures$`Cooling Loads`[i] - 171 -> Savings_Measures$`Cooling Loads`[i+1]
+    Savings_Measures$`Cooling Loads`[i] - Savings_Measures$`Cooling Loads`[i] -> Savings_Measures$`Cooling Loads`[i+1]
   }else{
   
   if(Savings$Savings[i] == "Heating" & Savings_Measures$Load[i] == "Elect_kWH" )  {
     Savings_Measures$`Heating Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Heating[i];
-    Savings_Measures$`Heating Loads`[i] - Savings_Measures$`Heating Loads`[i] - 171 -> Savings_Measures$`Heating Loads`[i+1]
+    Savings_Measures$`Heating Loads`[i] - Savings_Measures$`Heating Loads`[i] -> Savings_Measures$`Heating Loads`[i+1]
   }else{
     
   if(Savings_Measures$Savings[i] == "Heating" & Savings_Measures$Load[i] == "Steam_Mlb" )  {
     Savings_Measures$`Heating Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Heating[i];
-    Savings_Measures$`Heating Loads`[i] - Savings_Measures$`Heating Loads`[i] - 171 -> Savings_Measures$`Heating Loads`[i+1]
+    Savings_Measures$`Heating Loads`[i] - Savings_Measures$`Heating Loads`[i] -> Savings_Measures$`Heating Loads`[i+1]
   }else{ 
     
   if(Savings$Savings[i] == "Heating & Cooling" & Savings$Load[i] == "Elect_kWH" )  {
@@ -201,26 +201,27 @@ for(i in 1:length(Savings_Measures$Load)) {
     Savings_Measures$`Cooling Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings_Measures$Saved_Cooling[i];
     Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Base[i];
     Savings_Measures$`Heating Loads`[i] - Savings_Measures$Saved_Heating[i] -> Savings_Measures$`Heating Loads`[i+1];
-    Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] - 171 -> Savings_Measures$`Base Loads`[i+1];
+    Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] -> Savings_Measures$`Base Loads`[i+1];
     Savings_Measures$`Cooling Loads`[i] - Savings_Measures$`Cooling Loads`[i] -> Savings_Measures$`Cooling Loads`[i+1]
   }else{ 
       
   if(Savings$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Steam_Mlb" )  {
-    Savings$`Heating Loads`[i] * Savings$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings$Saved_Heating[i];
-    Savings_Measures$`Cooling Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings_Measures$Saved_Cooling[i];
+    Savings$`Heating Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs` [i]  -> Savings$Saved_Heating[i];
+    Savings_Measures$`Cooling Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs` [i]  -> Savings_Measures$Saved_Cooling[i];
     Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs`[i] -> Savings_Measures$Saved_Base[i];
     Savings_Measures$`Heating Loads`[i] - Savings_Measures$Saved_Heating[i] -> Savings_Measures$`Heating Loads`[i+1];
-    Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] - 171 -> Savings_Measures$`Base Loads`[i+1];
+    Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] -> Savings_Measures$`Base Loads`[i+1];
     Savings_Measures$`Cooling Loads`[i] - Savings_Measures$`Cooling Loads`[i] -> Savings_Measures$`Cooling Loads`[i+1]
 
     }}}}}}}}}}}
     
 rm(Savings)
 
-
+# Check out end use allocation on steam cooling load. 
 # true up equations 
 # develop electrification logic. Filter elec electrification measures out. 
 # get output dataframe made 
+# using i+1 to reduce end use allocation what happens at the last line? when i am trying to write to i = 17 in a 16 line dataframe?
 
 
 
