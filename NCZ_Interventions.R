@@ -148,7 +148,7 @@ Electrification_f <- function(i){a <- i + 2* i}
 
 Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings_Electrificaiton
 Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Measures
-
+rm(Savings)
 
 
 for(i in 1:length(Savings_Measures$Load)) { 
@@ -346,19 +346,10 @@ for(i in 1:length(Savings_Measures$Load)) {
     
     }}}}}}}}}}}}}}}}}}}}}
     
-rm(Savings)
+# Carry over end use allocation loads from measures table to electrification table. 
 
 
-#Savings_Measures[length(Savings_Measures), 4:6] -> Savings_Electrificaiton[4:6]
-
-view(Savings_Measures)
-view(Savings_Electrificaiton)
-
-# Check out actual math on end use deductions and calculations. 
-# true up equations 
-# develop electrification logic. Filter elec electrification measures out. 
-# get output dataframe made 
-# using i+1 to reduce end use allocation what happens at the last line? when i am trying to write to i = 17 in a 16 line dataframe?
-
-
+nrow(Savings_Electrificaiton) -> b
+filter(Savings_Measures, Load == "Steam_Mlb")[nrow(filter(Savings_Measures, Load == "Steam_Mlb")),4:6] -> Savings_Electrificaiton[1:(b/2),4:6]
+filter(Savings_Measures, Load == "Elect_kWH")[nrow(filter(Savings_Measures, Load == "Elect_kWH")),4:6] -> Savings_Electrificaiton[((b/2)+1):b,4:6]
 
