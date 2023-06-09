@@ -167,7 +167,7 @@ for(i in 1:length(Savings_Measures$Load)) {
     if (Savings_Measures$Load[i] == Savings_Measures$Load[i+1]) {
     Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] -> Savings_Measures$`Base Loads`[i+1];
     Savings_Measures$`Cooling Loads`[i] -> Savings_Measures$`Cooling Loads`[i+1];
-    Savings$`Heating Loads`[i] -> Savings_Measures$`Heating Loads`[i+1] }}
+    Savings_Measures$`Heating Loads`[i] -> Savings_Measures$`Heating Loads`[i+1] }}
   }else{ 
   
   if(Savings_Measures$Savings[i] == "Cooling" & Savings_Measures$Load[i] == "Elect_kWH" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton" )  {
@@ -216,7 +216,7 @@ for(i in 1:length(Savings_Measures$Load)) {
     Savings_Measures$`Base Loads`[i] -> Savings_Measures$`Base Loads`[i+1] }}
   }else{ 
     
-  if(Savings_Measures$Savings[i] == "Heating & Cooling" & Savings$Load[i] == "Steam_Mlb" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton" )  {
+  if(Savings_Measures$Savings[i] == "Heating & Cooling" & Savings_Measures$Load[i] == "Steam_Mlb" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton" )  {
     Savings_Measures$`Heating Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs`[i]  -> Savings_Measures$Saved_Heating[i];
     Savings_Measures$`Cooling Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs`[i]  -> Savings_Measures$Saved_Cooling[i];
     if (i < length(Savings_Measures$Load)) {
@@ -226,7 +226,7 @@ for(i in 1:length(Savings_Measures$Load)) {
     Savings_Measures$`Base Loads`[i] -> Savings_Measures$`Base Loads`[i+1] }}
   }else{ 
     
-  if(Savings_Measures$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Elect_kWH" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton" )  {
+  if(Savings_Measures$Savings[i] == "Heating & Cooling & Base" & Savings_Measures$Load[i] == "Elect_kWH" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton" )  {
     Savings_Measures$`Heating Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings_Measures$Saved_Heating[i];
     Savings_Measures$`Cooling Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings_Measures$Saved_Cooling[i];
     Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Base[i];
@@ -237,7 +237,7 @@ for(i in 1:length(Savings_Measures$Load)) {
     Savings_Measures$`Cooling Loads`[i] - Savings_Measures$Saved_Cooling[i] -> Savings_Measures$`Cooling Loads`[i+1] }}
   }else{ 
       
-  if(Savings_Measures$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Steam_Mlb" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton" )  {
+  if(Savings_Measures$Savings[i] == "Heating & Cooling & Base" & Savings_Measures$Load[i] == "Steam_Mlb" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton" )  {
     Savings_Measures$`Heating Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs` [i]  -> Savings_Measures$Saved_Heating[i];
     Savings_Measures$`Cooling Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs` [i]  -> Savings_Measures$Saved_Cooling[i];
     Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs`[i] -> Savings_Measures$Saved_Base[i];
@@ -263,7 +263,7 @@ for(i in 1:length(Savings_Measures$Load)) {
       if (Savings_Measures$Load[i] == Savings_Measures$Load[i+1]) {    
       Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] -> Savings_Measures$`Base Loads`[i+1];
       Savings_Measures$`Cooling Loads`[i] -> Savings_Measures$`Cooling Loads`[i+1];
-      Savings$`Heating Loads`[i] -> Savings_Measures$`Heating Loads`[i+1] }}
+      Savings_Measures$`Heating Loads`[i] -> Savings_Measures$`Heating Loads`[i+1] }}
   }else{ 
         
   if(Savings_Measures$Savings[i] == "Cooling" & Savings_Measures$Load[i] == "Elect_kWH" & Savings_Measures$`Description of Measure`[i] == "Electrificaiton")  {
@@ -312,7 +312,7 @@ for(i in 1:length(Savings_Measures$Load)) {
       Savings_Measures$`Base Loads`[i] -> Savings_Measures$`Base Loads`[i+1] }}
   }else{ 
                   
-  if(Savings_Measures$Savings[i] == "Heating & Cooling" & Savings$Load[i] == "Steam_Mlb" & Savings_Measures$`Description of Measure`[i] == "Electrificaiton" )  {
+  if(Savings_Measures$Savings[i] == "Heating & Cooling" & Savings_Measures$Load[i] == "Steam_Mlb" & Savings_Measures$`Description of Measure`[i] == "Electrificaiton" )  {
       Savings_Measures$`Heating Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs`[i]  -> Savings_Measures$Saved_Heating[i];
       Savings_Measures$`Cooling Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs`[i]  -> Savings_Measures$Saved_Cooling[i];
       if (i < length(Savings_Measures$Load)) {
@@ -322,7 +322,7 @@ for(i in 1:length(Savings_Measures$Load)) {
       Savings_Measures$`Base Loads`[i] -> Savings_Measures$`Base Loads`[i+1] }}
   }else{ 
                     
-  if(Savings_Measures$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Elect_kWH" & Savings_Measures$`Description of Measure`[i] == "Electrificaiton")  {
+  if(Savings_Measures$Savings[i] == "Heating & Cooling & Base" & Savings_Measures$Load[i] == "Elect_kWH" & Savings_Measures$`Description of Measure`[i] == "Electrificaiton")  {
      Savings_Measures$`Heating Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings_Measures$Saved_Heating[i];
      Savings_Measures$`Cooling Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i]  -> Savings_Measures$Saved_Cooling[i];
      Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Base[i];
@@ -333,7 +333,7 @@ for(i in 1:length(Savings_Measures$Load)) {
      Savings_Measures$`Cooling Loads`[i] - Savings_Measures$Saved_Cooling[i] -> Savings_Measures$`Cooling Loads`[i+1] }}
   }else{ 
                       
-  if(Savings_Measures$Savings[i] == "Heating & Cooling & Base" & Savings$Load[i] == "Steam_Mlb" & Savings_Measures$`Description of Measure`[i] == "Electrificaiton" )  {
+  if(Savings_Measures$Savings[i] == "Heating & Cooling & Base" & Savings_Measures$Load[i] == "Steam_Mlb" & Savings_Measures$`Description of Measure`[i] == "Electrificaiton" )  {
       Savings_Measures$`Heating Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs` [i]  -> Savings_Measures$Saved_Heating[i];
       Savings_Measures$`Cooling Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs` [i]  -> Savings_Measures$Saved_Cooling[i];
       Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs`[i] -> Savings_Measures$Saved_Base[i];
@@ -347,9 +347,23 @@ for(i in 1:length(Savings_Measures$Load)) {
     }}}}}}}}}}}}}}}}}}}}}
     
 # Carry over end use allocation loads from measures table to electrification table. 
-
+# doing equations for converstions of thermal to electric. 
 
 nrow(Savings_Electrificaiton) -> b
+b2 <- b/2
 filter(Savings_Measures, Load == "Steam_Mlb")[nrow(filter(Savings_Measures, Load == "Steam_Mlb")),4:6] -> Savings_Electrificaiton[1:(b/2),4:6]
 filter(Savings_Measures, Load == "Elect_kWH")[nrow(filter(Savings_Measures, Load == "Elect_kWH")),4:6] -> Savings_Electrificaiton[((b/2)+1):b,4:6]
 
+
+for(i in 1:length(Savings_Electrificaiton$Load)) { 
+  if(Savings_Electrificaiton$Savings[i] == "Base" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
+    Savings_Electrificaiton$`Base Loads`[i] * Savings_Electrificaiton$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Electrificaiton$Saved_Base[i];
+    if (i < length(Savings_Electrificaiton$Load)) {
+      if (Savings_Electrificaiton$Load[i] == Savings_Electrificaiton$Load[i+1]) {
+        Savings_Electrificaiton$`Base Loads`[i] - Savings_Electrificaiton$Saved_Base[i] -> Savings_Electrificaiton$`Base Loads`[i+1];
+        Savings_Electrificaiton$`Cooling Loads`[i] -> Savings_Electrificaiton$`Cooling Loads`[i+1];
+        Savings_Electrificaiton$`Heating Loads`[i] -> Savings_Electrificaiton$`Heating Loads`[i+1] }}
+  }else{
+    
+  }}
+    
