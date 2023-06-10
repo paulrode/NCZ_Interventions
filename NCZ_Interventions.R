@@ -347,7 +347,10 @@ for(i in 1:length(Savings_Measures$Load)) {
     }}}}}}}}}}}}}}}}}}}}}
     
 # Carry over end use allocation loads from measures table to electrification table. 
-# doing equations for converstions of thermal to electric. 
+# doing equations for conversions of thermal to electric. Consider change in steam efficiency feature to mean cop for 
+# Use thermal column for % electrification, and the electric comumn for COP of the electric replacement. 
+# remember that with this measure both utilities are not stand alone. the thermal hold the thermal deduction
+# the electric is the electric add. 
 
 nrow(Savings_Electrificaiton) -> b
 b2 <- b/2
@@ -357,7 +360,7 @@ filter(Savings_Measures, Load == "Elect_kWH")[nrow(filter(Savings_Measures, Load
 
 for(i in 1:length(Savings_Electrificaiton$Load)) { 
   if(Savings_Electrificaiton$Savings[i] == "Base" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
-    Savings_Electrificaiton$`Base Loads`[i] * Savings_Electrificaiton$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Electrificaiton$Saved_Base[i];
+    Savings_Electrificaiton$`Base Loads`[i] * Savings_Electrificaiton$`Change in Steam Consumption, kLbs`[i] -> Savings_Electrificaiton$Saved_Base[i];
     if (i < length(Savings_Electrificaiton$Load)) {
       if (Savings_Electrificaiton$Load[i] == Savings_Electrificaiton$Load[i+1]) {
         Savings_Electrificaiton$`Base Loads`[i] - Savings_Electrificaiton$Saved_Base[i] -> Savings_Electrificaiton$`Base Loads`[i+1];
