@@ -349,8 +349,7 @@ for(i in 1:length(Savings_Measures$Load)) {
 # Carry over end use allocation loads from measures table to electrification table. 
 # doing equations for conversions of thermal to electric. Consider change in steam efficiency feature to mean cop for 
 # Use thermal column for % electrification, and the electric comumn for COP of the electric replacement. 
-# remember that with this measure both utilities are not stand alone. the thermal hold the thermal deduction
-# the electric is the electric add. 
+# 
 
 nrow(Savings_Electrificaiton) -> b
 b2 <- b/2
