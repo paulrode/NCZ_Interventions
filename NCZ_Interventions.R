@@ -407,4 +407,8 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
 rbind(Savings_Measures, Savings_Electrificaiton) -> Savings
 
 
-# Spread table to wide then move saved vales to electric and steam fetures.  
+# Spread table to wide then move saved vales to electric and steam fetures. 
+
+spread(Savings, key = Load, value = `Change in Electricity Consumption Reduction (kWh)`) -> Savings_Wide
+
+       
