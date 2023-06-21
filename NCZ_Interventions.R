@@ -404,11 +404,16 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
                     }}}}}}}}}}}
 
 
-rbind(Savings_Measures, Savings_Electrificaiton) -> Savings
+rbind(Savings_Measures, Savings_Electrificaiton)  %>%
+  mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
+  select(-c(4,5,6,8,14,15,16)) -> Savings
+
+)
+
 
 
 # Spread table to wide then move saved vales to electric and steam fetures. 
 
-spread(Savings, key = Load, value = `Change in Electricity Consumption Reduction (kWh)`) -> Savings_Wide
+#pivot_wider(Savings, names_from = `Intervention Name`, values_from = Savings) -> Savings_Wide
 
        
