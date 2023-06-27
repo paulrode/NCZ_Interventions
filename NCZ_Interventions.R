@@ -399,14 +399,20 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
                       Savings_Electrificaiton$`Base Loads`[i] * Savings_Electrificaiton$`Change in Steam Consumption, kLbs`[i] -> Savings_Electrificaiton$Saved_Base[i];
                       Savings_Electrificaiton$`Cooling Loads`[i] * Savings_Electrificaiton$`Change in Steam Consumption, kLbs`[i] -> Savings_Electrificaiton$Saved_Cooling[i];
                       Savings_Electrificaiton$`Heating Loads`[i] * Savings_Electrificaiton$`Change in Steam Consumption, kLbs`[i] -> Savings_Electrificaiton$Saved_Heating[i];
-                    
     
                     }}}}}}}}}}}
 
 
 Savings_Electrificaiton  %>%
   mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
-  select(-c(4,5,6,8,14,15,16)) -> Savings_Electrificaiton %>% 
+  select(-c(4,5,6,8,14,15,16)) -> Savings_Electrificaiton  
+
+i <- 0
+for (i in 1:length(Savings_Electrificaiton)) { if(Savings_Electrificaiton$Load[i] == "Steam_Mbl") {Savings_Electrificaiton$Saved[i] -> Savings_Electrificaiton$`Change in Steam Consumption, kLbs`[i] 
+}else{ 
+  Savings_Electrificaiton$`Change in Electricity Consumption Reduction (kWh)`[i] <- Savings_Electrificaiton$Saved[i] 
+ }}
+
   
 
 Savings_Measures  %>%
