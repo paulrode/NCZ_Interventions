@@ -427,7 +427,7 @@ Savings_Measures  %>%
   mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
   select(-c(4,5,6,8,14,15,16)) -> Savings_Measures
 
-rbind(Savings_Measures, Savings_Electrificaiton) -> Savings
+rbind(Savings_Measures, Savings_Electrificaiton) -> Savings 
 
 
 
