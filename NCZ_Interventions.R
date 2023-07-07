@@ -403,33 +403,6 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
                     }}}}}}}}}}}
 
 
-Savings_Electrificaiton  %>%
-  mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
-  select(-c(4,5,6,8,14,15,16)) -> Savings_Electrificaiton 
-Savings_Electrificaiton$`Change in Electricity Consumption Reduction (kWh)` <-0
-Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)` <-0
-Savings_Electrificaiton$`Change in Steam Consumption, kLbs` <-0
-
-i <- 3
-#for (i in 1:length(Savings_Electrificaiton)) { 
-
-if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Saved[i] -> Savings_Electrificaiton$`Change in Steam Consumption, kLbs`[i];
-  Savings_Electrificaiton$`Change in Electricity Consumption Reduction (kWh)`<- 0
-}else{ 
-  Savings_Electrificaiton$`Change in Electricity Consumption Reduction (kWh)`[i] <- Savings_Electrificaiton$Saved[i] 
-  }
-
-#}
-
-  
-
-Savings_Measures  %>%
-  mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
-  select(-c(4,5,6,8,14,15,16)) -> Savings_Measures
-
-rbind(Savings_Measures, Savings_Electrificaiton) -> Savings 
-
-
 
 
 # Spread table to wide then move saved vales to electric and steam fetures. 
