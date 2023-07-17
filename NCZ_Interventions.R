@@ -346,12 +346,6 @@ for(i in 1:length(Savings_Measures$Load)) {
     
     }}}}}}}}}}}}}}}}}}}}}
 
-Savings_Measures  %>%
-  mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
-  select(-c(4,5,6,8,14,15,16)) -> Savings_Measures
-
-
-
 nrow(Savings_Electrificaiton) -> b
 b2 <- b/2
 filter(Savings_Measures, Load == "Steam_Mlb")[nrow(filter(Savings_Measures, Load == "Steam_Mlb")),4:6] -> Savings_Electrificaiton[1:(b/2),4:6]
@@ -405,6 +399,10 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
                       Savings_Electrificaiton$`Heating Loads`[i] * Savings_Electrificaiton$`Change in Steam Consumption, kLbs`[i] -> Savings_Electrificaiton$Saved_Heating[i];
     
                     }}}}}}}}}}}
+# Some Cleanup 
+remove(EndUseAllocation, EndUseAllocation_Wide)
+
+
 
 Savings_Electrificaiton  %>%
   mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
@@ -413,13 +411,7 @@ Savings_Electrificaiton  %>%
   filter(Savings_Electrificaiton,  Load == "Steam_Mlb") -> Savings_Electrificaiton 
 
 
-# Savings_Electrificaiton$`Change in Electricity Consumption Reduction (kWh)` <-0
-# Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)` <-0
-# Savings_Electrificaiton$`Change in Steam Consumption, kLbs` <-0
-
-
-# add logic for adding electric as a new load and savings in the proper column,
-
+# Move savings to native innervation columns for Electrification  
 
 for (i in 1:nrow(Savings_Electrificaiton)) { 
 if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Saved[i] -> Savings_Electrificaiton$`Change in Steam Consumption, kLbs`[i];
@@ -428,13 +420,22 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
   Savings_Electrificaiton$`Change in Electricity Consumption Reduction (kWh)`[i] <- Savings_Electrificaiton$Saved[i] 
 }}
 
+  
+  
+  # Move savings to native innervation columns for Measures  
+  
+  Savings_Measures  %>%
+    mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
+    select(-c(4,5,6,8,14,15,16)) -> Savings_Measures
 
-# rbind(Savings_Measures, Savings_Electrificaiton) -> Savings
-# rbind(Savings_Measures, Savings_Electrificaiton) -> Savings 
+for (i in 1: nrow(Savings_Measures)) { 
+  if(Savings_Measures$Load[i] == "Steam_Mlb") {Savings_Measures$Saved[i] -> Savings_Measures$`Change in Steam Consumption, kLbs`[i];
+    Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] <- 0
+  }else{ 
+    Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] <- Savings_Measures$Saved[i];
+    Savings_Measures$`Change in Steam Consumption, kLbs`[i] <- 0
+  }}
+  
 
-
-# Spread table to wide then move saved vales to electric and steam fetures. 
-
-#pivot_wider(Savings, names_from = `Intervention Name`, values_from = Savings) -> Savings_Wide
 
        
