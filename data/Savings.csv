@@ -1,10 +1,10 @@
 Building,SQFT,Intervention Name,Order,Description of Measure,Change in Electricity Consumption Reduction (kWh),Change in Natural Gas Use(MMBtu),"Change in Steam Consumption, kLbs"
-160 Spear,303429,Retrocommissioning  (RCx),1,Complete BMS commissioning,61245.31480397892,62.063185000000004,0
-160 Spear,303429,Façade air stopping,3,caulking and general air stopping,138725.30491515505,143.81361367020003,0
-160 Spear,303429,New High Efficiency Windows,4,New Windows tripple pane R6@30SHG,79073.42380163836,86.28385379370988,0
-160 Spear,303429,New Electric Chillers,5,Chiller Plant,1126009.1946713866,0,0
-160 Spear,303429,Pneumatic Converstion,6,BMS Expansion,14306.981749149207,172.56253055619214,0
-160 Spear,303429,Elevator energy revovery,7,Optional add to elevator package,1132.571635459333,2.2682491341100004,0
-160 Spear,303429,DHW to Point of Use,2,Electrificaiton,-3323.7788686680883,11.34124567055,0
-160 Spear,303429,Central ASHP to Hot Water,8,Electrificaiton,-126459.57963456261,1510.248502818334,0
-160 Spear,303429,Electric Boiler,8,Electrificaiton,-442608.5287209691,1510.248502818334,0
+160 Spear,303429,Retrocommissioning  (RCx),1,Complete BMS commissioning,71400.06670567582,244.045428,0
+160 Spear,303429,Façade air stopping,3,caulking and general air stopping,160352.6498098303,559.25958708455,0
+160 Spear,303429,New High Efficiency Windows,4,New Windows tripple pane R6@30SHG,91401.01039160325,335.53897446311737,0
+160 Spear,303429,New Electric Chillers,5,Chiller Plant,1289585.1647978935,0,0
+160 Spear,303429,Pneumatic Converstion,6,BMS Expansion,16657.14171197279,671.057816587767,0
+160 Spear,303429,Elevator energy revovery,7,Optional add to elevator package,1457.7513619075482,10.168356128809998,0
+160 Spear,303429,DHW to Point of Use,2,Electrificaiton,-14900.200653351732,50.84178064405,0
+160 Spear,303429,Central ASHP to Hot Water,8,Electrificaiton,-404377.3995192479,4829.292995930555,0
+160 Spear,303429,Electric Boiler,8,Electrificaiton,-1415320.8983173675,4829.292995930555,0

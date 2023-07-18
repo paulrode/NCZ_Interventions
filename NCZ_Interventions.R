@@ -68,12 +68,28 @@ TSUS_EPA_DATA_SHORT_ALL %>%
   group_by(Building) %>% 
   summarise(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base" = min(Total_btu)) -> TSUS_EPA_DATA_SHORT_ALL
 
+
+# Subtracting base loads from cooling and heating here.
+# Need to add line that takes out steam or gas if not used. Add removal of NaN
+##############################
 TSUS_EPA_DATA_SHORT_ALL %>% 
-  mutate(use = ifelse(Base == Total_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
+  mutate(use = ifelse(Base == Total_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
+  mutate( Elect_kBTU = ifelse(Elect_kBTU - Base < 1, Base, Elect_kBTU - Base )) %>% 
+  mutate( Total_btu = ifelse(Total_btu - Base < 1, Base, Total_btu - Base )) %>% 
+  mutate( NGas_kbtu = ifelse(NGas_kbtu - Base < 1 , (Base * NGas_kbtu/NGas_kbtu), NGas_kbtu - Base )) %>% 
+  mutate( Steam_btu = ifelse(Steam_btu - Base < 1, (Base * Steam_btu/Steam_btu), Steam_btu - Base )) -> TSUS_EPA_DATA_SHORT_ALL
+
+TSUS_EPA_DATA_SHORT_ALL[is.nan(TSUS_EPA_DATA_SHORT_ALL)] -> TSUS_EPA_DATA_SHORT_ALL
+
 
 TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building, use) %>% 
-  summarise(Elect = sum(Elect_kBTU), NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) %>% 
+  summarise(Elect = sum(Elect_kBTU), NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) -> EndUseAllocation
+
+
+
+
+EndUseAllocation %>% 
   mutate("Elect_kWH" = Elect/3.418, "Steam_Mlb" = Steam/1194) %>% 
   select(Building, use, Elect_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Total) -> EndUseAllocation
 
@@ -82,7 +98,7 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 
 #Buildings with missing data not making it though analysis. 
 (TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
-#"1395 Crossman"   "66 Hudson Blvd."
+# output of above line is: "1395 Crossman"   "66 Hudson Blvd."
 
 
 # Make interventions table in excel and read here, then pull in EndUseAllocations 
@@ -154,6 +170,8 @@ Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings_Ele
 Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Measures
 rm(Savings)
 
+
+# Run down Savings Measures 
 
 for(i in 1:length(Savings_Measures$Load)) { 
   if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Elect_kWH" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton"  )  {
