@@ -70,20 +70,21 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 
 
 
-
+#####################################################
 
 # Subtracting base loads from cooling and heating here.
 
 TSUS_EPA_DATA_SHORT_ALL %>% 
   mutate(use = ifelse(Base == Total_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
 
+####################################################
 TSUS_EPA_DATA_SHORT_ALL %>% 
   mutate( Elect_kBTU = ifelse(Total_btu - Base == 0, (12 * Base * Elect_kBTU / Total_btu ), Elect_kBTU - (Base * Elect_kBTU / Total_btu ))) %>% 
   mutate( NGas_kbtu = ifelse(Total_btu - Base == 0 , (12 * Base * NGas_kbtu / Total_btu), NGas_kbtu - (Base * NGas_kbtu / Total_btu ) )) %>%
   mutate( NGas_kbtu = ifelse(Total_btu - Base < 0 , 0, NGas_kbtu )) %>%
   mutate( Steam_btu = ifelse(Total_btu - Base == 0, (12 * Base * Steam_btu/Total_btu), Steam_btu - (Base * Steam_btu / Total_btu ) )) %>% 
   mutate( Steam_btu = ifelse(Total_btu - Base < 0, 0, Steam_btu )) -> TSUS_EPA_DATA_SHORT_ALL
-
+#####################################################
 
 TSUS_EPA_DATA_SHORT_ALL %>%  
   group_by(Building, use) %>%  
@@ -578,13 +579,13 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
     select(-c(4,5,6,8,14,15,16)) -> Savings_Measures
 
 for (i in 1: nrow(Savings_Measures)) { 
-  if(Savings_Measures$Load[i] == "Steam_Mlb") {Savings_Measures$Saved[i] -> Savings_Measures$`Change in Steam Consumption, kLbs`[i];
+  if(Savings_Measures$Load[i] == "Steam_Mlb") {Savings_Measures$Saved[i] * 1.194 -> Savings_Measures$`Change in Steam Consumption, kLbs`[i];
     Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] <- 0;
     Savings_Measures$`Change in Natural Gas Use(MMBtu)`[i] <- 0;
   }else{ 
-    if(Savings_Measures$Load[i] == "NGas") {Savings_Measures$Saved[i] -> Savings_Measures$`Change in Natural Gas Use(MMBtu)`[i];
+    if(Savings_Measures$Load[i] == "NGas") {Savings_Measures$Saved[i]/1000 -> Savings_Measures$`Change in Natural Gas Use(MMBtu)`[i];
        Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] <- 0;
-  }else{ Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] <- Savings_Measures$Saved[i];
+  }else{ Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] <- 0.29307 * Savings_Measures$Saved[i];
     Savings_Measures$`Change in Steam Consumption, kLbs`[i] <- 0;
     Savings_Measures$`Change in Natural Gas Use(MMBtu)`[i] <- 0;
   }}}

@@ -1,12 +1,12 @@
 Building,SQFT,Intervention Name,Order,Description of Measure,Change in Electricity Consumption Reduction (kWh),Change in Natural Gas Use(MMBtu),"Change in Steam Consumption, kLbs"
-333 Bush,597694,Optimun Start / Stop,1,Controls with  ML program,25570.275113347103,56093.53716257971,0
-333 Bush,597694,Pumping Optizamation,2,VFD's Controls with  ML program,24291.761357679745,53288.86030445072,0
-333 Bush,597694,Back of house lighting,3,Optional add to elevator package,23284.963428905787,0,0
-333 Bush,597694,Limited Façade Air Stopping,4,Insulation and wet sealing,9230.869315918302,20249.766915691274,0
-333 Bush,597694,Airside energy  recovery,5,Run Arouind Coils,45231.25964799969,99223.85788688724,0
-333 Bush,597694,Chiller plant optimization,6,Controls with  ML program,15409.472046540011,0,0
-333 Bush,597694,Window Retrofit,8,New window film,7833.437295709143,0,0
-333 Bush,597694,Chiller end of life replacement,9,Chiller plan replacement,27182.308690096586,0,0
-333 Bush,597694,Elevator energy revovery,10,Elevator Mod with energy recovery,46337.077223522516,0,0
+333 Bush,597694,Optimun Start / Stop,1,Controls with  ML program,7493.880527468636,56.093537162579715,0
+333 Bush,597694,Pumping Optizamation,2,VFD's Controls with  ML program,7119.186501095202,53.288860304450715,0
+333 Bush,597694,Back of house lighting,3,Optional add to elevator package,6824.124232109419,0,0
+333 Bush,597694,Limited Façade Air Stopping,4,Insulation and wet sealing,2705.290870416177,20.249766915691275,0
+333 Bush,597694,Airside energy  recovery,5,Run Arouind Coils,13255.925265039268,99.22385788688725,0
+333 Bush,597694,Chiller plant optimization,6,Controls with  ML program,4516.053972679481,0,0
+333 Bush,597694,Window Retrofit,8,New window film,2295.7454682534785,0,0
+333 Bush,597694,Chiller end of life replacement,9,Chiller plan replacement,7966.319207806607,0,0
+333 Bush,597694,Elevator energy revovery,10,Elevator Mod with energy recovery,13580.007221897744,0,0
 333 Bush,597694,Water soruced heat recovery,7,Electrificaiton,-10123.340240985632,120.89838892909445,0
 333 Bush,597694,Heating Electrification via ASHP's,11,Electrificaiton,-24296.016578365517,290.1561334298267,0
