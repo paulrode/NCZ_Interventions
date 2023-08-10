@@ -46,7 +46,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   select(2,1,3:ncol(TSUS_EPA_DATA_SHORT_ALL)) %>% 
   arrange(Building, Month) %>% 
    mutate(DateM = month(Month), DateY = year(Month)) %>% 
-   filter(DateY > 2017 & DateY < 2020) %>% 
+   filter(DateY > 2019 & DateY < 2023) %>% 
    select(1,10,9, 3:8) -> TSUS_EPA_DATA_SHORT_ALL
  remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
  
