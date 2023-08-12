@@ -51,6 +51,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
  
  
+ 
  # Average out 'Y' years 
  Y <- 3
  TSUS_EPA_DATA_SHORT_ALL %>% 
@@ -65,7 +66,8 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  TSUS_EPA_DATA_SHORT_ALL %>% 
      mutate(Total_btu = Elect_kBTU + NGas_kbtu + Steam_btu + Oil2_btu + Oil4_btu + Diesel_btu) -> TSUS_EPA_DATA_SHORT_ALL
 
-TSUS_EPA_DATA_SHORT_ALL %>% 
+
+ TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
   summarise(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base" = min(Total_btu)) -> TSUS_EPA_DATA_SHORT_ALL
 
@@ -544,6 +546,10 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
 
       
                     }}}}}}}}}}}
+
+#############################################################################################################
+
+
 # Some Cleanup 
 #remove(EndUseAllocation, EndUseAllocation_Wide)
 
