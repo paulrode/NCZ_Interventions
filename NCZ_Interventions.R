@@ -46,20 +46,21 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   select(2,1,3:ncol(TSUS_EPA_DATA_SHORT_ALL)) %>% 
   arrange(Building, Month) %>% 
    mutate(DateM = month(Month), DateY = year(Month)) %>% 
-   filter(DateY > 2019 & DateY < 2023) %>% 
+   filter(DateY > 2018 & DateY < 2022) %>% 
    select(1,10,9, 3:8) -> TSUS_EPA_DATA_SHORT_ALL
  remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
  
  
- # Average out 2 years 
+ # Average out 'Y' years 
+ Y <- 3
  TSUS_EPA_DATA_SHORT_ALL %>% 
    group_by(Building, DateM) %>% 
-   summarise(Elect_kBTU = sum(`Electric - Grid\r\n(kBtu)`/2, na.rm=TRUE),
-             NGas_kbtu = sum(`Natural Gas\r\n(kBtu)`/2, na.rm=TRUE),
-             Steam_btu = sum(`District Steam\r\n(kBtu)`/2, na.rm=TRUE),
-             Oil2_btu = sum(`Fuel Oil (No. 2)\r\n(kBtu)`/2, na.rm=TRUE),
-             Oil4_btu = sum(`Fuel Oil (No. 4)\r\n(kBtu)`/2, na.rm=TRUE),
-             Diesel_btu = sum(`Diesel\r\n(kBtu)`/2, na.rm=TRUE)) -> TSUS_EPA_DATA_SHORT_ALL
+   summarise(Elect_kBTU = sum(`Electric - Grid\r\n(kBtu)`/Y, na.rm=TRUE),
+             NGas_kbtu = sum(`Natural Gas\r\n(kBtu)`/Y, na.rm=TRUE),
+             Steam_btu = sum(`District Steam\r\n(kBtu)`/Y, na.rm=TRUE),
+             Oil2_btu = sum(`Fuel Oil (No. 2)\r\n(kBtu)`/Y, na.rm=TRUE),
+             Oil4_btu = sum(`Fuel Oil (No. 4)\r\n(kBtu)`/Y, na.rm=TRUE),
+             Diesel_btu = sum(`Diesel\r\n(kBtu)`/Y, na.rm=TRUE)) -> TSUS_EPA_DATA_SHORT_ALL
  TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
  TSUS_EPA_DATA_SHORT_ALL %>% 
      mutate(Total_btu = Elect_kBTU + NGas_kbtu + Steam_btu + Oil2_btu + Oil4_btu + Diesel_btu) -> TSUS_EPA_DATA_SHORT_ALL
@@ -120,6 +121,7 @@ remove(BuildingData, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 
 
 #Building Intervention File 
+# when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load. 
 Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 16, na = "Not Available", sheet = 1)%>% 
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 
@@ -145,6 +147,7 @@ unique(EndUseAllocation$Building)
 
 # Joining Interventions Here To Savings
 
+
 right_join(testfit1, Interventions, by = "Building") %>% 
   na.omit() -> Savings
 
@@ -164,6 +167,7 @@ Electrification_f <- function(i){a <- i + 2* i}
 
 Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings_Electrificaiton
 Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Measures
+
 rm(Savings)
 
 
@@ -541,7 +545,7 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
       
                     }}}}}}}}}}}
 # Some Cleanup 
-remove(EndUseAllocation, EndUseAllocation_Wide)
+#remove(EndUseAllocation, EndUseAllocation_Wide)
 
 
 Savings_Electrificaiton  %>%

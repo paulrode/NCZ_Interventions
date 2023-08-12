@@ -1,10 +1,11 @@
 Building,SQFT,Intervention Name,Order,Description of Measure,Change in Electricity Consumption Reduction (kWh),Change in Natural Gas Use(MMBtu),"Change in Steam Consumption, kLbs"
-160 Spear,303429,Retrocommissioning  (RCx),1,Complete BMS commissioning,37243.20005266275,49.39974685371655,-
-160 Spear,303429,Façade air stopping,3,caulking and general air stopping,8265.494557925516,12.859865689783943,-
-160 Spear,303429,New High Efficiency Windows,4,New Windows tripple pane R6@30SHG,20250.461666917516,31.506670939970665,-
-160 Spear,303429,New Electric Chillers,5,Chiller Plant,23856.759427019486,0,-
-160 Spear,303429,Pneumatic Converstion,6,BMS Expansion,7218.040244888265,11.97253495718885,-
-160 Spear,303429,Elevator energy revovery,7,Optional add to elevator package,4805.620733676303,0,-
-160 Spear,303429,DHW to Point of Use,2,Electrificaiton,-159019.9695648,-542.60064,-
-160 Spear,303429,Central ASHP to Hot Water,8,Electrificaiton,-37063.02069663023,-379.3942132933794,-
-160 Spear,303429,Electric Boiler,8,Electrificaiton,-333567.18626967206,-1138.1826398801381,-
+160 Spear,303429,Retrocommissioning  (RCx),1,Complete BMS commissioning,28550.769710356362,44.56043661542278,-
+160 Spear,303429,Façade air stopping,3,caulking and general air stopping,2113.847313709262,6.394976935402935,-
+160 Spear,303429,New High Efficiency Windows,4,New Windows tripple pane R6@30SHG,5178.925918587692,15.66769349173719,-
+160 Spear,303429,New Electric Chillers,5,Chiller Plant,4168.936990399191,0,-
+160 Spear,303429,Pneumatic Converstion,6,BMS Expansion,1884.6131092553387,5.9537235268601325,-
+160 Spear,303429,Elevator energy revovery,7,Optional add to elevator package,5795.261073630895,0,-
+160 Spear,303429,DHW to Point of Use,2,Electrificaiton,-219715.05729024,-749.701632,-
+160 Spear,303429,Central ASHP to Hot Water,8,Electrificaiton,-174976.04817576936,-1791.1357168161464,-
+160 Spear,303429,Electric Boiler,8,Electrificaiton,-524928.1445273081,-1791.1357168161464,-
+160 Spear,303429,Test Name,8,Electrificaiton,-524928.1445273081,-1791.1357168161464,-
