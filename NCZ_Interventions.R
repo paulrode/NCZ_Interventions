@@ -8,10 +8,12 @@ my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidyte
 
 invisible( lapply(my_packages, require, character.only = TRUE))
 
+
+# Alternate Start Point 
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
-# place <- "Home"  #Where are we working today. 
- place <- "work"
+ place <- "Home"  #Where are we working today. 
+# place <- "work"
 if (place == "Home"){setwd("C:/Users/paulr/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
@@ -80,14 +82,17 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 TSUS_EPA_DATA_SHORT_ALL %>% 
   mutate(use = ifelse(Base == Total_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
 
-####################################################
+###########################################################################################################################################################
+###########################################################################################################################################################
 TSUS_EPA_DATA_SHORT_ALL %>% 
   mutate( Elect_kBTU = ifelse(Total_btu - Base == 0, (12 * Base * Elect_kBTU / Total_btu ), Elect_kBTU - (Base * Elect_kBTU / Total_btu ))) %>% 
   mutate( NGas_kbtu = ifelse(Total_btu - Base == 0 , (12 * Base * NGas_kbtu / Total_btu), NGas_kbtu - (Base * NGas_kbtu / Total_btu ) )) %>%
   mutate( NGas_kbtu = ifelse(Total_btu - Base < 0 , 0, NGas_kbtu )) %>%
   mutate( Steam_btu = ifelse(Total_btu - Base == 0, (12 * Base * Steam_btu/Total_btu), Steam_btu - (Base * Steam_btu / Total_btu ) )) %>% 
   mutate( Steam_btu = ifelse(Total_btu - Base < 0, 0, Steam_btu )) -> TSUS_EPA_DATA_SHORT_ALL
-#####################################################
+
+ #########################################################################################################################################################
+ #########################################################################################################################################################
 
 TSUS_EPA_DATA_SHORT_ALL %>%  
   group_by(Building, use) %>%  
