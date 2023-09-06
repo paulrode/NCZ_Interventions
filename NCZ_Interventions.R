@@ -12,8 +12,8 @@ invisible( lapply(my_packages, require, character.only = TRUE))
 # Alternate Start Point 
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
- place <- "Home"  #Where are we working today. 
-# place <- "work"
+# place <- "Home"  #Where are we working today. 
+ place <- "work"
 if (place == "Home"){setwd("C:/Users/paulr/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
@@ -64,14 +64,25 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
              Oil2_btu = sum(`Fuel Oil (No. 2)\r\n(kBtu)`/Y, na.rm=TRUE),
              Oil4_btu = sum(`Fuel Oil (No. 4)\r\n(kBtu)`/Y, na.rm=TRUE),
              Diesel_btu = sum(`Diesel\r\n(kBtu)`/Y, na.rm=TRUE)) -> TSUS_EPA_DATA_SHORT_ALL
+ 
  TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
  TSUS_EPA_DATA_SHORT_ALL %>% 
      mutate(Total_btu = Elect_kBTU + NGas_kbtu + Steam_btu + Oil2_btu + Oil4_btu + Diesel_btu) -> TSUS_EPA_DATA_SHORT_ALL
 
+ 
+ 
+ 
+ ###############################################################################################################
+ #                                                                                                             #
+ # Added individual bases in here for each fuel type 8/19/2023 trying to see if that Should be carried through #
+ #                                                                                                             #
+ ###############################################################################################################
+ 
 
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
-  summarise(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base" = min(Total_btu)) -> TSUS_EPA_DATA_SHORT_ALL
+  reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base" = min(Total_btu)) -> TSUS_EPA_DATA_SHORT_ALL
+# summarise(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Elect_Base" = min(Elect_kBTU), "NGas_Base" = min(NGas_kbtu)) -> TSUS_EPA_DATA_SHORT_ALL
 
 
 
@@ -84,12 +95,17 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 
 ###########################################################################################################################################################
 ###########################################################################################################################################################
-TSUS_EPA_DATA_SHORT_ALL %>% 
-  mutate( Elect_kBTU = ifelse(Total_btu - Base == 0, (12 * Base * Elect_kBTU / Total_btu ), Elect_kBTU - (Base * Elect_kBTU / Total_btu ))) %>% 
-  mutate( NGas_kbtu = ifelse(Total_btu - Base == 0 , (12 * Base * NGas_kbtu / Total_btu), NGas_kbtu - (Base * NGas_kbtu / Total_btu ) )) %>%
-  mutate( NGas_kbtu = ifelse(Total_btu - Base < 0 , 0, NGas_kbtu )) %>%
-  mutate( Steam_btu = ifelse(Total_btu - Base == 0, (12 * Base * Steam_btu/Total_btu), Steam_btu - (Base * Steam_btu / Total_btu ) )) %>% 
-  mutate( Steam_btu = ifelse(Total_btu - Base < 0, 0, Steam_btu )) -> TSUS_EPA_DATA_SHORT_ALL
+#Way to get base allocated on fuel types. Use ->  filter(TSUS_EPA_DATA_SHORT_ALL, Building == "160 Spear") %>% filter(Total_btu == min(Total_btu))
+ 
+ 
+ 
+ 
+ TSUS_EPA_DATA_SHORT_ALL %>% 
+  mutate( Elect_kBTU1 = ifelse(Total_btu - Base == 0, (12 * Base * Elect_kBTU / Total_btu ), Elect_kBTU - (Base * Elect_kBTU / Total_btu ))) %>% 
+  mutate( NGas_kbtu1 = ifelse(Total_btu - Base == 0 , (12 * Base * NGas_kbtu / Total_btu), NGas_kbtu - (Base * NGas_kbtu / Total_btu ) )) %>%
+  mutate( NGas_kbtu1 = ifelse(Total_btu - Base < 0 , 0, NGas_kbtu )) %>%
+  mutate( Steam_btu1 = ifelse(Total_btu - Base == 0, (12 * Base * Steam_btu/Total_btu), Steam_btu - (Base * Steam_btu / Total_btu ) )) %>% 
+  mutate( Steam_btu1 = ifelse(Total_btu - Base < 0, 0, Steam_btu )) -> TSUS_EPA_DATA_SHORT_ALL
 
  #########################################################################################################################################################
  #########################################################################################################################################################
