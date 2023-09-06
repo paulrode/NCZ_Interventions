@@ -95,6 +95,7 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 
 ###########################################################################################################################################################
 ###########################################################################################################################################################
+<<<<<<< HEAD
 #Way to get base allocated on fuel types. Use ->  filter(TSUS_EPA_DATA_SHORT_ALL, Building == "160 Spear") %>% filter(Total_btu == min(Total_btu))
  
  
@@ -106,6 +107,14 @@ TSUS_EPA_DATA_SHORT_ALL %>%
   mutate( NGas_kbtu1 = ifelse(Total_btu - Base < 0 , 0, NGas_kbtu )) %>%
   mutate( Steam_btu1 = ifelse(Total_btu - Base == 0, (12 * Base * Steam_btu/Total_btu), Steam_btu - (Base * Steam_btu / Total_btu ) )) %>% 
   mutate( Steam_btu1 = ifelse(Total_btu - Base < 0, 0, Steam_btu )) -> TSUS_EPA_DATA_SHORT_ALL
+=======
+TSUS_EPA_DATA_SHORT_ALL %>% 
+  mutate( Elect_kBTU = ifelse(Total_btu - Base == 0, (12 * Base), Elect_kBTU - (Base * Elect_kBTU / Total_btu ))) %>% 
+  mutate( NGas_kbtu = ifelse(Total_btu - Base == 0 , (12 * Base), NGas_kbtu - (Base * NGas_kbtu / Total_btu ) )) %>%
+  mutate( NGas_kbtu = ifelse(Total_btu - Base < 0 , 0, NGas_kbtu )) %>%
+  mutate( Steam_btu = ifelse(Total_btu - Base == 0, (12 * Base ), Steam_btu - (Base * Steam_btu / Total_btu ) )) %>% 
+  mutate( Steam_btu = ifelse(Total_btu - Base < 0, 0, Steam_btu )) -> TSUS_EPA_DATA_SHORT_ALL
+>>>>>>> cac9cd8d9cb662ad21c9d6915fc451e3582c1b34
 
  #########################################################################################################################################################
  #########################################################################################################################################################
