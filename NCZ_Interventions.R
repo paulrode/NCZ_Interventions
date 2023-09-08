@@ -95,37 +95,29 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 
 ###########################################################################################################################################################
 ###########################################################################################################################################################
-<<<<<<< HEAD
-#Way to get base allocated on fuel types. Use ->  filter(TSUS_EPA_DATA_SHORT_ALL, Building == "160 Spear") %>% filter(Total_btu == min(Total_btu))
+#
+# Way to get base allocated on fuel types. Use ->  filter(TSUS_EPA_DATA_SHORT_ALL, Building == "160 Spear") %>% filter(Total_btu == min(Total_btu))
+# 
+# 
+# 
+# TSUS_EPA_DATA_SHORT_ALL %>% 
+#  mutate( Elect_kBTU1 = ifelse(Total_btu - Base == 0, (12 * Base * Elect_kBTU / Total_btu ), Elect_kBTU - (Base * Elect_kBTU / Total_btu ))) %>% 
+#  mutate( NGas_kbtu1 = ifelse(Total_btu - Base == 0 , (12 * Base * NGas_kbtu / Total_btu), NGas_kbtu - (Base * NGas_kbtu / Total_btu ) )) %>%
+#  mutate( NGas_kbtu1 = ifelse(Total_btu - Base < 0 , 0, NGas_kbtu )) %>%
+#  mutate( Steam_btu1 = ifelse(Total_btu - Base == 0, (12 * Base * Steam_btu/Total_btu), Steam_btu - (Base * Steam_btu / Total_btu ) )) %>% 
+#  mutate( Steam_btu1 = ifelse(Total_btu - Base < 0, 0, Steam_btu )) -> TSUS_EPA_DATA_SHORT_ALL
+#
+#
+##########################################################################################################################################################
  
- 
- 
- 
- TSUS_EPA_DATA_SHORT_ALL %>% 
-  mutate( Elect_kBTU1 = ifelse(Total_btu - Base == 0, (12 * Base * Elect_kBTU / Total_btu ), Elect_kBTU - (Base * Elect_kBTU / Total_btu ))) %>% 
-  mutate( NGas_kbtu1 = ifelse(Total_btu - Base == 0 , (12 * Base * NGas_kbtu / Total_btu), NGas_kbtu - (Base * NGas_kbtu / Total_btu ) )) %>%
-  mutate( NGas_kbtu1 = ifelse(Total_btu - Base < 0 , 0, NGas_kbtu )) %>%
-  mutate( Steam_btu1 = ifelse(Total_btu - Base == 0, (12 * Base * Steam_btu/Total_btu), Steam_btu - (Base * Steam_btu / Total_btu ) )) %>% 
-  mutate( Steam_btu1 = ifelse(Total_btu - Base < 0, 0, Steam_btu )) -> TSUS_EPA_DATA_SHORT_ALL
-=======
-TSUS_EPA_DATA_SHORT_ALL %>% 
-  mutate( Elect_kBTU = ifelse(Total_btu - Base == 0, (12 * Base), Elect_kBTU - (Base * Elect_kBTU / Total_btu ))) %>% 
-  mutate( NGas_kbtu = ifelse(Total_btu - Base == 0 , (12 * Base), NGas_kbtu - (Base * NGas_kbtu / Total_btu ) )) %>%
-  mutate( NGas_kbtu = ifelse(Total_btu - Base < 0 , 0, NGas_kbtu )) %>%
-  mutate( Steam_btu = ifelse(Total_btu - Base == 0, (12 * Base ), Steam_btu - (Base * Steam_btu / Total_btu ) )) %>% 
-  mutate( Steam_btu = ifelse(Total_btu - Base < 0, 0, Steam_btu )) -> TSUS_EPA_DATA_SHORT_ALL
->>>>>>> cac9cd8d9cb662ad21c9d6915fc451e3582c1b34
-
- #########################################################################################################################################################
- #########################################################################################################################################################
-
 TSUS_EPA_DATA_SHORT_ALL %>%  
   group_by(Building, use) %>%  
   summarise(Elect = sum(Elect_kBTU), NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) %>%  
   mutate("Elect_kWH" = Elect/3.418, "Steam_Mlb" = Steam/1194) %>%  
   select(Building, use, Elect_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Total) -> EndUseAllocation 
 
-
+ #########################################################################################################################################################
+ #########################################################################################################################################################
 
 #Buildings with missing data not making it though analysis. 
 (TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
