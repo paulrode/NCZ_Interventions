@@ -12,8 +12,8 @@ invisible( lapply(my_packages, require, character.only = TRUE))
 # Alternate Start Point 
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
-# place <- "Home"  #Where are we working today. 
- place <- "work"
+ place <- "Home"  #Where are we working today. 
+# place <- "work"
 if (place == "Home"){setwd("C:/Users/paulr/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
