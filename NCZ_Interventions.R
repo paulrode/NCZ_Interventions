@@ -1,5 +1,5 @@
 
-# Load packages 
+# Load packages ``
 
 my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", 
                  "tsibbledata", "knitr", "formattable", "scales", "tidyr" ,"kableExtra", "dplyr", "gridExtra", "writexl")   
@@ -12,8 +12,8 @@ invisible( lapply(my_packages, require, character.only = TRUE))
 # Alternate Start Point 
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
- place <- "Home"  #Where are we working today. 
-# place <- "work"
+# place <- "Home"  #Where are we working today. 
+ place <- "work"
 if (place == "Home"){setwd("C:/Users/paulr/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
@@ -53,7 +53,6 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
  
  
- 
  # Average out 'Y' years 
  Y <- 3
  TSUS_EPA_DATA_SHORT_ALL %>% 
@@ -69,31 +68,20 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  TSUS_EPA_DATA_SHORT_ALL %>% 
      mutate(Total_btu = Elect_kBTU + NGas_kbtu + Steam_btu + Oil2_btu + Oil4_btu + Diesel_btu) -> TSUS_EPA_DATA_SHORT_ALL
 
- 
- 
- 
- ###############################################################################################################
- #                                                                                                             #
- # Added individual bases in here for each fuel type 8/19/2023 trying to see if that Should be carried through #
- #                                                                                                             #
- ###############################################################################################################
- 
-
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
-  reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base" = min(Total_btu)) -> TSUS_EPA_DATA_SHORT_ALL
-# summarise(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Elect_Base" = min(Elect_kBTU), "NGas_Base" = min(NGas_kbtu)) -> TSUS_EPA_DATA_SHORT_ALL
+  reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) -> TSUS_EPA_DATA_SHORT_ALL
 
+ 
+   #############################################################################################################################################
+   #   Put in hear base calculations for all fule types maybe a loop, maybe just a big data frame                                               #
+   #############################################################################################################################################
 
-
-#####################################################
-
-# Subtracting base loads from cooling and heating here.
 
 TSUS_EPA_DATA_SHORT_ALL %>% 
   mutate(use = ifelse(Base == Total_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
 
-###########################################################################################################################################################
+
 ###########################################################################################################################################################
 #
 # Way to get base allocated on fuel types. Use ->  filter(TSUS_EPA_DATA_SHORT_ALL, Building == "160 Spear") %>% filter(Total_btu == min(Total_btu))
