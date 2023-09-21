@@ -74,12 +74,13 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 
  
    #############################################################################################################################################
-   #   Put in hear base calculations for all fule types maybe a loop, maybe just a big data frame                                               #
+   #   Put in hear base calculations for all fule types maybe a loop, maybe just a big data frame   
+   #  Need to make a use lable for each fuel soruce. 
    #############################################################################################################################################
 
 
 TSUS_EPA_DATA_SHORT_ALL %>% 
-  mutate(use = ifelse(Base == Total_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
+  mutate(Elect_use = ifelse(Base_E == Elect_kBTU, "Electric Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
 
 
 ###########################################################################################################################################################
