@@ -64,56 +64,48 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
              Oil4_btu = sum(`Fuel Oil (No. 4)\r\n(kBtu)`/Y, na.rm=TRUE),
              Diesel_btu = sum(`Diesel\r\n(kBtu)`/Y, na.rm=TRUE)) -> TSUS_EPA_DATA_SHORT_ALL
  
+ # Puttin in here the total BTU sum over all fules. 
+ 
  TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
  TSUS_EPA_DATA_SHORT_ALL %>% 
      mutate(Total_btu = Elect_kBTU + NGas_kbtu + Steam_btu + Oil2_btu + Oil4_btu + Diesel_btu) -> TSUS_EPA_DATA_SHORT_ALL
 
+ 
+ #############################################################################################################################################
+ #  Base calculations for all fuel types   
+   
+ #############################################################################################################################################
+ 
+ 
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
-  reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) -> TSUS_EPA_DATA_SHORT_ALL
+  reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) %>% 
+  mutate(Elect_use = ifelse(Base_E == Elect_kBTU, "Electric Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>%
+  mutate(NG_use = ifelse(Base_NG == NGas_kbtu, "Nat.Gas Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
+  mutate(Steam_use = ifelse(Base_S == Steam_btu, "Steam Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
+  mutate(Oil2_use = ifelse(Base_2 == Oil2_btu, "Oil 2 Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
+  mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Oil 2 Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
+  mutate(Diesel_use = ifelse(Base_D == Diesel_btu, "Diesel Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
 
- 
-   #############################################################################################################################################
-   #   Put in hear base calculations for all fule types maybe a loop, maybe just a big data frame   
-   #  Need to make a use lable for each fuel soruce. 
-   #############################################################################################################################################
+#############################################################################################################################################
+#  Base calculations for all fuel types   
 
+#############################################################################################################################################
 
-TSUS_EPA_DATA_SHORT_ALL %>% 
-  mutate(Elect_use = ifelse(Base_E == Elect_kBTU, "Electric Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
-
-
-###########################################################################################################################################################
-#
-# Way to get base allocated on fuel types. Use ->  filter(TSUS_EPA_DATA_SHORT_ALL, Building == "160 Spear") %>% filter(Total_btu == min(Total_btu))
-# 
-# 
-# 
-# TSUS_EPA_DATA_SHORT_ALL %>% 
-#  mutate( Elect_kBTU1 = ifelse(Total_btu - Base == 0, (12 * Base * Elect_kBTU / Total_btu ), Elect_kBTU - (Base * Elect_kBTU / Total_btu ))) %>% 
-#  mutate( NGas_kbtu1 = ifelse(Total_btu - Base == 0 , (12 * Base * NGas_kbtu / Total_btu), NGas_kbtu - (Base * NGas_kbtu / Total_btu ) )) %>%
-#  mutate( NGas_kbtu1 = ifelse(Total_btu - Base < 0 , 0, NGas_kbtu )) %>%
-#  mutate( Steam_btu1 = ifelse(Total_btu - Base == 0, (12 * Base * Steam_btu/Total_btu), Steam_btu - (Base * Steam_btu / Total_btu ) )) %>% 
-#  mutate( Steam_btu1 = ifelse(Total_btu - Base < 0, 0, Steam_btu )) -> TSUS_EPA_DATA_SHORT_ALL
-#
-#
-##########################################################################################################################################################
- 
 TSUS_EPA_DATA_SHORT_ALL %>%  
-  group_by(Building, use) %>%  
+  group_by(Building, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use) %>%  
   summarise(Elect = sum(Elect_kBTU), NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) %>%  
   mutate("Elect_kWH" = Elect/3.418, "Steam_Mlb" = Steam/1194) %>%  
-  select(Building, use, Elect_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Total) -> EndUseAllocation 
-
- #########################################################################################################################################################
- #########################################################################################################################################################
+  select(Building, Elect_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use ) -> EndUseAllocation 
 
 #Buildings with missing data not making it though analysis. 
 (TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
 # output of above line is: "1395 Crossman"   "66 Hudson Blvd."
 
-
+#############################################################################################################################################
 # Make interventions table in excel and read here, then pull in EndUseAllocations 
+
+#############################################################################################################################################
 
 
 
@@ -129,12 +121,26 @@ left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 # write.csv(EndUseAllocation, "C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions/data/EndUseAllocation.csv")
 
 
+##############################################################################################################################################
+# Try removing buildings we dont own anymore, and clean up enviroment. 
+
+##############################################################################################################################################
+
+EndUseAllocation %>% 
+  filter(Building != "1275 Crossman" & Building != "1345 Crossman" & Building != "1395 Crossman" & Building != "1375 Crossman") %>% 
+  select( -Note) -> EndUseAllocation
+
 
 remove(BuildingData, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
 
-#Building Intervention File 
-# when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load. 
+#####################################################################################################################
+#Building Intervention File                                                                                         #
+# when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.#
+                                                                                                                    #
+#####################################################################################################################
+
+
 Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 16, na = "Not Available", sheet = 1)%>% 
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 
@@ -146,12 +152,20 @@ Interventions <-Interventions %>% arrange(Order)
 #apply(TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)], 2, function(row) as.numeric(row)) -> TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)]
 
 
+#############################################################################################################################
+# Need to apply rules to get interventions into EndUse
+
+
+
 EndUseAllocation %>% 
   select(-5, -7, -11, -12,-14,-15) %>% 
   select(1,2,9,3:8) -> EndUseAllocation
 
+
+
+
 EndUseAllocation %>% 
-  gather(key = "Load", value = value, 4:9) %>% 
+  gather(key = "Load", value = value 4:9) %>% 
   filter(value != 0 ) %>% 
   spread(key=use, value=value, fill = 0) -> testfit1
 
