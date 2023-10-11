@@ -1,5 +1,5 @@
 
-# Load packages ``
+# Load packages 
 
 my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", 
                  "tsibbledata", "knitr", "formattable", "scales", "tidyr" ,"kableExtra", "dplyr", "gridExtra", "writexl")   
@@ -153,19 +153,10 @@ Interventions <-Interventions %>% arrange(Order)
 
 
 #############################################################################################################################
-# Need to apply rules to get interventions into EndUse
-
-
-
-EndUseAllocation %>% 
-  select(-5, -7, -11, -12,-14,-15) %>% 
-  select(1,2,9,3:8) -> EndUseAllocation
-
-
-
-#############################################################################################################################
 #
 # Break out each fuel source below and group and sum by use. 
+# Need to address where in oil no base load fuel is only used for heat. Maybe make all Oil that way. Or
+# Just proportion some DHW out. Need to desingate cooling, dhw, and heating fules build that into base load calculation. 
 #
 #############################################################################################################################
 
