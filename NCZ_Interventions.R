@@ -156,7 +156,8 @@ Interventions <-Interventions %>% arrange(Order)
 #
 # Break out each fuel source below and group and sum by use. 
 # Need to address where in oil no base load fuel is only used for heat. Maybe make all Oil that way. Or
-# Just proportion some DHW out. Need to desingate cooling, dhw, and heating fules build that into base load calculation. 
+# Just proportion some DHW out. Need to desingate cooling, dhw, and heating fules build that into base load calculation.
+# I added builidng configuration lists for Elect, NGas, Steam, Oil. 
 #
 #############################################################################################################################
 
