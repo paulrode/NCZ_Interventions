@@ -73,6 +73,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
  #############################################################################################################################################
  #  Base calculations for all fuel types   
+ # This is the main logic for assiging uses. Need sequence that allows assigment based on building configurations. 
    
  #############################################################################################################################################
  
