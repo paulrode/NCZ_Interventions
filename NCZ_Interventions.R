@@ -73,10 +73,10 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
  #############################################################################################################################################
  #  Base calculations for all fuel types   
- # This is the main logic for assiging uses. Need sequence that allows assigment based on building configurations. 
+ # This is the main logic for assigning uses. Need sequence that allows assignment based on building configurations. 
    
  #############################################################################################################################################
- 
+
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
@@ -88,6 +88,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Oil 2 Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
   mutate(Diesel_use = ifelse(Base_D == Diesel_btu, "Diesel Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
 
+ 
 #############################################################################################################################################
 #  Base calculations for all fuel types   
 
@@ -157,8 +158,8 @@ Interventions <-Interventions %>% arrange(Order)
 #
 # Break out each fuel source below and group and sum by use. 
 # Need to address where in oil no base load fuel is only used for heat. Maybe make all Oil that way. Or
-# Just proportion some DHW out. Need to desingate cooling, dhw, and heating fules build that into base load calculation.
-# I added builidng configuration lists for Elect, NGas, Steam, Oil. 
+# Just proportion some DHW out. Need to designate cooling, dhw, and heating flues build that into base load calculation.
+# I added building configuration lists for Elect, NGas, Steam, Oil. 
 #
 #############################################################################################################################
 
