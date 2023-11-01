@@ -161,7 +161,13 @@ Interventions <-Interventions %>% arrange(Order)
 # Need to address where in oil no base load fuel is only used for heat. Maybe make all Oil that way. Or
 # Just proportion some DHW out. Need to designate cooling, dhw, and heating flues build that into base load calculation.
 # I added building configuration lists for Elect, NGas, Steam, Oil. 
-#
+# 
+# Adding logic for thermal loading 
+#  Keep EUA_Electric ->  splits on cooling, heating and base the same. 
+#  EUA_Oil2 -> make all heating. 
+#  EUA_Oil4 -> make all heating. 
+# 
+# 
 #############################################################################################################################
 
 #Set up data frames for each fuel type with its associated use. Do this for each fuel.  
@@ -170,26 +176,31 @@ EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use")]
 EUA_Elect %>%  
   group_by(Building, Elect_use) %>%  
   summarise(Elect = sum(Elect)) -> EUA_Elect 
+ 
 
 
 EUA_Oil2 <- EndUseAllocation[c("Building", "Oil2", "Oil2_use")]
 EUA_Oil2 %>% 
   group_by(Building, Oil2_use) %>%  
   summarise(Oil2 = sum(Oil2)) -> EUA_Oil2 
+  EUA_Oil2$Oil2_use = "Heating Loads"
 
 
 EUA_Oil4 <- EndUseAllocation[c("Building", "Oil4", "Oil4_use")]
 EUA_Oil4 %>% 
   group_by(Building, Oil4_use) %>%  
   summarise(Oil4 = sum(Oil4)) -> EUA_Oil4 
-# Note 175 Varrick has only base oil because no cooling or heating. 
-
+  EUA_Oil4$Oil4_use = "Heating Loads"
+ 
 
 EUA_Steam <- EndUseAllocation[c("Building", "Steam", "Steam_use")]
 EUA_Steam %>% 
   group_by(Building, Steam_use) %>%  
   summarise(Steam = sum(Steam)) -> EUA_Steam 
-# Note 175 Varrick has only base oil because no cooling or heating. 
+
+
+
+
 
 
 
