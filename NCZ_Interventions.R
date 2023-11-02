@@ -79,6 +79,26 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  #############################################################################################################################################
 
  
+ 
+ 
+ 
+ #  Maybe add the logic here 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
   reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) %>% 
@@ -196,7 +216,10 @@ EUA_Oil4 %>%
 EUA_Steam <- EndUseAllocation[c("Building", "Steam", "Steam_use")]
 EUA_Steam %>% 
   group_by(Building, Steam_use) %>%  
-  summarise(Steam = sum(Steam)) -> EUA_Steam 
+  summarise(Steam = sum(Steam)) -> EUA_Steam
+
+# EndUseAllocation %>% 
+#  mutate(Steam_use = ifelse(Base_S == Steam_btu, "Steam Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
 
 
 
