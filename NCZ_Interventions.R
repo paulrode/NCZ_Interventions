@@ -9,7 +9,7 @@ my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidyte
 invisible( lapply(my_packages, require, character.only = TRUE))
 
 
-# Alternate Start Point 
+# Alternate Start Point     
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
 # place <- "Home"  #Where are we working today. 
