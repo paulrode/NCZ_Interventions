@@ -99,6 +99,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
  
  
+ 
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
   reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) %>% 
@@ -138,6 +139,8 @@ BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet
 
 #Join BuildingData with EndUseAllocation 
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
+
+
 
 #Building Configuration File 
 #data.frame(Building = unique(EndUseAllocation$Building),  Heating = rep("type", 67), Cooling = rep("type", 67), DomesticHotWater = rep("type", 67),CoolingTower = rep("type", 67) ) -> BuildingConfiguration
