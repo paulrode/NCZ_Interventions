@@ -163,7 +163,7 @@ remove(BuildingData, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 #####################################################################################################################
 #Building Intervention File                                                                                         #
 # when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.#
-                                                                                                                    #
+#                                                                                                                   #
 #####################################################################################################################
 
 
@@ -195,31 +195,50 @@ Interventions <-Interventions %>% arrange(Order)
 
 #Set up data frames for each fuel type with its associated use. Do this for each fuel.  
 
+
 EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use")]
 EUA_Elect %>%  
   group_by(Building, Elect_use) %>%  
   summarise(Elect = sum(Elect)) -> EUA_Elect 
- 
+  EUA_Elect$Fuel = "Elect" 
+  rename(EUA_Elect, Value = Elect, Use = Elect_use ) -> EUA_Elect 
+  select(EUA_Elect, "Building", "Fuel", "Use", "Value") -> EUA_Elect
 
 
+  #   PICK UPHERE 1/4/2023
+  
+  
+  
 EUA_Oil2 <- EndUseAllocation[c("Building", "Oil2", "Oil2_use")]
 EUA_Oil2 %>% 
   group_by(Building, Oil2_use) %>%  
-  summarise(Oil2 = sum(Oil2)) -> EUA_Oil2 
+  summarise(Oil2 = sum(Oil2)) %>% 
+  select("Building", "Oil2", "Oil2_use") -> EUA_Oil2
   EUA_Oil2$Oil2_use = "Heating Loads"
-
 
 EUA_Oil4 <- EndUseAllocation[c("Building", "Oil4", "Oil4_use")]
 EUA_Oil4 %>% 
   group_by(Building, Oil4_use) %>%  
-  summarise(Oil4 = sum(Oil4)) -> EUA_Oil4 
+  summarise(Oil4 = sum(Oil4)) %>%  
+  select("Building", "Oil4", "Oil4_use") -> EUA_Oil4 
   EUA_Oil4$Oil4_use = "Heating Loads"
- 
 
 EUA_Steam <- EndUseAllocation[c("Building", "Steam", "Steam_use")]
 EUA_Steam %>% 
   group_by(Building, Steam_use) %>%  
-  summarise(Steam = sum(Steam)) -> EUA_Steam
+  summarise(Steam = sum(Steam)) %>% 
+  select("Building", "Steam", "Steam_use") -> EUA_Steam
+
+
+EUA_NGas <- EndUseAllocation[c("Building", "NGas", "NG_use")]
+EUA_NGas %>% 
+  group_by(Building, NG_use) %>%  
+  summarise(NGas = sum(NGas)) %>%
+  select("Building", "NGas", "NG_use") -> EUA_NGas
+
+bind_rows(EUA_Elect, EUA_NGas, EUA_Oil2, EUA_Oil4, EUA_Steam)
+
+
 
 # EndUseAllocation %>% 
 #  mutate(Steam_use = ifelse(Base_S == Steam_btu, "Steam Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
