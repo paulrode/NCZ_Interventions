@@ -200,9 +200,10 @@ EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use")]
 EUA_Elect %>%  
   group_by(Building, Elect_use) %>%  
   summarise(Elect = sum(Elect)) -> EUA_Elect 
-  EUA_Elect$Fuel = "Elect" 
-  rename(EUA_Elect, Value = Elect, Use = Elect_use ) -> EUA_Elect 
-  select(EUA_Elect, "Building", "Fuel", "Use", "Value") -> EUA_Elect
+  
+# EUA_Elect$Fuel = "Elect" 
+#  rename(EUA_Elect, Value = Elect, Use = Elect_use ) -> EUA_Elect 
+#  select(EUA_Elect, "Building", "Fuel", "Use", "Value") -> EUA_Elect
 
 
   #   PICK UPHERE 1/4/2023
@@ -236,7 +237,7 @@ EUA_NGas %>%
   summarise(NGas = sum(NGas)) %>%
   select("Building", "NGas", "NG_use") -> EUA_NGas
 
-bind_rows(EUA_Elect, EUA_NGas, EUA_Oil2, EUA_Oil4, EUA_Steam)
+#  put in here a combine. 
 
 
 
