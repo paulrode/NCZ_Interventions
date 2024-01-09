@@ -12,8 +12,8 @@ invisible( lapply(my_packages, require, character.only = TRUE))
 # Alternate Start Point     
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
- place <- "Home"  #Where are we working today. 
-# place <- "work"
+# place <- "Home"  #Where are we working today. 
+ place <- "work"
 if (place == "Home"){setwd("C:/Users/paulr/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
@@ -82,12 +82,11 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
  
  
- #  Maybe add the logic here 
- 
- 
- 
- 
- 
+ #    1 / 8 / 23 PICK UP HERE  
+ #
+ #
+ #
+ #
  
  
  
@@ -199,16 +198,9 @@ Interventions <-Interventions %>% arrange(Order)
 EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use")]
 EUA_Elect %>%  
   group_by(Building, Elect_use) %>%  
-  summarise(Elect = sum(Elect)) -> EUA_Elect 
-  
-# EUA_Elect$Fuel = "Elect" 
-#  rename(EUA_Elect, Value = Elect, Use = Elect_use ) -> EUA_Elect 
-#  select(EUA_Elect, "Building", "Fuel", "Use", "Value") -> EUA_Elect
+  summarise(Elect = sum(Elect))  %>% 
+  rename( Use = Elect_use) -> EUA_Elect 
 
-
-  #   PICK UPHERE 1/4/2023
-  
-  
   
 EUA_Oil2 <- EndUseAllocation[c("Building", "Oil2", "Oil2_use")]
 EUA_Oil2 %>% 
@@ -216,6 +208,8 @@ EUA_Oil2 %>%
   summarise(Oil2 = sum(Oil2)) %>% 
   select("Building", "Oil2", "Oil2_use") -> EUA_Oil2
   EUA_Oil2$Oil2_use = "Heating Loads"
+  rename(EUA_Oil2, Use = Oil2_use) -> EUA_Oil2
+  
 
 EUA_Oil4 <- EndUseAllocation[c("Building", "Oil4", "Oil4_use")]
 EUA_Oil4 %>% 
@@ -223,22 +217,31 @@ EUA_Oil4 %>%
   summarise(Oil4 = sum(Oil4)) %>%  
   select("Building", "Oil4", "Oil4_use") -> EUA_Oil4 
   EUA_Oil4$Oil4_use = "Heating Loads"
+  rename(EUA_Oil4, Use = Oil4_use) -> EUA_Oil4
 
 EUA_Steam <- EndUseAllocation[c("Building", "Steam", "Steam_use")]
 EUA_Steam %>% 
   group_by(Building, Steam_use) %>%  
   summarise(Steam = sum(Steam)) %>% 
-  select("Building", "Steam", "Steam_use") -> EUA_Steam
+  select("Building", "Steam", "Steam_use") %>% 
+  rename(Use = Steam_use)-> EUA_Steam
 
 
 EUA_NGas <- EndUseAllocation[c("Building", "NGas", "NG_use")]
 EUA_NGas %>% 
   group_by(Building, NG_use) %>%  
   summarise(NGas = sum(NGas)) %>%
-  select("Building", "NGas", "NG_use") -> EUA_NGas
+  select("Building", "NGas", "NG_use") %>% 
+  rename(Use = NG_use)-> EUA_NGas
 
-#  put in here a combine. 
 
+
+
+#  put in here a combine. Need toresulve duplicte roes in Oil2 and how heating cooling and base loads are assinged seeing
+#  electric base load in the tables. Walk through the creation of the EUA tables again and look at the End use full table. 
+left_join(EUA_Elect, EUA_NGas, by = c("Building", "Use")) -> test
+left_join(test, EUA_Steam, by = c("Building", "Use")) -> test2
+left_join(test2, EUA_Oil2, by = c("Building", "Use")) -> test3
 
 
 # EndUseAllocation %>% 
