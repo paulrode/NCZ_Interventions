@@ -82,12 +82,12 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
   reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) %>% 
-  mutate(Elect_use = ifelse(Base_E == Elect_kBTU, "Electric Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>%
-  mutate(NG_use = ifelse(Base_NG == NGas_kbtu, "Nat.Gas Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
-  mutate(Steam_use = ifelse(Base_S == Steam_btu, "Steam Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
-  mutate(Oil2_use = ifelse(Base_2 == Oil2_btu, "Oil 2 Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
-  mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Oil 2 Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
-  mutate(Diesel_use = ifelse(Base_D == Diesel_btu, "Diesel Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
+  mutate(Elect_use = ifelse(Base_E == Elect_kBTU, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>%
+  mutate(NG_use = ifelse(Base_NG == NGas_kbtu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
+  mutate(Steam_use = ifelse(Base_S == Steam_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
+  mutate(Oil2_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
+  mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
+  mutate(Diesel_use = ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
 
  
 #############################################################################################################################################
@@ -187,7 +187,7 @@ EUA_Oil2 %>%
   group_by(Building, Oil2_use) %>%  
   summarise(Oil2 = sum(Oil2)) %>% 
   select("Building", "Oil2", "Oil2_use") -> EUA_Oil2
-  EUA_Oil2$Oil2_use = "Heating Loads"
+ # EUA_Oil2$Oil2_use = "Heating Loads"
   rename(EUA_Oil2, Use = Oil2_use) -> EUA_Oil2
   
 
@@ -196,7 +196,7 @@ EUA_Oil4 %>%
   group_by(Building, Oil4_use) %>%  
   summarise(Oil4 = sum(Oil4)) %>%  
   select("Building", "Oil4", "Oil4_use") -> EUA_Oil4 
-  EUA_Oil4$Oil4_use = "Heating Loads"
+ # EUA_Oil4$Oil4_use = "Heating Loads"
   rename(EUA_Oil4, Use = Oil4_use) -> EUA_Oil4
 
 EUA_Steam <- EndUseAllocation[c("Building", "Steam", "Steam_use")]
@@ -222,8 +222,17 @@ EUA_NGas %>%
 #  put in here a combine. Need toresulve duplicte roes in Oil2 and how heating cooling and base loads are assinged seeing
 #  electric base load in the tables. Walk through the creation of the EUA tables again and look at the End use full table. 
 left_join(EUA_Elect, EUA_NGas, by = c("Building", "Use")) -> test
+test[is.na(test)] <- 0
+
 left_join(test, EUA_Steam, by = c("Building", "Use")) -> test2
+test2[is.na(test2)] <-0
+
 left_join(test2, EUA_Oil2, by = c("Building", "Use")) -> test3
+test3[is.na(test3)] <-0
+
+left_join(test3, EUA_Oil4, by = c("Building", "Use")) -> test4
+test4[is.na(test4)] <-0
+
 
 
 # EndUseAllocation %>% 
