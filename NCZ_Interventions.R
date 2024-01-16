@@ -119,13 +119,6 @@ BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet
 #Join BuildingData with EndUseAllocation 
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
-
-
-#Building Configuration File 
-#data.frame(Building = unique(EndUseAllocation$Building),  Heating = rep("type", 67), Cooling = rep("type", 67), DomesticHotWater = rep("type", 67),CoolingTower = rep("type", 67) ) -> BuildingConfiguration
-# write.csv(EndUseAllocation, "C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions/data/EndUseAllocation.csv")
-
-
 ##############################################################################################################################################
 # Try removing buildings we dont own anymore, and clean up enviroment. 
 
@@ -136,7 +129,7 @@ EndUseAllocation %>%
   select( -Note) -> EndUseAllocation
 
 
-remove(BuildingData, TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
+remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
 
 #####################################################################################################################
@@ -215,34 +208,24 @@ EUA_NGas %>%
   rename(Use = NG_use)-> EUA_NGas
 
 
-########################################################
-# 1/9/2023 leaving off here.....
-########################################################
+left_join(EUA_Elect, EUA_NGas, by = c("Building", "Use")) %>% 
+left_join(EUA_Steam, by = c("Building", "Use")) %>% 
+left_join(EUA_Oil2, by = c("Building", "Use")) %>% 
+left_join(EUA_Oil4, by = c("Building", "Use")) -> EndUseAllocation
+test5[is.na(test5)] <-0
 
-#  put in here a combine. Need toresulve duplicte roes in Oil2 and how heating cooling and base loads are assinged seeing
-#  electric base load in the tables. Walk through the creation of the EUA tables again and look at the End use full table. 
-left_join(EUA_Elect, EUA_NGas, by = c("Building", "Use")) -> test
-test[is.na(test)] <- 0
-
-left_join(test, EUA_Steam, by = c("Building", "Use")) -> test2
-test2[is.na(test2)] <-0
-
-left_join(test2, EUA_Oil2, by = c("Building", "Use")) -> test3
-test3[is.na(test3)] <-0
-
-left_join(test3, EUA_Oil4, by = c("Building", "Use")) -> test4
-test4[is.na(test4)] <-0
+#Join BuildingData with EndUseAllocation 
+left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
 
-
-# EndUseAllocation %>% 
-#  mutate(Steam_use = ifelse(Base_S == Steam_btu, "Steam Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
-
-
-
-
-
-
+#######################################################################
+# 1/15/2023 leaving off here.....
+#
+# Need to add logic to correct assigned fuel use types. DHW, Cooling 
+# Heating. 
+#
+#
+#######################################################################
 
 
 
