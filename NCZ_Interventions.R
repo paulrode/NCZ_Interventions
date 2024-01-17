@@ -212,18 +212,27 @@ left_join(EUA_Elect, EUA_NGas, by = c("Building", "Use")) %>%
 left_join(EUA_Steam, by = c("Building", "Use")) %>% 
 left_join(EUA_Oil2, by = c("Building", "Use")) %>% 
 left_join(EUA_Oil4, by = c("Building", "Use")) -> EndUseAllocation
-test5[is.na(test5)] <-0
+EndUseAllocation[is.na(EndUseAllocation)] <-0
 
 #Join BuildingData with EndUseAllocation 
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
 
 #######################################################################
-# 1/15/2023 leaving off here.....
+#  1/16/2023 leaving off here.....
 #
 # Need to add logic to correct assigned fuel use types. DHW, Cooling 
 # Heating. 
-#
+
+
+
+# Reorginzes table..  
+
+EndUseAllocation %>% 
+  gather(key = "Load", value = value, 3:9, -8) %>% 
+  filter(value != 0 ) %>% 
+  spread(key=Use, value=value, fill = 0) -> testfit1
+
 #
 #######################################################################
 
@@ -233,22 +242,6 @@ left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-EndUseAllocation %>% 
-  gather(key = "Load", value = value 4:9) %>% 
-  filter(value != 0 ) %>% 
-  spread(key=use, value=value, fill = 0) -> testfit1
 
 length(unique(EndUseAllocation$Building))
 unique(EndUseAllocation$Building)
