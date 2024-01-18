@@ -218,38 +218,21 @@ EndUseAllocation[is.na(EndUseAllocation)] <-0
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
 
-#######################################################################
-#  1/16/2023 leaving off here.....
-#
-# Need to add logic to correct assigned fuel use types. DHW, Cooling 
-# Heating. 
-
-
-
-# Reorginzes table..  
-
-EndUseAllocation %>% 
-  gather(key = "Load", value = value, 3:9, -8) %>% 
-  filter(value != 0 ) %>% 
-  spread(key=Use, value=value, fill = 0) -> testfit1
-
-#
-#######################################################################
-
-
-
-
-
-
-
-
 length(unique(EndUseAllocation$Building))
 unique(EndUseAllocation$Building)
 
+
+
+
+######################### ++++++++++++++++++++++ #######################
+#  LEFT OFF HERE 1/17/2024
+
+
+
+
 # Joining Interventions Here To Savings
 
-
-right_join(testfit1, Interventions, by = "Building") %>% 
+right_join(EndUseAllocation, Interventions, by = "Building") %>% 
   na.omit() -> Savings
 
 
