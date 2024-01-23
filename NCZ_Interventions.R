@@ -146,28 +146,6 @@ Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 
 ##### Reorder Interventions Here
 Interventions <-Interventions %>% arrange(Order)
 
-
-#apply(TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)], 2, function(row) as.numeric(row)) -> TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)]
-
-
-#############################################################################################################################
-#
-# Break out each fuel source below and group and sum by use. 
-# Need to address where in oil no base load fuel is only used for heat. Maybe make all Oil that way. Or
-# Just proportion some DHW out. Need to designate cooling, dhw, and heating flues build that into base load calculation.
-# I added building configuration lists for Elect, NGas, Steam, Oil. 
-# 
-# Adding logic for thermal loading 
-#  Keep EUA_Electric ->  splits on cooling, heating and base the same. 
-#  EUA_Oil2 -> make all heating. 
-#  EUA_Oil4 -> make all heating. 
-# 
-# 
-#############################################################################################################################
-
-#Set up data frames for each fuel type with its associated use. Do this for each fuel.  
-
-
 EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use")]
 EUA_Elect %>%  
   group_by(Building, Elect_use) %>%  
@@ -224,15 +202,15 @@ unique(EndUseAllocation$Building)
 
 
 
-######################### ++++++++++++++++++++++ #######################
-#  LEFT OFF HERE 1/17/2024
-
-
+#############################################################################
+######  LEFT OFF HERE 1/17/2024    ##########################################
+#############################################################################
+# Need to get interventins coped into the building in EUA dataframe. 
 
 
 # Joining Interventions Here To Savings
 
-right_join(EndUseAllocation, Interventions, by = "Building") %>% 
+right_join(EndUseAllocation, Interventions, by = "Building", multiple = "all") %>% 
   na.omit() -> Savings
 
 
