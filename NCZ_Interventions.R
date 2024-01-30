@@ -120,7 +120,7 @@ BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
 ##############################################################################################################################################
-# Try removing buildings we dont own anymore, and clean up enviroment. 
+# Try removing buildings we dont own anymore, and clean up environment. 
 
 ##############################################################################################################################################
 
@@ -205,14 +205,23 @@ unique(EndUseAllocation$Building)
 #############################################################################
 ######  LEFT OFF HERE 1/17/2024    ##########################################
 #############################################################################
-# Need to get interventins coped into the building in EUA dataframe. 
+# Need to get interventions coped into the building in EUA data frame. 
+# Try to spread End use allocation so there is one line per building. 
+# then join them to interventions. 
+#
+#
+#
+#
+#
+#
 
+spread(EndUseAllocation,  value = "Use", -"Building") -> temp2
 
-# Joining Interventions Here To Savings
-
-right_join(EndUseAllocation, Interventions, by = "Building", multiple = "all") %>% 
-  na.omit() -> Savings
-
+right_join(EndUseAllocation, Interventions,  by = "Building", multiple = "all") %>% 
+  na.omit() -> Savings2
+#############################################################################
+#############################################################################
+#############################################################################
 
 Savings %>% 
   mutate("Saved_Base" = 0, "Saved_Cooling" = 0, "Saved_Heating" = 0) %>% 
