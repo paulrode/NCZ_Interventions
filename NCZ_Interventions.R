@@ -203,7 +203,7 @@ unique(EndUseAllocation$Building)
 
 
 #############################################################################
-######  LEFT OFF HERE 1/17/2024    ##########################################
+######  LEFT OFF HERE 1/30/2024    ##########################################
 #############################################################################
 # Need to get interventions coped into the building in EUA data frame. 
 # Try to spread End use allocation so there is one line per building. 
@@ -215,9 +215,9 @@ unique(EndUseAllocation$Building)
 #
 #
 
-spread(EndUseAllocation,  value = "Use", -"Building") -> temp2
 
-right_join(EndUseAllocation, Interventions,  by = "Building", multiple = "all") %>% 
+
+full_join(EndUseAllocation, Interventions,  by = "Building", multiple = "all") %>% 
   na.omit() -> Savings2
 #############################################################################
 #############################################################################
