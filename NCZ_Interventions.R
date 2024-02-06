@@ -196,9 +196,13 @@ EndUseAllocation[is.na(EndUseAllocation)] <-0
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
 
-length(unique(EndUseAllocation$Building))
-unique(EndUseAllocation$Building)
 
+EndUseAllocation %>% 
+  gather(key = "Load", value = value, 3:7) %>% 
+  filter(value != 0 ) -> testfit11
+
+testfit11 %>% 
+  spread(key=Use, value=value, fill = 0) -> testfit111
 
 
 
