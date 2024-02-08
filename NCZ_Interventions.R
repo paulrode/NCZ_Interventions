@@ -195,14 +195,12 @@ EndUseAllocation[is.na(EndUseAllocation)] <-0
 #Join BuildingData with EndUseAllocation 
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
-
+remove(EUA_Elect, EUA_NGas, EUA_Oil2, EUA_Oil4, EUA_Steam, BuildingData)
 
 EndUseAllocation %>% 
   gather(key = "Load", value = value, 3:7) %>% 
-  filter(value != 0 ) -> testfit11
-
-testfit11 %>% 
-  spread(key=Use, value=value, fill = 0) -> testfit111
+  filter(value != 0 ) %>% 
+  spread(key = "Use", value = value, fill = 0) -> testfit1
 
 
 
@@ -215,14 +213,10 @@ testfit11 %>%
 #
 #
 #
+right_join(testfit1, Interventions, by = "Building") %>% 
+na.omit() -> Savings
 #
 #
-#
-
-
-
-full_join(EndUseAllocation, Interventions,  by = "Building", multiple = "all") %>% 
-  na.omit() -> Savings2
 #############################################################################
 #############################################################################
 #############################################################################
