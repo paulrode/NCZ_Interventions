@@ -205,7 +205,7 @@ EndUseAllocation %>%
 
 
 #############################################################################
-######  LEFT OFF HERE 1/30/2024    ##########################################
+######  LEFT OFF HERE 2/12/2024    ##########################################
 #############################################################################
 # Need to get interventions coped into the building in EUA data frame. 
 # Try to spread End use allocation so there is one line per building. 
@@ -213,9 +213,10 @@ EndUseAllocation %>%
 #
 #
 #
-right_join(testfit1, Interventions, by = "Building") %>% 
+right_join(testfit1, Interventions, by = "Building", multiple = "all") %>% 
 na.omit() -> Savings
 #
+# this test fit has 2 rows at leat for every building. 
 #
 #############################################################################
 #############################################################################
@@ -898,15 +899,30 @@ for (i in 1: nrow(Savings_Measures)) {
   filter(value != 0 ) %>% 
     spread(key=use, value=value, fill = 0) -> testfit1
   
-  length(unique(EndUseAllocation$Building))
-  unique(EndUseAllocation$Building)
-  
+ 
   # Joining Interventions Here To Savings
-  
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
   #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
   right_join(testfit1, Interventions, by = "Building") %>% 
     na.omit() -> Savings
   #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  #####################XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##############
+  
+  
   
   Savings %>% 
     mutate("Saved_Base" = 0, "Saved_Cooling" = 0, "Saved_Heating" = 0) %>% 
