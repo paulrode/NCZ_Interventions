@@ -202,26 +202,14 @@ EndUseAllocation %>%
   filter(value != 0 ) %>% 
   spread(key = "Use", value = value, fill = 0) -> testfit1
 
+testfit1 %>% 
+  select(1, 3, 9, 10:12) -> testfit1
 
-
-#############################################################################
-######  LEFT OFF HERE 2/12/2024    ##########################################
-#############################################################################
-# Need to get interventions coped into the building in EUA data frame. 
-# Try to spread End use allocation so there is one line per building. 
-# then join them to interventions. 
-#
-#
-#
+# Bringing in Interventions. 
 right_join(testfit1, Interventions, by = "Building", multiple = "all") %>% 
 na.omit() -> Savings
-#
-# this test fit has 2 rows at leat for every building. 
-#
-#############################################################################
-#############################################################################
-#############################################################################
 
+# For calculations of savings setting key catagories to zero
 Savings %>% 
   mutate("Saved_Base" = 0, "Saved_Cooling" = 0, "Saved_Heating" = 0) %>% 
   arrange(desc(Load))-> Savings
@@ -240,7 +228,10 @@ Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Me
 
 rm(Savings)
 
-
+###########################################################################################################
+###########################################################################################################
+###########################################################################################################
+###########################################################################################################
 # Run down Savings Measures 
 
 for(i in 1:length(Savings_Measures$Load)) { 
@@ -688,8 +679,7 @@ for (i in 1: nrow(Savings_Measures)) {
         
   select(Savings_Measures, -3,-10) -> Savings_Measures;
   
-  
-  
+
   Savings_Electrificaiton %>% 
     select(-3,-10) -> Savings_Electrificaiton
   

@@ -1,11 +1,11 @@
 Building,SQFT,Intervention Name,Order,Description of Measure,Change in Electricity Consumption Reduction (kWh),Change in Natural Gas Use(MMBtu),"Change in Steam Consumption, kLbs"
-160 Spear,303429,Retrocommissioning  (RCx),1,Complete BMS commissioning,28550.769710356362,44.56043661542278,-
-160 Spear,303429,Façade air stopping,3,caulking and general air stopping,2113.847313709262,6.394976935402935,-
-160 Spear,303429,New High Efficiency Windows,4,New Windows tripple pane R6@30SHG,5178.925918587692,15.66769349173719,-
-160 Spear,303429,New Electric Chillers,5,Chiller Plant,4168.936990399191,0,-
-160 Spear,303429,Pneumatic Converstion,6,BMS Expansion,1884.6131092553387,5.9537235268601325,-
-160 Spear,303429,Elevator energy revovery,7,Optional add to elevator package,5795.261073630895,0,-
-160 Spear,303429,DHW to Point of Use,2,Electrificaiton,-219715.05729024,-749.701632,-
-160 Spear,303429,Central ASHP to Hot Water,8,Electrificaiton,-174976.04817576936,-1791.1357168161464,-
-160 Spear,303429,Electric Boiler,8,Electrificaiton,-524928.1445273081,-1791.1357168161464,-
-160 Spear,303429,Test Name,8,Electrificaiton,-524928.1445273081,-1791.1357168161464,-
+160 Spear,303429,Retrocommissioning  (RCx),1,Complete BMS commissioning,0,61.89584133333333,-
+160 Spear,303429,Façade air stopping,3,caulking and general air stopping,0,29.20824384,-
+160 Spear,303429,New High Efficiency Windows,4,New Windows tripple pane R6@30SHG,0,71.56019740800001,-
+160 Spear,303429,New Electric Chillers,5,Chiller Plant,0,0,-
+160 Spear,303429,Pneumatic Converstion,6,BMS Expansion,0,27.192875015040002,-
+160 Spear,303429,Elevator energy revovery,7,Optional add to elevator package,0,0,-
+160 Spear,303429,DHW to Point of Use,2,Electrificaiton,-7352.5401600000005,-25.088,-
+160 Spear,303429,Central ASHP to Hot Water,8,Electrificaiton,-135068.81949074363,-1382.62687573696,-
+160 Spear,303429,Electric Boiler,8,Electrificaiton,-405206.4584722309,-1382.62687573696,-
+160 Spear,303429,Test Name,8,Electrificaiton,-405206.4584722309,-1382.62687573696,-
