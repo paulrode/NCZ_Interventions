@@ -71,12 +71,9 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
      mutate(Total_btu = Elect_kBTU + NGas_kbtu + Steam_btu + Oil2_btu + Oil4_btu + Diesel_btu) -> TSUS_EPA_DATA_SHORT_ALL
 
  
- #############################################################################################################################################
- #  Base calculations for all fuel types   
- # This is the main logic for assigning uses. Need sequence that allows assignment based on building configurations. 
- # Try this identify for all fuel types the breakdown and have logive assign use accordingly. 
-   
- #############################################################################################################################################
+#  Base calculations for all fuel types   
+# This is the main logic for assigning uses. Need sequence that allows assignment based on building configurations. 
+# Try this identify for all fuel types the breakdown and have logive assign use accordingly. 
 
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
@@ -89,11 +86,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
   mutate(Diesel_use = ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
 
- 
-#############################################################################################################################################
-#  Base calculations for all fuel types   
-
-#############################################################################################################################################
+ #  Base calculations for all fuel types   
 
 TSUS_EPA_DATA_SHORT_ALL %>%  
   group_by(Building, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use) %>%  
@@ -101,16 +94,11 @@ TSUS_EPA_DATA_SHORT_ALL %>%
   mutate("Elect_kWH" = Elect/3.418, "Steam_Mlb" = Steam/1194) %>%  
   select(Building, Elect_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use ) -> EndUseAllocation 
 
-#Buildings with missing data not making it though analysis. 
+# Buildings with missing data not making it though analysis. 
 (TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
 # output of above line is: "1395 Crossman"   "66 Hudson Blvd."
 
-#############################################################################################################################################
-# Make interventions table in excel and read here, then pull in EndUseAllocations 
-
-#############################################################################################################################################
-
-
+ # Make interventions table in excel and read here, then pull in EndUseAllocations 
 
 # Make a building data file and input here. Ease building will have sf for ratioing costs and a configuration code
 #Building Data File 
@@ -119,10 +107,8 @@ BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet
 #Join BuildingData with EndUseAllocation 
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
-##############################################################################################################################################
-# Try removing buildings we dont own anymore, and clean up environment. 
+# Try removing buildings we don't own anymore, and clean up environment. 
 
-##############################################################################################################################################
 
 EndUseAllocation %>% 
   filter(Building != "1275 Crossman" & Building != "1345 Crossman" & Building != "1395 Crossman" & Building != "1375 Crossman") %>% 
@@ -132,11 +118,11 @@ EndUseAllocation %>%
 remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
 
-#####################################################################################################################
-#Building Intervention File                                                                                         #
-# when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.#
-#                                                                                                                   #
-#####################################################################################################################
+
+# Building Intervention File                                                                                         
+# when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.
+                                                                                                                   
+
 
 
 Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 16, na = "Not Available", sheet = 1)%>% 
@@ -228,11 +214,7 @@ Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Me
 
 rm(Savings)
 
-###########################################################################################################
-###########################################################################################################
-#    In this block elect savings not being calculated. 
-###########################################################################################################
-###########################################################################################################
+
 # Run down Savings Measures 
 
 for(i in 1:length(Savings_Measures$Load)) { 
@@ -607,12 +589,6 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
       
                     }}}}}}}}}}}
 
-#############################################################################################################
-
-
-# Some Cleanup 
-#remove(EndUseAllocation, EndUseAllocation_Wide)
-
 
 Savings_Electrificaiton  %>%
   mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
@@ -676,8 +652,12 @@ for (i in 1: nrow(Savings_Measures)) {
   if(Savings_Measures$Load[1] == "Steam_Mlb") { Savings_Measures <-  filter(Savings_Measures, Savings_Measures$Load == "Steam_Mlb")
     }else{
       if(Savings_Measures$Load[1] == "NGas") {Savings_Measures <- filter(Savings_Measures, Savings_Measures$Load == "NGas")}}
-       
-        
+  
+  
+
+ ###################################
+ #  THIS IS WHERE I HAVE A PROBLEM # 
+ ###################################
   select(Savings_Measures, -3,-10) -> Savings_Measures;
   
 
