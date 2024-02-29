@@ -217,6 +217,7 @@ rm(Savings)
 
 # Run down Savings Measures 
 
+
 for(i in 1:length(Savings_Measures$Load)) { 
   if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Elect" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton"  )  {
     Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Base[i];
@@ -511,6 +512,10 @@ for(i in 1:length(Savings_Measures$Load)) {
 
 
 
+####################################
+###  THIS IS WHERE I HAVE A PROBLEM ### 
+####################################
+
 # Moving over loads to Electrification Data Frame
 
 nrow(Savings_Electrificaiton) -> b
@@ -654,10 +659,6 @@ for (i in 1: nrow(Savings_Measures)) {
       if(Savings_Measures$Load[1] == "NGas") {Savings_Measures <- filter(Savings_Measures, Savings_Measures$Load == "NGas")}}
   
   
-
- ###################################
- #  THIS IS WHERE I HAVE A PROBLEM # 
- ###################################
   select(Savings_Measures, -3,-10) -> Savings_Measures;
   
 
