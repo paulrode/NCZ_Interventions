@@ -510,12 +510,6 @@ for(i in 1:length(Savings_Measures$Load)) {
   }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 
 
-
-
-####################################
-###  THIS IS WHERE I HAVE A PROBLEM ### 
-####################################
-
 # Moving over loads to Electrification Data Frame
 
 nrow(Savings_Electrificaiton) -> b
@@ -527,10 +521,13 @@ filter(Savings_Measures, Load == "Steam_Mlb")[nrow(filter(Savings_Measures, Load
 
 filter(Savings_Measures, Load == "Elect")[nrow(filter(Savings_Measures, Load == "Elect")),4:6] -> Savings_Electrificaiton[((b/2)+1):b,4:6]
 
+Savings_Electrificaiton %>% filter(Load != "Elect") -> Savings_Electrificaiton
 
+####################################
+###  THIS IS WHERE I HAVE A PROBLEM ### 
+####################################
 # Do the calculations for savings here. 
 
-Savings_Electrificaiton %>% filter(Load != "Elect") -> Savings_Electrificaiton
 
 for(i in 1:length(Savings_Electrificaiton$Load)) { 
   if(Savings_Electrificaiton$Savings[i] == "Base" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
@@ -607,8 +604,10 @@ if(Savings_Measures$Load[1] == "NGas"){
   filter(Savings_Electrificaiton,  Load == "Steam_Mlb") -> Savings_Electrificaiton }
 
 
-
-
+####################################
+###  THIS IS WHERE I HAVE A PROBLEM ### 
+####################################
+# Do the calculations for savings here. 
 
 # Move savings to native innervation columns for Electrification  
 
@@ -623,7 +622,7 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
   
 
   
-  # Move savings to native innervation columns for Measures  
+# Move savings to native innervation columns for Measures  
   
   Savings_Measures  %>%
     mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
