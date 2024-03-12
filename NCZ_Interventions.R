@@ -513,7 +513,7 @@ for(i in 1:length(Savings_Measures$Load)) {
 # Moving over loads to Electrification Data Frame
 
 nrow(Savings_Electrificaiton) -> b
-b2 <- b/2
+
 if(Savings_Measures$Load[1] == "NGas"){
 filter(Savings_Measures, Load == "NGas")[nrow(filter(Savings_Measures, Load == "NGas")),4:6] -> Savings_Electrificaiton[1:(b/2),4:6]
 }else{
@@ -523,9 +523,9 @@ filter(Savings_Measures, Load == "Elect")[nrow(filter(Savings_Measures, Load == 
 
 Savings_Electrificaiton %>% filter(Load != "Elect") -> Savings_Electrificaiton
 
-####################################
+#######################################
 ###  THIS IS WHERE I HAVE A PROBLEM ### 
-####################################
+#######################################
 # Do the calculations for savings here. 
 
 
