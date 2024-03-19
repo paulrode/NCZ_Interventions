@@ -548,7 +548,8 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
       if(Savings_Electrificaiton$Savings[i] == "Cooling" & Savings_Electrificaiton$Load[i] == "NGas" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
         Savings_Electrificaiton$`Cooling Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Cooling[i];
         ifelse(Savings_Electrificaiton$Saved_Cooling[i] == 0, Savings_Electrificaiton$`Cooling Loads`[i] , Savings_Electrificaiton$`Cooling Loads`[i] <- Savings_Electrificaiton$`Cooling Loads`[i]  + Savings_Electrificaiton$Saved_Cooling[i]);
-      }else{
+        if(Savings_Electrificaiton$Saved_Cooling[i] != 0 ) { Savings_Electrificaiton$`Cooling Loads`[i+1] <- Savings_Electrificaiton$`Cooling Loads`[i] + Savings_Electrificaiton$Saved_Cooling[i]};
+     }else{
       
       if(Savings_Electrificaiton$Savings[i] == "Heating" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
         Savings_Electrificaiton$`Heating Loads`[i] * Savings_Electrificaiton$`Change in Steam Consumption, kLbs`[i] -> Savings_Electrificaiton$Saved_Heating[i];
@@ -559,7 +560,8 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
           Savings_Electrificaiton$`Heating Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Heating[i];
           Savings_Electrificaiton$`Heating Loads` <- Savings_Electrificaiton$`Heating Loads`[i] - Savings_Electrificaiton$Saved_Heating[i];
           ifelse(Savings_Electrificaiton$Saved_Heating[i] == 0, Savings_Electrificaiton$`Heating Loads`[i] , Savings_Electrificaiton$`Heating Loads`[i] <- Savings_Electrificaiton$`Heating Loads`[i]  + Savings_Electrificaiton$Saved_Heating[i]);
-          }else{
+          if(Savings_Electrificaiton$Saved_Heating[i] != 0 ) { Savings_Electrificaiton$`Heating Loads`[i+1] <- Savings_Electrificaiton$`Heating Loads`[i] + Savings_Electrificaiton$Saved_Heating[i]};
+            }else{
         
         if(Savings_Electrificaiton$Savings[i] == "Heating & Cooling" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
           Savings_Electrificaiton$`Heating Loads`[i] * Savings_Electrificaiton$`Change in Steam Consumption, kLbs`[i] -> Savings_Electrificaiton$Saved_Heating[i];
