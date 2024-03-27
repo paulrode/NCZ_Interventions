@@ -538,8 +538,8 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
     
     if(Savings_Electrificaiton$Savings[i] == "Base" & Savings_Electrificaiton$Load[i] == "NGas" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
       Savings_Electrificaiton$`Base Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Base[i];
-      if(Savings_Electrificaiton$Order[i] == Savings_Electrificaiton$Order[i+1]) {Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i]};
-      if(Savings_Electrificaiton$Saved_Base[i] != 0 ) { Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i] + Savings_Electrificaiton$Saved_Base[i]};
+      if(Savings_Electrificaiton$Order[i] == Savings_Electrificaiton$Order[i+1]) {Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i]} else {
+      if(Savings_Electrificaiton$Saved_Base[i] != 0 ) { Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i] + Savings_Electrificaiton$Saved_Base[i]}};
    }else{
     
     if(Savings_Electrificaiton$Savings[i] == "Cooling" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
