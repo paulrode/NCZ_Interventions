@@ -528,7 +528,7 @@ Savings_Electrificaiton %>% filter(Load != "Elect") -> Savings_Electrificaiton
 #######################################
 # Do the calculations for savings here.
 # look below in gas and base and added an if statement that if "order" below is equal to "order" above then do not reduce the loads by the savings. 
-
+# need to figure out how to got i+1 at the last line to avoid an error. 
 
 for(i in 1:length(Savings_Electrificaiton$Load)) { 
   if(Savings_Electrificaiton$Savings[i] == "Base" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
@@ -591,7 +591,8 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
               Savings_Electrificaiton$`Base Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Base[i];
               Savings_Electrificaiton$`Heating Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Heating[i];
               Savings_Electrificaiton$`Cooling Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Cooling[i];
-
+              if(Savings_Electrificaiton$Order[i] == Savings_Electrificaiton$Order[i+1]) {Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i] + Savings_Electrificaiton$Saved_Base[i]} else {
+              if(Savings_Electrificaiton$Saved_Base[i] != 0 ) { Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i] + Savings_Electrificaiton$Saved_Base[i]}};
       
                     }}}}}}}}}}}
 
