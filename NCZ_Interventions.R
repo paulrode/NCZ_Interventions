@@ -48,7 +48,8 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   select(2,1,3:ncol(TSUS_EPA_DATA_SHORT_ALL)) %>% 
   arrange(Building, Month) %>% 
    mutate(DateM = month(Month), DateY = year(Month)) %>% 
-   filter(DateY > 2018 & DateY < 2022) %>% 
+   # This is where you change the date range of what is pulled from the EPA month file 
+   filter(DateY > 2019 & DateY < 2023) %>% 
    select(1,10,9, 3:8) -> TSUS_EPA_DATA_SHORT_ALL
  remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
  
@@ -121,10 +122,7 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 
 # Building Intervention File                                                                                         
 # when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.
-                                                                                                                   
-
-
-
+                                                                                                        
 Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 16, na = "Not Available", sheet = 1)%>% 
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 
@@ -192,8 +190,9 @@ testfit1 %>%
   select(1, 3, 9, 10:12) -> testfit1
 
 # Bringing in Interventions. 
-right_join(testfit1, Interventions, by = "Building", multiple = "all") %>% 
-na.omit() -> Savings
+right_join(testfit1, Interventions, by = "Building", multiple = "all") -> Savings
+
+#pulled this out from above 
 
 # For calculations of savings setting key catagories to zero
 Savings %>% 
