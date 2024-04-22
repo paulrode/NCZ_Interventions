@@ -6,10 +6,7 @@ my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidyte
 
 # Took these out but need to keep them front of mind "timetk" , "recipes" 
 
-invisible( lapply(my_packages, require, character.only = TRUE))  
-
-
-# Alternate Start Point     
+invisible( lapply(my_packages, require, character.only = TRUE))# Alternate Start Point     
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
 # place <- "Home"  #Where are we working today. 
@@ -26,7 +23,7 @@ options(dplyr.summarise.inform = FALSE)  # Suppress text in Knit printout.
 # Savings categories are Heating, Cooling, Base, Heating & Cooling & Base, Heating & Cooling, 
 #
 
-# Read in data
+# Read in Portfolio Manager data
 # Import first sheet
 TSUS_EPA_DATA_SHEETS <-excel_sheets("data/Energy Star_Energy Use by Calendar Month_US Properties.xlsx")
 TSUS_EPA_DATA <- read_excel("data/Energy Star_Energy Use by Calendar Month_US Properties.xlsx",skip = 5, na = "Not Available", sheet = 1)
@@ -118,9 +115,7 @@ EndUseAllocation %>%
 
 remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
-
-
-# Building Intervention File                                                                                         
+# Read in Building Intervention File                                                                                         
 # when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.
                                                                                                         
 Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 16, na = "Not Available", sheet = 1)%>% 
@@ -522,13 +517,8 @@ filter(Savings_Measures, Load == "Elect")[nrow(filter(Savings_Measures, Load == 
 
 Savings_Electrificaiton %>% filter(Load != "Elect") -> Savings_Electrificaiton
 
-#######################################
-###  THIS IS WHERE I HAVE A PROBLEM ### 
-#######################################
-# Do the calculations for savings here.
-# look below in gas and base and added an if statement that if "order" below is equal to "order" above then do not reduce the loads by the savings. 
-# need to figure out how to got i+1 at the last line to avoid an error. 
-# Look at line 595 and te order statement. 
+
+## PROBLEM HERE WHEN THERE ARE NO ELECTRIFICAITON MEASURES. 4/21/2024
 
 for(i in 1:length(Savings_Electrificaiton$Load)) { 
   if(Savings_Electrificaiton$Savings[i] == "Base" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
@@ -538,8 +528,9 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
     
     if(Savings_Electrificaiton$Savings[i] == "Base" & Savings_Electrificaiton$Load[i] == "NGas" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
       Savings_Electrificaiton$`Base Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Base[i];
+      if (i < length(Savings_Electrificaiton$Load)) {
       if(Savings_Electrificaiton$Order[i] == Savings_Electrificaiton$Order[i+1]){Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i] + Savings_Electrificaiton$Saved_Base[i]} else {
-      if(Savings_Electrificaiton$Saved_Base[i] != 0 & i < length(Savings_Electrificaiton$Load) +1 ) { Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i] + Savings_Electrificaiton$Saved_Base[i]}};
+      if(Savings_Electrificaiton$Saved_Base[i] != 0 & i < length(Savings_Electrificaiton$Load) +1 ) { Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i] + Savings_Electrificaiton$Saved_Base[i]}}};
    }else{
     
     if(Savings_Electrificaiton$Savings[i] == "Cooling" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
@@ -549,8 +540,9 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
       
       if(Savings_Electrificaiton$Savings[i] == "Cooling" & Savings_Electrificaiton$Load[i] == "NGas" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
         Savings_Electrificaiton$`Cooling Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Cooling[i];
+        if (i < length(Savings_Electrificaiton$Load)) {
         ifelse(Savings_Electrificaiton$Saved_Cooling[i] == 0, Savings_Electrificaiton$`Cooling Loads`[i] , Savings_Electrificaiton$`Cooling Loads`[i] <- Savings_Electrificaiton$`Cooling Loads`[i]  + Savings_Electrificaiton$Saved_Cooling[i]);
-        if(Savings_Electrificaiton$Saved_Cooling[i] != 0 ) { Savings_Electrificaiton$`Cooling Loads`[i+1] <- Savings_Electrificaiton$`Cooling Loads`[i] + Savings_Electrificaiton$Saved_Cooling[i]};
+        if(Savings_Electrificaiton$Saved_Cooling[i] != 0 ) { Savings_Electrificaiton$`Cooling Loads`[i+1] <- Savings_Electrificaiton$`Cooling Loads`[i] + Savings_Electrificaiton$Saved_Cooling[i]}};
      }else{
       
       if(Savings_Electrificaiton$Savings[i] == "Heating" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
@@ -561,8 +553,9 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
         if(Savings_Electrificaiton$Savings[i] == "Heating" & Savings_Electrificaiton$Load[i] == "NGas" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
           Savings_Electrificaiton$`Heating Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Heating[i];
           Savings_Electrificaiton$`Heating Loads` <- Savings_Electrificaiton$`Heating Loads`[i] - Savings_Electrificaiton$Saved_Heating[i];
+          if (i < length(Savings_Electrificaiton$Load)) {
           ifelse(Savings_Electrificaiton$Saved_Heating[i] == 0, Savings_Electrificaiton$`Heating Loads`[i] , Savings_Electrificaiton$`Heating Loads`[i] <- Savings_Electrificaiton$`Heating Loads`[i]  + Savings_Electrificaiton$Saved_Heating[i]);
-          if(Savings_Electrificaiton$Saved_Heating[i] != 0 ) { Savings_Electrificaiton$`Heating Loads`[i+1] <- Savings_Electrificaiton$`Heating Loads`[i] + Savings_Electrificaiton$Saved_Heating[i]};
+          if(Savings_Electrificaiton$Saved_Heating[i] != 0 ) { Savings_Electrificaiton$`Heating Loads`[i+1] <- Savings_Electrificaiton$`Heating Loads`[i] + Savings_Electrificaiton$Saved_Heating[i]}};
             }else{
         
         if(Savings_Electrificaiton$Savings[i] == "Heating & Cooling" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
@@ -575,8 +568,9 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
           if(Savings_Electrificaiton$Savings[i] == "Heating & Cooling" & Savings_Electrificaiton$Load[i] == "NGas" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
             Savings_Electrificaiton$`Heating Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Heating[i];
             Savings_Electrificaiton$`Cooling Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Cooling[i];
+            if (i < length(Savings_Electrificaiton$Load)) {
             ifelse(Savings_Electrificaiton$Saved_Heating[i] == 0, Savings_Electrificaiton$`Heating Loads`[i] , Savings_Electrificaiton$`Heating Loads`[i] <- Savings_Electrificaiton$`Heating Loads`[i]  + Savings_Electrificaiton$Saved_Heating[i]);
-            ifelse(Savings_Electrificaiton$Saved_Cooling[i] == 0, Savings_Electrificaiton$`Cooling Loads`[i] , Savings_Electrificaiton$`Cooling Loads`[i] <- Savings_Electrificaiton$`Cooling Loads`[i]  + Savings_Electrificaiton$Saved_Cooling[i]);
+            ifelse(Savings_Electrificaiton$Saved_Cooling[i] == 0, Savings_Electrificaiton$`Cooling Loads`[i] , Savings_Electrificaiton$`Cooling Loads`[i] <- Savings_Electrificaiton$`Cooling Loads`[i]  + Savings_Electrificaiton$Saved_Cooling[i])};
             
           }else{
           
@@ -591,8 +585,9 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
               Savings_Electrificaiton$`Base Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Base[i];
               Savings_Electrificaiton$`Heating Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Heating[i];
               Savings_Electrificaiton$`Cooling Loads`[i] * Savings_Electrificaiton$`Change in Natural Gas Use(MMBtu)`[i] -> Savings_Electrificaiton$Saved_Cooling[i];
+              if (i < length(Savings_Electrificaiton$Load)) {
               if(Savings_Electrificaiton$Order[i] == Savings_Electrificaiton$Order[i+1]) {Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i] + Savings_Electrificaiton$Saved_Base[i]} else {
-              if(Savings_Electrificaiton$Saved_Base[i] != 0 & i < length(Savings_Electrificaiton$Load)+1){Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i] + Savings_Electrificaiton$Saved_Base[i]}};
+              if(Savings_Electrificaiton$Saved_Base[i] != 0 & i < length(Savings_Electrificaiton$Load)+1){Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i] + Savings_Electrificaiton$Saved_Base[i]}}};
       
                     }}}}}}}}}}}
 
@@ -608,13 +603,6 @@ if(Savings_Measures$Load[1] == "NGas"){
 }else{
   filter(Savings_Electrificaiton,  Load == "Steam_Mlb") -> Savings_Electrificaiton }
 
-
-####################################
-###  THIS IS WHERE I HAVE A PROBLEM ### 
-####################################
-# Do the calculations for savings here. 
-
-# Move savings to native innervation columns for Electrification  
 
 for (i in 1:nrow(Savings_Electrificaiton)) { 
 if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Saved[i] / 1194 -> Savings_Electrificaiton$`Change in Steam Consumption, kLbs`[i];
@@ -648,7 +636,7 @@ for (i in 1: nrow(Savings_Measures)) {
   
   # Moving Electric up 
   Savings_Measures %>% 
-    filter( Load == "Elect_kWH") %>% 
+    filter( Load == "Elect") %>% 
     select(7) -> change_kWH 
   rbind(change_kWH, change_kWH) -> change_kWH
   Savings_Measures$`Change in Electricity Consumption Reduction (kWh)` <- change_kWH$`Change in Electricity Consumption Reduction (kWh)`
@@ -671,8 +659,9 @@ for (i in 1: nrow(Savings_Measures)) {
   
   rbind(Savings_Measures, Savings_Electrificaiton) -> Savings 
   
-  remove(change_kWH, Savings_Electrificaiton, Savings_Measures, b, b2, fuels, i, loads, Interventions, rows)
+  remove(change_kWH, Savings_Electrificaiton, Savings_Measures, b, fuels, i, loads, Interventions, rows)
   
   
   write_csv(Savings, "data/Savings.csv" )
+  
   
