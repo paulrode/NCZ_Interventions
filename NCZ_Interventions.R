@@ -508,6 +508,15 @@ for(i in 1:length(Savings_Measures$Load)) {
 
 nrow(Savings_Electrificaiton) -> b
 
+#################################################################################################################
+#  PROBLEM IS HERE
+#################################################################################################################
+
+
+
+
+
+
 if(Savings_Measures$Load[1] == "NGas"){
 filter(Savings_Measures, Load == "NGas")[nrow(filter(Savings_Measures, Load == "NGas")),4:6] -> Savings_Electrificaiton[1:(b/2),4:6]
 }else{
@@ -516,9 +525,9 @@ filter(Savings_Measures, Load == "Steam_Mlb")[nrow(filter(Savings_Measures, Load
 filter(Savings_Measures, Load == "Elect")[nrow(filter(Savings_Measures, Load == "Elect")),4:6] -> Savings_Electrificaiton[((b/2)+1):b,4:6]
 
 Savings_Electrificaiton %>% filter(Load != "Elect") -> Savings_Electrificaiton
-
-
-## PROBLEM HERE WHEN THERE ARE NO ELECTRIFICAITON MEASURES. 4/21/2024
+#
+#
+#
 
 for(i in 1:length(Savings_Electrificaiton$Load)) { 
   if(Savings_Electrificaiton$Savings[i] == "Base" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
