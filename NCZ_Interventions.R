@@ -125,12 +125,24 @@ Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 
 ##### Reorder Interventions Here
 Interventions <-Interventions %>% arrange(Order)
 
+
+# Need to enter here logic to get rid of oil or diesel if not in energy service profile. 
+
+
+
+
+
+
+
+
+
+
+
 EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use")]
 EUA_Elect %>%  
   group_by(Building, Elect_use) %>%  
   summarise(Elect = sum(Elect))  %>% 
   rename( Use = Elect_use) -> EUA_Elect 
-
   
 EUA_Oil2 <- EndUseAllocation[c("Building", "Oil2", "Oil2_use")]
 EUA_Oil2 %>% 
