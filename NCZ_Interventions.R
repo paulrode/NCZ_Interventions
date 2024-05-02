@@ -72,7 +72,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 #  Base calculations for all fuel types   
 # This is the main logic for assigning uses. Need sequence that allows assignment based on building configurations. 
 # Try this identify for all fuel types the breakdown and have logive assign use accordingly. 
-
+ 
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
@@ -83,7 +83,9 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   mutate(Oil2_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
   mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
   mutate(Diesel_use = ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
-
+ 
+ 
+ 
  #  Base calculations for all fuel types   
 
 TSUS_EPA_DATA_SHORT_ALL %>%  
@@ -103,7 +105,7 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet = 1)
 
 #Join BuildingData with EndUseAllocation 
-left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
+left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation 
 
 # Try removing buildings we don't own anymore, and clean up environment. 
 
@@ -111,6 +113,22 @@ left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 EndUseAllocation %>% 
   filter(Building != "1275 Crossman" & Building != "1345 Crossman" & Building != "1395 Crossman" & Building != "1375 Crossman") %>% 
   select( -Note) -> EndUseAllocation
+
+
+
+
+# Need to enter here logic to get rid of oil or diesel if not in energy service profile.
+
+
+
+
+
+
+
+
+
+
+
 
 
 remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
@@ -125,19 +143,6 @@ Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 
 ##### Reorder Interventions Here
 Interventions <-Interventions %>% arrange(Order)
 
-
-# Need to enter here logic to get rid of oil or diesel if not in energy service profile. 
-
-
-
-
-
-
-
-
-
-
-
 EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use")]
 EUA_Elect %>%  
   group_by(Building, Elect_use) %>%  
@@ -151,7 +156,6 @@ EUA_Oil2 %>%
   select("Building", "Oil2", "Oil2_use") -> EUA_Oil2
  # EUA_Oil2$Oil2_use = "Heating Loads"
   rename(EUA_Oil2, Use = Oil2_use) -> EUA_Oil2
-  
 
 EUA_Oil4 <- EndUseAllocation[c("Building", "Oil4", "Oil4_use")]
 EUA_Oil4 %>% 
