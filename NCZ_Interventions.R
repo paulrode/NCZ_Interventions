@@ -118,6 +118,9 @@ EndUseAllocation %>%
 
 
 # Need to enter here logic to get rid of oil or diesel if not in energy service profile.
+#################################################################################################################
+#  PROBLEM IS HERE
+#################################################################################################################
 
 
 
@@ -205,7 +208,7 @@ right_join(testfit1, Interventions, by = "Building", multiple = "all") -> Saving
 
 #pulled this out from above 
 
-# For calculations of savings setting key catagories to zero
+# For calculations of savings setting key categories to zero
 Savings %>% 
   mutate("Saved_Base" = 0, "Saved_Cooling" = 0, "Saved_Heating" = 0) %>% 
   arrange(desc(Load))-> Savings
