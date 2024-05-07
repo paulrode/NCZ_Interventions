@@ -114,26 +114,6 @@ EndUseAllocation %>%
   filter(Building != "1275 Crossman" & Building != "1345 Crossman" & Building != "1395 Crossman" & Building != "1375 Crossman") %>% 
   select( -Note) -> EndUseAllocation
 
-
-
-
-# Need to enter here logic to get rid of oil or diesel if not in energy service profile.
-#################################################################################################################
-#  PROBLEM IS HERE
-#################################################################################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
 remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
 # Read in Building Intervention File                                                                                         
@@ -146,7 +126,21 @@ Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 
 ##### Reorder Interventions Here
 Interventions <-Interventions %>% arrange(Order)
 
-EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use")]
+
+
+
+#################################################################################################################
+# Need to enter here logic to get rid of oil or diesel if not in energy service profile.
+#
+#  PROBLEM IS HERE
+#################################################################################################################
+
+
+
+
+
+
+EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use", "Primary Heating", "Primary Cooling", "Primary DHW")]
 EUA_Elect %>%  
   group_by(Building, Elect_use) %>%  
   summarise(Elect = sum(Elect))  %>% 
