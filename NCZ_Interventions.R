@@ -116,31 +116,6 @@ EndUseAllocation %>%
 
 remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
-
-
-
-
-
-
-
-#################################################################################################################
-# Need to enter here logic to get rid of oil or diesel if not in energy service profile.
-#
-#  PROBLEM IS HERE
-#################################################################################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Read in Building Intervention File                                                                                         
 # when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.
                                                                                                         
@@ -155,7 +130,7 @@ Interventions <-Interventions %>% arrange(Order)
 EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use", "Primary Heating", "Primary Cooling", "Primary DHW", "Generator")]
 EUA_Elect %>%  
   group_by(Building, Elect_use) %>%  
-  summarise(Elect = sum(Elect))  %>% 
+  summarise(Elect = sum(Elect)) %>% 
   rename( Use = Elect_use) -> EUA_Elect 
   
 EUA_Oil2 <- EndUseAllocation[c("Building", "Oil2", "Oil2_use")]
@@ -205,6 +180,17 @@ EndUseAllocation %>%
   gather(key = "Load", value = value, 3:7) %>% 
   filter(value != 0 ) %>% 
   spread(key = "Use", value = value, fill = 0) -> testfit1
+
+#################################################################################################################
+# Need to enter here logic to get rid of oil or diesel if not in energy service profile.
+#
+#  PROBLEM IS HERE FIX IT IN TESTFIT 
+#################################################################################################################
+
+
+
+
+
 
 testfit1 %>% 
   select(1, 3, 9, 10:12) -> testfit1
