@@ -185,9 +185,15 @@ EndUseAllocation %>%
 # Need to enter here logic to get rid of oil or diesel if not in energy service profile.
 #
 #  PROBLEM IS HERE FIX IT IN TESTFIT 
+#  select_if(): Select columns based on a particular condition. One can use this function to, for
+# example, select columns if they are numeric. Helper functions - starts_with(), ends_with(), contains()
+#  , matches(), one_of(): Select columns/variables based on their names.
+#
+#
+#
 #################################################################################################################
 
-
+testfit_cols <- colnames(testfit1)
 
 
 
