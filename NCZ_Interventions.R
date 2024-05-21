@@ -176,10 +176,8 @@ left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
 remove(EUA_Elect, EUA_NGas, EUA_Oil2, EUA_Oil4, EUA_Steam, BuildingData)
 
-EndUseAllocation %>% 
-  gather(key = "Load", value = value, 3:7) %>% 
-  filter(value != 0 ) %>% 
-  spread(key = "Use", value = value, fill = 0) -> testfit1
+
+
 
 #################################################################################################################
 # Need to enter here logic to get rid of oil or diesel if not in energy service profile.
@@ -192,6 +190,23 @@ EndUseAllocation %>%
 #
 #
 #################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+EndUseAllocation %>% 
+  gather(key = "Load", value = value, 3:7) %>% 
+  filter(value != 0 ) %>% 
+  spread(key = "Use", value = value, fill = 0) -> testfit1
+
 
 testfit_cols <- colnames(testfit1)
 
