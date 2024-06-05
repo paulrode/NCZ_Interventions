@@ -214,7 +214,7 @@ testfit_cols <- colnames(testfit1)
 
 
 testfit1 %>% 
-  select(1, 3, 9, 10:12) -> testfit1
+  select(1, 3, 10, 11:13) -> testfit1
 
 # Bringing in Interventions. 
 right_join(testfit1, Interventions, by = "Building", multiple = "all") -> Savings
@@ -541,7 +541,7 @@ for(i in 1:length(Savings_Measures$Load)) {
 nrow(Savings_Electrificaiton) -> b
 
 #################################################################################################################
-#  PROBLEM IS HERE
+#  PROBLEM IS HERE ffff
 #################################################################################################################
 
 
