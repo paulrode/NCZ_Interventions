@@ -1,5 +1,5 @@
 
-# Load packages 
+# Load packages
 
 my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", 
                  "tsibbledata", "knitr", "purrr" ,"formattable", "scales", "tidyr" ,"kableExtra", "dplyr", "gridExtra", "writexl")   
@@ -9,9 +9,9 @@ my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidyte
 invisible( lapply(my_packages, require, character.only = TRUE))# Alternate Start Point     
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
-# place <- "Home"  #Where are we working today. 
- place <- "work"
-if (place == "Home"){setwd("C:/Users/paulr/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
+ place <- "Home"  #Where are we working today. 
+# place <- "work"
+if (place == "Home"){setwd("C:/Users/paulr/OneDrive/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
 options(dplyr.summarise.inform = FALSE)  # Suppress text in Knit printout. 
