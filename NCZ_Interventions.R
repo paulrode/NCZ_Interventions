@@ -9,8 +9,8 @@ my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidyte
 invisible( lapply(my_packages, require, character.only = TRUE))# Alternate Start Point     
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
- place <- "Home"  #Where are we working today. 
-# place <- "work"
+# place <- "Home"  #Where are we working today. 
+ place <- "work"
 if (place == "Home"){setwd("C:/Users/paulr/OneDrive/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
@@ -74,6 +74,20 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 # Try this identify for all fuel types the breakdown and have logive assign use accordingly. 
  
  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+# 
+#  This is where I shold account for generator use. assuming the fule source is only for the generator. 
+#  Consider taking out generator loads before this............
+# 
+# 
+ 
+ 
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
   reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) %>% 
@@ -83,6 +97,10 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   mutate(Oil2_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
   mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
   mutate(Diesel_use = ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) -> TSUS_EPA_DATA_SHORT_ALL
+ 
+ 
+ 
+ 
  
  
  
@@ -239,6 +257,26 @@ Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings_Ele
 Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Measures
 
 # rm(Savings)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Run down Savings Measures 
