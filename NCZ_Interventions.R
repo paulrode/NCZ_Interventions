@@ -9,14 +9,14 @@ my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidyte
 invisible( lapply(my_packages, require, character.only = TRUE))# Alternate Start Point     
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
-# place <- "Home"  #Where are we working today. 
- place <- "work"
+ place <- "Home"  #Where are we working today. 
+# place <- "work"
 if (place == "Home"){setwd("C:/Users/paulr/OneDrive/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
 options(dplyr.summarise.inform = FALSE)  # Suppress text in Knit printout. 
 
-#
+
 # This script will push out to interventions. Interventions are to have reduction percentages in the fuel columns, and for electrificaiton reduction in the fuel
 # column and in the electric column the COP of the replacements. 
 # Need to add 3 columns to the intervention sheet.Building name as it appears in Portfolio Manager, then the savings catagories, then the order to be taken. 
@@ -235,7 +235,7 @@ testfit1 %>%
   select(1, 3, 10, 11:13) -> testfit1
 
 # Bringing in Interventions. 
-right_join(testfit1, Interventions, by = "Building", multiple = "all") -> Savings
+right_join(testfit1, Interventions, by = "Building", multiple = "all", relationship = "many-to-many") -> Savings
 
 #pulled this out from above 
 
