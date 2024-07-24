@@ -195,8 +195,6 @@ left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 remove(EUA_Elect, EUA_NGas, EUA_Oil2, EUA_Oil4, EUA_Steam, BuildingData)
 
 
-
-
 #################################################################################################################
 # Need to enter here logic to get rid of oil or diesel if not in energy service profile.
 #
@@ -208,16 +206,6 @@ remove(EUA_Elect, EUA_NGas, EUA_Oil2, EUA_Oil4, EUA_Steam, BuildingData)
 #
 #
 #################################################################################################################
-
-
-
-
-
-
-
-
-
-
 
 
 EndUseAllocation %>% 
@@ -257,27 +245,6 @@ Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings_Ele
 Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Measures
 
 # rm(Savings)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Run down Savings Measures 
 
