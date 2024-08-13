@@ -192,7 +192,7 @@ EndUseAllocation[is.na(EndUseAllocation)] <-0
 #Join BuildingData with EndUseAllocation 
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
-remove(EUA_Elect, EUA_NGas, EUA_Oil2, EUA_Oil4, EUA_Steam, BuildingData)
+#remove(EUA_Elect, EUA_NGas, EUA_Oil2, EUA_Oil4, EUA_Steam, BuildingData)
 
 
 #################################################################################################################
