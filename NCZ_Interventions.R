@@ -72,15 +72,6 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 #  Base calculations for all fuel types   
 # This is the main logic for assigning uses. Need sequence that allows assignment based on building configurations. 
 # Try this identify for all fuel types the breakdown and have logive assign use accordingly. 
- 
- 
- 
- 
- 
- 
- 
- 
- 
 # 
 #  This is where I shold account for generator use. assuming the fule source is only for the generator. 
 #  Consider taking out generator loads before this............
@@ -124,6 +115,7 @@ BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet
 
 #Join BuildingData with EndUseAllocation 
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation 
+
 
 # Try removing buildings we don't own anymore, and clean up environment. 
 
@@ -192,20 +184,7 @@ EndUseAllocation[is.na(EndUseAllocation)] <-0
 #Join BuildingData with EndUseAllocation 
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
-#remove(EUA_Elect, EUA_NGas, EUA_Oil2, EUA_Oil4, EUA_Steam, BuildingData)
-
-
-#################################################################################################################
-# Need to enter here logic to get rid of oil or diesel if not in energy service profile.
-#
-#  PROBLEM IS HERE FIX IT IN TESTFIT 
-#  select_if(): Select columns based on a particular condition. One can use this function to, for
-# example, select columns if they are numeric. Helper functions - starts_with(), ends_with(), contains()
-#  , matches(), one_of(): Select columns/variables based on their names.
-#
-#
-#
-#################################################################################################################
+remove(EUA_Elect, EUA_NGas, EUA_Oil2, EUA_Oil4, EUA_Steam, BuildingData)
 
 
 EndUseAllocation %>% 
@@ -215,8 +194,6 @@ EndUseAllocation %>%
 
 
 testfit_cols <- colnames(testfit1)
-
-
 
 
 testfit1 %>% 
@@ -244,7 +221,21 @@ Electrification_f <- function(i){a <- i + 2* i}
 Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings_Electrificaiton
 Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Measures
 
-# rm(Savings)
+rm(Savings)
+
+#################################################################################################################
+# Need to enter here logic to get rid of oil or diesel if not in energy service profile.
+#
+#  PROBLEM IS HERE FIX IT IN TESTFIT 
+#  select_if(): Select columns based on a particular condition. One can use this function to, for
+# example, select columns if they are numeric. Helper functions - starts_with(), ends_with(), contains()
+#  , matches(), one_of(): Select columns/variables based on their names.
+#
+#
+#
+#################################################################################################################
+
+
 
 # Run down Savings Measures 
 
