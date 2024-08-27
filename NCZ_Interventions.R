@@ -71,11 +71,11 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
 #  Base calculations for all fuel types   
 # This is the main logic for assigning uses. Need sequence that allows assignment based on building configurations. 
-# Try this identify for all fuel types the breakdown and have logive assign use accordingly. 
+# Try this identify for all fuel types the breakdown and have logic assign use accordingly. 
 # 
-#  This is where I shold account for generator use. assuming the fule source is only for the generator. 
+#  This is where I should account for generator use. assuming the fuel source is only for the generator. 
 #  Consider taking out generator loads before this............
-# 
+#   Make a table and locate the fuel types to the categories of heat cool, base. Make generator base. 
 # 
  
  
@@ -225,6 +225,8 @@ rm(Savings)
 
 #################################################################################################################
 # Need to enter here logic to get rid of oil or diesel if not in energy service profile.
+# Maybe look at where the allcocaiton is made in the first place and put the logic in there. 
+#
 #
 #  PROBLEM IS HERE FIX IT IN TESTFIT 
 #  select_if(): Select columns based on a particular condition. One can use this function to, for
