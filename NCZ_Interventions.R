@@ -62,13 +62,13 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
              Oil4_btu = sum(`Fuel Oil (No. 4)\r\n(kBtu)`/Y, na.rm=TRUE),
              Diesel_btu = sum(`Diesel\r\n(kBtu)`/Y, na.rm=TRUE)) -> TSUS_EPA_DATA_SHORT_ALL
  
- # Puttin in here the total BTU sum over all fules. 
+ # Putting in here the total BTU sum over all fules. 
  
  TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
  TSUS_EPA_DATA_SHORT_ALL %>% 
      mutate(Total_btu = Elect_kBTU + NGas_kbtu + Steam_btu + Oil2_btu + Oil4_btu + Diesel_btu) -> TSUS_EPA_DATA_SHORT_ALL
 
- 
+###################################################################################################### 
 #  Base calculations for all fuel types   
 # This is the main logic for assigning uses. Need sequence that allows assignment based on building configurations. 
 # Try this identify for all fuel types the breakdown and have logic assign use accordingly. 
@@ -77,11 +77,21 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 #  Consider taking out generator loads before this............
 #   Make a table and locate the fuel types to the categories of heat cool, base. Make generator base. 
 # 
- 
+######################################################################################################
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
-  reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) %>% 
+  reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) ->TSUS_EPA_DATA_SHORT_ALL
+ BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet = 1)
+ left_join(TSUS_EPA_DATA_SHORT_ALL, BuildingData, by = "Building") -> Temp 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ #%>% 
   mutate(Elect_use = ifelse(Base_E == Elect_kBTU, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>%
   mutate(NG_use = ifelse(Base_NG == NGas_kbtu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
   mutate(Steam_use = ifelse(Base_S == Steam_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
