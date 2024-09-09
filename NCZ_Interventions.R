@@ -76,6 +76,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 #  This is where I should account for generator use. assuming the fuel source is only for the generator. 
 #  Consider taking out generator loads before this............
 #   Make a table and locate the fuel types to the categories of heat cool, base. Make generator base. 
+# need to coordinate assigments of heat cooling to building data file functions so oil does not get cooling. 
 # 
 ######################################################################################################
  
@@ -115,7 +116,7 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 
 # Make a building data file and input here. Ease building will have sf for ratioing costs and a configuration code
 #Building Data File 
-BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet = 1)
+#BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet = 1)
 
 #Join BuildingData with EndUseAllocation 
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation 
@@ -184,6 +185,58 @@ left_join(EUA_Steam, by = c("Building", "Use")) %>%
 left_join(EUA_Oil2, by = c("Building", "Use")) %>% 
 left_join(EUA_Oil4, by = c("Building", "Use")) -> EndUseAllocation
 EndUseAllocation[is.na(EndUseAllocation)] <-0
+
+
+#
+#
+#  9/8/2024 why is cooling being assinged to oil ? 
+#
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #Join BuildingData with EndUseAllocation 
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
