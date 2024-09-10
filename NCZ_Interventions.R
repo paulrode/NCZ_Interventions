@@ -76,7 +76,9 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 #  This is where I should account for generator use. assuming the fuel source is only for the generator. 
 #  Consider taking out generator loads before this............
 #   Make a table and locate the fuel types to the categories of heat cool, base. Make generator base. 
-# need to coordinate assigments of heat cooling to building data file functions so oil does not get cooling. 
+# need to coordinate assigments of heat cooling to building data file functions so oil does not get cooling.
+# Also need to understand what the block at L99 is doing. Need to assign cooling and heating and base in accordance with 
+# building data assigements by fuel type. 
 # 
 ######################################################################################################
  
@@ -92,14 +94,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
   mutate(Diesel_use = ifelse(Generator == "Diesel", "Generator", ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads")))) -> TSUS_EPA_DATA_SHORT_ALL
  ######################################################################################################
- #
- #
- #
- #
- #
- #
- ######################################################################################################
- 
+
  #  Base calculations for all fuel types   
 
 TSUS_EPA_DATA_SHORT_ALL %>%  
@@ -108,6 +103,18 @@ TSUS_EPA_DATA_SHORT_ALL %>%
   mutate("Elect_kWH" = Elect/3.418, "Steam_Mlb" = Steam/1194) %>%  
   select(Building, Elect_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use ) -> EndUseAllocation 
 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 # Buildings with missing data not making it though analysis. 
 (TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
 # output of above line is: "1395 Crossman"   "66 Hudson Blvd."
