@@ -84,9 +84,14 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
-  reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) ->TSUS_EPA_DATA_SHORT_ALL
+  reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) -> TSUS_EPA_DATA_SHORT_ALL
+ 
  BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet = 1)
- left_join(TSUS_EPA_DATA_SHORT_ALL, BuildingData, by = "Building") %>% 
+ 
+ left_join(TSUS_EPA_DATA_SHORT_ALL, BuildingData, by = "Building") -> TSUS_EPA_DATA_SHORT_ALL
+ 
+ 
+ TSUS_EPA_DATA_SHORT_ALL %>% 
   
    mutate(Elect_use = ifelse(Base_E == Elect_kBTU, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>%
   
