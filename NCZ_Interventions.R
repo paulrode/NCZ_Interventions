@@ -617,7 +617,7 @@ nrow(Savings_Electrificaiton) -> b
 #################################################################################################################
 #  PROBLEM IS HERE ffff
 #
-#  Need plan and code for when there is no electrificaiton strategies 
+#  Need plan and code for when there is no electrification strategies 
 #
 #
 #
@@ -626,7 +626,7 @@ nrow(Savings_Electrificaiton) -> b
 
 
 
-
+if(b != 0){
 
 if(Savings_Measures$Load[1] == "NGas"){
 filter(Savings_Measures, Load == "NGas")[nrow(filter(Savings_Measures, Load == "NGas")),4:6] -> Savings_Electrificaiton[1:(b/2),4:6]
@@ -636,9 +636,7 @@ filter(Savings_Measures, Load == "Steam_Mlb")[nrow(filter(Savings_Measures, Load
 filter(Savings_Measures, Load == "Elect")[nrow(filter(Savings_Measures, Load == "Elect")),4:6] -> Savings_Electrificaiton[((b/2)+1):b,4:6]
 
 Savings_Electrificaiton %>% filter(Load != "Elect") -> Savings_Electrificaiton
-#
-#
-#
+
 
 for(i in 1:length(Savings_Electrificaiton$Load)) { 
   if(Savings_Electrificaiton$Savings[i] == "Base" & Savings_Electrificaiton$Load[i] == "Steam_Mlb" & Savings_Electrificaiton$`Description of Measure`[i] == "Electrificaiton"  )  {
@@ -734,6 +732,13 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
 }}
   
 
+
+}
+
+
+
+
+
   
 # Move savings to native innervation columns for Measures  
   
@@ -782,6 +787,6 @@ for (i in 1: nrow(Savings_Measures)) {
   remove(change_kWH, Savings_Electrificaiton, Savings_Measures, b, fuels, i, loads, Interventions, rows)
   
   
-  write_csv(Savings, "data/Savings.csv" )
+  write.csv(Savings, "data/Savings.csv" )
   
   
