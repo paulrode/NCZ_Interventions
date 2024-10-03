@@ -614,17 +614,7 @@ for(i in 1:length(Savings_Measures$Load)) {
 
 nrow(Savings_Electrificaiton) -> b
 
-#################################################################################################################
-#  PROBLEM IS HERE ffff
-#
-#  Need plan and code for when there is no electrification strategies 
-#
-#
-#
-#################################################################################################################
-
-
-
+#  Now make the electrifcaiton tables
 
 if(b != 0){
 
@@ -636,6 +626,7 @@ filter(Savings_Measures, Load == "Steam_Mlb")[nrow(filter(Savings_Measures, Load
 filter(Savings_Measures, Load == "Elect")[nrow(filter(Savings_Measures, Load == "Elect")),4:6] -> Savings_Electrificaiton[((b/2)+1):b,4:6]
 
 Savings_Electrificaiton %>% filter(Load != "Elect") -> Savings_Electrificaiton
+
 
 
 for(i in 1:length(Savings_Electrificaiton$Load)) { 
@@ -731,15 +722,8 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
   }else{   Savings_Electrificaiton$`Change in Electricity Consumption Reduction (kWh)`[i] <- 0.29307 * Savings_Electrificaiton$Saved[i]  }
 }}
   
-
-
 }
 
-
-
-
-
-  
 # Move savings to native innervation columns for Measures  
   
   Savings_Measures  %>%
@@ -757,6 +741,15 @@ for (i in 1: nrow(Savings_Measures)) {
     Savings_Measures$`Change in Steam Consumption, kLbs`[i] <- 0;
     Savings_Measures$`Change in Natural Gas Use(MMBtu)`[i] <- 0;
   }}}
+  
+  #################################################################################################################
+  #  PROBLEM IS HERE ffff
+  #
+  #  Need plan and code for when there is no electrification strategies 
+  #  I think this block of code is for buildings with 2 load types so i assemed i needed to double up the change in kWh
+  #
+  #
+  #################################################################################################################
   
   
   # Moving Electric up 
