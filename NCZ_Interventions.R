@@ -299,21 +299,6 @@ Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Me
 
 rm(Savings)
 
-#################################################################################################################
-# Need to enter here logic to get rid of oil or diesel if not in energy service profile.
-# Maybe look at where the allcocaiton is made in the first place and put the logic in there. 
-#
-#
-#  PROBLEM IS HERE FIX IT IN TESTFIT 
-#  select_if(): Select columns based on a particular condition. One can use this function to, for
-# example, select columns if they are numeric. Helper functions - starts_with(), ends_with(), contains()
-#  , matches(), one_of(): Select columns/variables based on their names.
-#
-#
-#
-#################################################################################################################
-
-
 
 # Run down Savings Measures 
 
@@ -614,7 +599,19 @@ for(i in 1:length(Savings_Measures$Load)) {
 
 nrow(Savings_Electrificaiton) -> b
 
-#  Now make the electrifcaiton tables
+
+
+
+# **********************************************************************
+# **********************************************************************
+# **********************************************************************
+# **********************************************************************
+# **********************************************************************
+
+
+
+
+#  Now make the electrification tables 
 
 if(b != 0){
 
@@ -724,6 +721,9 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
   
 }
 
+
+# This is where we jump down to if there is no lines in the Savings_Electrafaction table. 
+
 # Move savings to native innervation columns for Measures  
   
   Savings_Measures  %>%
@@ -743,12 +743,12 @@ for (i in 1: nrow(Savings_Measures)) {
   }}}
   
   #################################################################################################################
-  #  PROBLEM IS HERE ffff
+  #  PROBLEM IS HERE 10/7/2024
   #
   #  Need plan and code for when there is no electrification strategies 
-  #  I think this block of code is for buildings with 2 load types so i assemed i needed to double up the change in kWh
-  #
-  #
+  #  I think this block of code is for buildings with 2 load types so i assumed i needed to double up the change in kWh
+  # *******************************************************************************
+  # *******************************************************************************
   #################################################################################################################
   
   
