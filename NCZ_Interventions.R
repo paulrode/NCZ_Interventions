@@ -300,7 +300,7 @@ Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Me
 rm(Savings)
 
 
-# Run down Savings Measures 
+# Run down Savings Measures tabulating savings from ratios. 
 
 
 for(i in 1:length(Savings_Measures$Load)) { 
