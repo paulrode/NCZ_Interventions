@@ -205,58 +205,6 @@ left_join(EUA_Oil2, by = c("Building", "Use")) %>%
 left_join(EUA_Oil4, by = c("Building", "Use")) -> EndUseAllocation
 EndUseAllocation[is.na(EndUseAllocation)] <-0
 
-
-#
-#
-#  9/8/2024 why is cooling being assinged to oil ? 
-#
-#
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #Join BuildingData with EndUseAllocation 
 left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation
 
@@ -599,18 +547,6 @@ for(i in 1:length(Savings_Measures$Load)) {
 
 nrow(Savings_Electrificaiton) -> b
 
-
-
-
-# **********************************************************************
-# **********************************************************************
-# **********************************************************************
-# **********************************************************************
-# **********************************************************************
-
-
-
-
 #  Now make the electrification tables 
 
 if(b != 0){
@@ -722,7 +658,7 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
 }
 
 
-# This is where we jump down to if there is no lines in the Savings_Electrafaction table. 
+# This is where we jump down to if there is no lines in the Savings_Electrification table. 
 
 # Move savings to native innervation columns for Measures  
   
@@ -743,10 +679,11 @@ for (i in 1: nrow(Savings_Measures)) {
   }}}
   
   #################################################################################################################
-  #  PROBLEM IS HERE 10/7/2024
+  #  PROBLEMS AS OF  10/15/2024
   #
   #  Need plan and code for when there is no electrification strategies 
   #  I think this block of code is for buildings with 2 load types so i assumed i needed to double up the change in kWh
+  #  Why is cooling being assigned to oil in case where oil is delivered in summer? Beause I make assigments by date of fuel delivery.
   # *******************************************************************************
   # *******************************************************************************
   #################################################################################################################
@@ -759,7 +696,6 @@ for (i in 1: nrow(Savings_Measures)) {
   rbind(change_kWH, change_kWH) -> change_kWH
   Savings_Measures$`Change in Electricity Consumption Reduction (kWh)` <- change_kWH$`Change in Electricity Consumption Reduction (kWh)`
   
- 
   
   
    #cleaning up measures
