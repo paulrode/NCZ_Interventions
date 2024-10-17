@@ -68,20 +68,6 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  TSUS_EPA_DATA_SHORT_ALL %>% 
      mutate(Total_btu = Elect_kBTU + NGas_kbtu + Steam_btu + Oil2_btu + Oil4_btu + Diesel_btu) -> TSUS_EPA_DATA_SHORT_ALL
 
-###################################################################################################### 
-#  Base calculations for all fuel types   
-# This is the main logic for assigning uses. Need sequence that allows assignment based on building configurations. 
-# Try this identify for all fuel types the breakdown and have logic assign use accordingly. 
-# 
-#  This is where I should account for generator use. assuming the fuel source is only for the generator. 
-#  Consider taking out generator loads before this............
-#   Make a table and locate the fuel types to the categories of heat cool, base. Make generator base. 
-# need to coordinate assigments of heat cooling to building data file functions so oil does not get cooling.
-# Also need to understand what the block at L99 is doing. Need to assign cooling and heating and base in accordance with 
-# building data assigements by fuel type. 
-# 
-######################################################################################################
- 
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
   reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) -> TSUS_EPA_DATA_SHORT_ALL
@@ -89,6 +75,33 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet = 1)
  
  left_join(TSUS_EPA_DATA_SHORT_ALL, BuildingData, by = "Building") -> TSUS_EPA_DATA_SHORT_ALL
+ 
+ 
+ 
+ 
+ #######################################################################################################################
+ #######################################################################################################################
+ #######################################################################################################################
+ #  Base calculations for all fuel types   
+ # This is the main logic for assigning uses. Need sequence that allows assignment based on building configurations. 
+ # Try this identify for all fuel types the breakdown and have logic assign use accordingly. 
+ # 
+ #  This is where I should account for generator use. assuming the fuel source is only for the generator. 
+ #  Consider taking out generator loads before this............
+ #   Make a table and locate the fuel types to the categories of heat cool, base. Make generator base. 
+ # need to coordinate assignments of heat cooling to building data file functions so oil does not get cooling.
+ # Also need to understand what the block at L99 is doing. Need to assign cooling and heating and base in accordance with 
+ # building data assignments by fuel type. 
+ # 
+ #######################################################################################################################
+ #######################################################################################################################
+ #######################################################################################################################
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
