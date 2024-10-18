@@ -79,6 +79,8 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
  
  
+ 
+ 
  #######################################################################################################################
  #######################################################################################################################
  #######################################################################################################################
@@ -259,6 +261,7 @@ Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings_Ele
 Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Measures
 
 rm(Savings)
+
 
 
 # Run down Savings Measures tabulating savings from ratios. 
