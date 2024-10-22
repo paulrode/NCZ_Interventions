@@ -1,5 +1,5 @@
 
-# Load
+# 
 
 my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", 
                  "tsibbledata", "knitr", "purrr" ,"formattable", "scales", "tidyr" ,"kableExtra", "dplyr", "gridExtra", "writexl")   
@@ -261,6 +261,17 @@ Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings_Ele
 Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Measures
 
 rm(Savings)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
