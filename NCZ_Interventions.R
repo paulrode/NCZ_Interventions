@@ -167,13 +167,35 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 
 # Read in Building Intervention File                                                                                         
 # when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.
-                                                                                                        
-Interventions <- read_excel("data/Interventions_One_Federal_source.xlsx",skip = 16, na = "Not Available", sheet = 1)%>% 
+ 
+
+
+
+# 10/22 Why are intrventions briging in values and not %'s for reduciton in electric use? 
+
+
+Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available", sheet = 1)%>% 
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 
   select(1, 4,2,3,5,6,7,8)
 ##### Reorder Interventions Here
 Interventions <-Interventions %>% arrange(Order)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use", "Primary Heating", "Primary Cooling", "Primary DHW", "Generator")]
