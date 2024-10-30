@@ -129,9 +129,6 @@ TSUS_EPA_DATA_SHORT_ALL %>%
   summarise(Elect = sum(Elect_kBTU), NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) %>%  
   mutate("Elect_kWH" = Elect/3.418, "Steam_Mlb" = Steam/1194) %>%  
   select(Building, Elect_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use ) -> EndUseAllocation
-
- 
- 
  
  
  
