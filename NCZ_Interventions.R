@@ -584,7 +584,25 @@ for(i in 1:length(Savings_Measures$Load)) {
       Savings_Measures$`Heating Loads`[i] - Savings_Measures$Saved_Heating[i] -> Savings_Measures$`Heating Loads`[i+1];
       Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] -> Savings_Measures$`Base Loads`[i+1];
       Savings_Measures$`Cooling Loads`[i] - Savings_Measures$Saved_Cooling[i] -> Savings_Measures$`Cooling Loads`[i+1] }}
-                        
+        
+    
+    # 10/31/2024 - put solar in as a key to sort on and in the interventin file place the AC kWh in the % file. 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                    
     
   }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 
