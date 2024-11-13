@@ -743,7 +743,7 @@ for (i in 1: nrow(Savings_Measures)) {
   }}}
   
   #################################################################################################################
-  #  PROBLEMS AS OF  10/15/2024
+  #  PROBLEMS AS OF  11/12/2024
   #
   #  Need plan and code for when there is no electrification strategies 
   #  I think this block of code is for buildings with 2 load types so i assumed i needed to double up the change in kWh
