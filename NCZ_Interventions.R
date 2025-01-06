@@ -1,12 +1,13 @@
 
-# 
 
 my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", 
-                 "tsibbledata", "knitr", "purrr" ,"formattable", "scales", "tidyr" ,"kableExtra", "dplyr", "gridExtra", "writexl")   
-
+                 "tsibbledata", "knitr", "purrr" ,"formattable", "scales", "tidyr" , "gridExtra")
+  
+  
 # Took these out but need to keep them front of mind "timetk" , "recipes" 
 
 invisible( lapply(my_packages, require, character.only = TRUE))# Alternate Start Point     
+
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
  place <- "Home"  #Where are we working today. 
@@ -32,6 +33,8 @@ gather(TSUS_EPA_DATA, key = "CarbonSource", value = "Value", -Month) %>%
 mutate(Building = TSUS_EPA_DATA_SHEETS[1])-> TSUS_EPA_DATA_LONG
 TSUS_EPA_DATA_LONG$Month <-  my(TSUS_EPA_DATA_LONG$Month)
 TSUS_EPA_DATA_LONG_ALL <- TSUS_EPA_DATA_LONG
+
+
 # Get rest of sheets in
 for (i  in 2:length(TSUS_EPA_DATA_SHEETS)) {
   "TSUS_EPA_DATA" <- read_excel("data/Energy Star_Energy Use by Calendar Month_US Properties.xlsx",skip = 5, na = "Not Available", sheet = i)
@@ -49,7 +52,10 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    filter(DateY > 2019 & DateY < 2023) %>% 
    select(1,10,9, 3:8) -> TSUS_EPA_DATA_SHORT_ALL
  remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
- 
+
+ #####
+ ##### just above is where you can select the Portfolio Manager years to use. ####
+ #####
  
  # Average out 'Y' years 
  Y <- 3
@@ -62,7 +68,10 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
              Oil4_btu = sum(`Fuel Oil (No. 4)\r\n(kBtu)`/Y, na.rm=TRUE),
              Diesel_btu = sum(`Diesel\r\n(kBtu)`/Y, na.rm=TRUE)) -> TSUS_EPA_DATA_SHORT_ALL
  
- # Putting in here the total BTU sum over all fules. 
+ 
+ 
+
+ # Putting in here the total BTU sum over all fuels.
  
  TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
  TSUS_EPA_DATA_SHORT_ALL %>% 
@@ -95,15 +104,19 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  # Also need to understand what the block at L99 is doing. Need to assign cooling and heating and base in accordance with 
  # building data assignments by fuel type. 
  # 
- #######################################################################################################################
- #######################################################################################################################
- #######################################################################################################################
+ # lets remove the base load for all non-electric energy. maybe a concated code
+ # Heating = X1, Cooling = X2, DHW = X3, Generator = x4 
+ 
+ # Make fuel use code here from Building file.
+ 
+ BuildingData %>% 
+   mutate(Code = str_c(str_sub(BuildingData$`Primary Heating`, start = 1L, end = 1L), 
+ str_sub(BuildingData$`Primary Cooling`, start = 1L, end = 1L),
+ str_sub(BuildingData$`Primary DHW`, start = 1L, end = 1L),
+ str_sub(BuildingData$Generator, start = 1L, end = 1L), sep="")) -> BuildingData
  
  
- 
- 
- 
- 
+# 1/5/2025 now use the code made aboce to sort out fuel use. below. 
  
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
@@ -120,7 +133,6 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   
    mutate(Diesel_use = ifelse(Generator == "Diesel", "Generator", ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads")))) -> TSUS_EPA_DATA_SHORT_ALL
  
- ######################################################################################################
 
  #  Base calculations for all fuel types   
 
