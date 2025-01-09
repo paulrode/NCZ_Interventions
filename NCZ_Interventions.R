@@ -110,13 +110,14 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  # Make fuel use code here from Building file.
  
  BuildingData %>% 
-   mutate(Code = str_c(str_sub(BuildingData$`Primary Heating`, start = 1L, end = 1L), 
- str_sub(BuildingData$`Primary Cooling`, start = 1L, end = 1L),
- str_sub(BuildingData$`Primary DHW`, start = 1L, end = 1L),
- str_sub(BuildingData$Generator, start = 1L, end = 1L), sep="")) -> BuildingData
+   mutate(Code = str_c(
+  str_sub(BuildingData$`Primary Heating`, start = 1L, end = 1L), 
+  str_sub(BuildingData$`Primary Cooling`, start = 1L, end = 1L),
+  str_sub(BuildingData$`Primary DHW`, start = 1L, end = 1L),
+  str_sub(BuildingData$Generator, start = 1L, end = 1L), sep=""))-> BuildingData
  
  
-# 1/5/2025 now use the code made aboce to sort out fuel use. below. 
+# 1/8/2025 now use the code made above to do an end use allocation.
  
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
