@@ -116,8 +116,17 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   str_sub(BuildingData$`Primary DHW`, start = 1L, end = 1L),
   str_sub(BuildingData$Generator, start = 1L, end = 1L), sep=""))-> BuildingData
  
+#                                                                     
+#                                                                     
+#                                                                     
+#                                                                     
+#   1/13/2025 now use the code made above to do an end use allocation.
+#   Make Electric the base using some function of elect. then use 
+#   subtractions to allocate heating and cooling portions. 
+#   Use codes to allocate all fuel type to cooling or heating or base
+#   Base for thermal fules will be waste. 
  
-# 1/8/2025 now use the code made above to do an end use allocation.
+ 
  
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
