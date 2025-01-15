@@ -125,6 +125,10 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 #   subtractions to allocate heating and cooling portions. 
 #   Use codes to allocate all fuel type to cooling or heating or base
 #   Base for thermal fules will be waste. 
+#   1/14/2025 I need to subtract base from cooling and heating allocations in elect. 
+#
+#
+#
  
  
  
