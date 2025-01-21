@@ -116,7 +116,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   str_sub(BuildingData$`Primary DHW`, start = 1L, end = 1L),
   str_sub(BuildingData$Generator, start = 1L, end = 1L), sep=""))-> BuildingData
  
-#                                                                     
+#          STOP HERE                                                            
 #                                                                     
 #                                                                     
 #                                                                     
@@ -175,8 +175,8 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 #Building Data File 
 #BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet = 1)
 
-#Join BuildingData with EndUseAllocation 
-left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation 
+# Join BuildingData with EndUseAllocation 
+# left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation 
 
 
 # Try removing buildings we don't own anymore, and clean up environment. 
