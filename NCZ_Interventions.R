@@ -124,14 +124,18 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 #   Make Electric the base using some function of elect. then use 
 #   subtractions to allocate heating and cooling portions. 
 #   Use codes to allocate all fuel type to cooling or heating or base
-#   Base for thermal fules will be waste. 
-#   1/14/2025 I need to subtract base from cooling and heating allocations in elect. 
+#   Base for thermal fuels will be waste. 
+#   1/21/2025 I need to subtract base from cooling and heating allocations in elect. 
+#
+#   1. change electric mutate statement to add values that are reduced by base for c or h
+#
+#
+# 
 #
 #
 #
- 
- 
- 
+#
+# 
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
   
