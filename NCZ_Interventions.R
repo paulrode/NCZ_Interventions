@@ -53,9 +53,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    select(1,10,9, 3:8) -> TSUS_EPA_DATA_SHORT_ALL
  remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
 
- #####
- ##### just above is where you can select the Portfolio Manager years to use. ####
- #####
+ # just above is where you can select the Portfolio Manager years to use. ####
  
  # Average out 'Y' years 
  Y <- 3
@@ -85,57 +83,21 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
  left_join(TSUS_EPA_DATA_SHORT_ALL, BuildingData, by = "Building") -> TSUS_EPA_DATA_SHORT_ALL
  
- 
- 
- 
- 
- 
- #######################################################################################################################
- #######################################################################################################################
- #######################################################################################################################
- #  Base calculations for all fuel types   
- # This is the main logic for assigning uses. Need sequence that allows assignment based on building configurations. 
- # Try this identify for all fuel types the breakdown and have logic assign use accordingly. 
- # 
- #  This is where I should account for generator use. assuming the fuel source is only for the generator. 
- #  Consider taking out generator loads before this............
- #   Make a table and locate the fuel types to the categories of heat cool, base. Make generator base. 
- # need to coordinate assignments of heat cooling to building data file functions so oil does not get cooling.
- # Also need to understand what the block at L99 is doing. Need to assign cooling and heating and base in accordance with 
- # building data assignments by fuel type. 
- # 
- # lets remove the base load for all non-electric energy. maybe a concated code
- # Heating = X1, Cooling = X2, DHW = X3, Generator = x4 
- 
- # Make fuel use code here from Building file.
- 
  BuildingData %>% 
    mutate(Code = str_c(
   str_sub(BuildingData$`Primary Heating`, start = 1L, end = 1L), 
   str_sub(BuildingData$`Primary Cooling`, start = 1L, end = 1L),
   str_sub(BuildingData$`Primary DHW`, start = 1L, end = 1L),
   str_sub(BuildingData$Generator, start = 1L, end = 1L), sep=""))-> BuildingData
+
+ ###
+ ### 
+ ###   1/22/2025 Put electric base deduction in the block below. 
+ ### 
+ ### 
  
-#          STOP HERE                                                            
-#                                                                     
-#                                                                     
-#                                                                     
-#   1/13/2025 now use the code made above to do an end use allocation.
-#   Make Electric the base using some function of elect. then use 
-#   subtractions to allocate heating and cooling portions. 
-#   Use codes to allocate all fuel type to cooling or heating or base
-#   Base for thermal fuels will be waste. 
-#   1/21/2025 I need to subtract base from cooling and heating allocations in elect. 
-#
-#   1. change electric mutate statement to add values that are reduced by base for c or h
-#
-#
-# 
-#
-#
-#
-#
-# 
+ 
+ 
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
   
@@ -151,6 +113,11 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   
    mutate(Diesel_use = ifelse(Generator == "Diesel", "Generator", ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads")))) -> TSUS_EPA_DATA_SHORT_ALL
  
+ 
+ 
+ 
+ 
+ 
 
  #  Base calculations for all fuel types   
 
@@ -160,15 +127,7 @@ TSUS_EPA_DATA_SHORT_ALL %>%
   mutate("Elect_kWH" = Elect/3.418, "Steam_Mlb" = Steam/1194) %>%  
   select(Building, Elect_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use ) -> EndUseAllocation
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
 # Buildings with missing data not making it though analysis. 
 (TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
 # output of above line is: "1395 Crossman"   "66 Hudson Blvd."
@@ -196,30 +155,12 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 # when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.
  
 
-
-
-# 10/22 Why are intrventions briging in values and not %'s for reduciton in electric use? 
-
-
 Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available", sheet = 1)%>% 
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 
   select(1, 4,2,3,5,6,7,8)
 ##### Reorder Interventions Here
 Interventions <-Interventions %>% arrange(Order)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
