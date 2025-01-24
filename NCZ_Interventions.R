@@ -92,7 +92,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 
  ###
  ### 
- ###   1/22/2025 Put electric base deduction in the block below. 
+ ###   1/23/2025 Put electric base deduction in the block below. look at base assigments and the summerize block
  ### 
  ### 
  
@@ -130,19 +130,6 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 
 # Buildings with missing data not making it though analysis. 
 (TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
-# output of above line is: "1395 Crossman"   "66 Hudson Blvd."
-
- # Make interventions table in excel and read here, then pull in EndUseAllocations 
-
-# Make a building data file and input here. Ease building will have sf for ratioing costs and a configuration code
-#Building Data File 
-#BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet = 1)
-
-# Join BuildingData with EndUseAllocation 
-# left_join(EndUseAllocation, BuildingData, by = "Building") -> EndUseAllocation 
-
-
-# Try removing buildings we don't own anymore, and clean up environment. 
 
 
 EndUseAllocation %>% 
