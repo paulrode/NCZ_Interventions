@@ -90,35 +90,46 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   str_sub(BuildingData$`Primary DHW`, start = 1L, end = 1L),
   str_sub(BuildingData$Generator, start = 1L, end = 1L), sep=""))-> BuildingData
 
- ###
- ### 
- ###   1/23/2025 Put electric base deduction in the block below. look at base assigments and the summerize block
- ### 
- ### 
  
- 
- 
- 
- TSUS_EPA_DATA_SHORT_ALL %>% 
+  TSUS_EPA_DATA_SHORT_ALL %>% 
   
    mutate(Elect_use = ifelse(Base_E == Elect_kBTU, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>%
-  
    mutate(NG_use = ifelse(Base_NG == NGas_kbtu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
-  
    mutate(Steam_use = ifelse(Base_S == Steam_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
-  
    mutate(Oil2_use = ifelse(Generator == "Oil2", "Generator", ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads")))) %>% 
-  
    mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
-  
    mutate(Diesel_use = ifelse(Generator == "Diesel", "Generator", ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads")))) -> TSUS_EPA_DATA_SHORT_ALL
  
+ TSUS_EPA_DATA_SHORT_ALL %>% 
+   
+   mutate(Elect_kBTU = Elect_kBTU - Base_E) %>% 
+   mutate(NGas_kbtu = NGas_kbtu - Base_NG) %>% 
+   mutate(Steam_btu = Steam_btu - Base_S) -> TSUS_EPA_DATA_SHORT_ALL
  
  
  
  
  
-
+ 
+#
+#
+#
+#  
+#  left off 2/3/2025  Need to add back the BASE values for Elect, Gas, and Steam. 
+#
+#
+#
+#
+ TSUS_EPA_DATA_SHORT_ALL %>% 
+   ifelse(Elect_use == "Base Loads", Elect_kBTU = Base_E, Elect_kBTU = Elect_kBTU) -> TSUS_EPA_DATA_SHORT_ALL_TEMP
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  #  Base calculations for all fuel types   
 
 TSUS_EPA_DATA_SHORT_ALL %>%  
@@ -127,6 +138,11 @@ TSUS_EPA_DATA_SHORT_ALL %>%
   mutate("Elect_kWH" = Elect/3.418, "Steam_Mlb" = Steam/1194) %>%  
   select(Building, Elect_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use ) -> EndUseAllocation
  
+
+
+
+
+
 
 # Buildings with missing data not making it though analysis. 
 (TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
