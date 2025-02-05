@@ -115,13 +115,21 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 #
 #
 #  
-#  left off 2/3/2025  Need to add back the BASE values for Elect, Gas, and Steam. 
+#  
 #
 #
 #
-#
- TSUS_EPA_DATA_SHORT_ALL %>% 
-   ifelse(Elect_use == "Base Loads", Elect_kBTU = Base_E, Elect_kBTU = Elect_kBTU) -> TSUS_EPA_DATA_SHORT_ALL_TEMP
+# left off 2/4/2025  Need to add back the BASE values for Elect, Gas, and Steam. 
+ 
+ for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU)) { 
+   if(TSUS_EPA_DATA_SHORT_ALL$Elect_use[i] == "Base Loads")  {TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] = TSUS_EPA_DATA_SHORT_ALL$Base_E[i]}}
+   
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  
