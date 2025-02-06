@@ -107,24 +107,26 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    mutate(Steam_btu = Steam_btu - Base_S) -> TSUS_EPA_DATA_SHORT_ALL
  
  
- 
- 
- 
- 
+
 #
-#
-#
-#  
-#  
-#
-#
-#
-# left off 2/4/2025  Need to add back the BASE values for Elect, Gas, and Steam. 
+# left off 2/5/2025  Need to add back the BASE values for Elect, Gas, and Steam.
+# need to make the base a set month for all utilities. See section of code on L94
+# dont forget to multiply base by 12x 
+# 
+# 
+# 
+# 
+# 
+# 
  
  for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU)) { 
-   if(TSUS_EPA_DATA_SHORT_ALL$Elect_use[i] == "Base Loads")  {TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] = TSUS_EPA_DATA_SHORT_ALL$Base_E[i]}}
+   if(TSUS_EPA_DATA_SHORT_ALL$Elect_use[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] = TSUS_EPA_DATA_SHORT_ALL$Base_E[i]}}
    
+ for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu)) { 
+   if(TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu[i] = TSUS_EPA_DATA_SHORT_ALL$Base_NG[i]}}
  
+ for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Steam_btu)) { 
+   if(TSUS_EPA_DATA_SHORT_ALL$Steam_use[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$Steam_btu[i] = TSUS_EPA_DATA_SHORT_ALL$Base_S[i]}}
  
  
  
