@@ -77,7 +77,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
 
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
-  reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) -> TSUS_EPA_DATA_SHORT_ALL
+  reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu,"Base_E" = min(Elect_kBTU)*0.6, "Base_NG" = min(NGas_kbtu)*0.6, "Base_S" = min(Steam_btu)*0.6, "Base_2" = min(Oil2_btu)*0.6, "Base_4" = min(Oil4_btu)*0.6, "Base_D" = min(Diesel_btu)*0.6) -> TSUS_EPA_DATA_SHORT_ALL
  
  BuildingData <- read_excel("data/BuildingData.xlsx", na = "Not Available", sheet = 1)
  
@@ -109,9 +109,10 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
 
 #
-# left off 2/5/2025  Need to add back the BASE values for Elect, Gas, and Steam.
+# left off 2/6/2025  Need to add back the BASE values for Elect, Gas, and Steam.
 # need to make the base a set month for all utilities. See section of code on L94
 # dont forget to multiply base by 12x 
+# Need to adjust lableing of "base" 
 # 
 # 
 # 
