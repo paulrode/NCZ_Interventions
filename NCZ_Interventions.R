@@ -100,6 +100,11 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
    mutate(Diesel_use = ifelse(Generator == "Diesel", "Generator", ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads")))) -> TSUS_EPA_DATA_SHORT_ALL
  
+  
+  
+  
+  
+  
   ##
   ##   2/10/2025  
   ##  Factor base load down. Make base loads for electric and only for thermal is dhw is thermal. 
@@ -111,22 +116,22 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   
   
   
-   TSUS_EPA_DATA_SHORT_ALL %>% 
+   # TSUS_EPA_DATA_SHORT_ALL %>% 
    
-   mutate(Elect_kBTU = Elect_kBTU - Base_E) %>% 
-   mutate(NGas_kbtu = NGas_kbtu - Base_NG) %>% 
-   mutate(Steam_btu = Steam_btu - Base_S) -> TSUS_EPA_DATA_SHORT_ALL
+   # mutate(Elect_kBTU = Elect_kBTU - Base_E) %>% 
+   # mutate(NGas_kbtu = NGas_kbtu - Base_NG) %>% 
+   # mutate(Steam_btu = Steam_btu - Base_S) -> TSUS_EPA_DATA_SHORT_ALL
  
  
  
- for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU)) { 
-   if(TSUS_EPA_DATA_SHORT_ALL$Elect_use[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] = TSUS_EPA_DATA_SHORT_ALL$Base_E[i]}}
-   
- for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu)) { 
-   if(TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu[i] = TSUS_EPA_DATA_SHORT_ALL$Base_NG[i]}}
- 
- for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Steam_btu)) { 
-   if(TSUS_EPA_DATA_SHORT_ALL$Steam_use[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$Steam_btu[i] = TSUS_EPA_DATA_SHORT_ALL$Base_S[i]}}
+ # for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU)) { 
+ #  if(TSUS_EPA_DATA_SHORT_ALL$Elect_use[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] = TSUS_EPA_DATA_SHORT_ALL$Base_E[i]}}
+ #  
+ # for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu)) { 
+ #  if(TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu[i] = TSUS_EPA_DATA_SHORT_ALL$Base_NG[i]}}
+ #
+ # for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Steam_btu)) { 
+ #  if(TSUS_EPA_DATA_SHORT_ALL$Steam_use[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$Steam_btu[i] = TSUS_EPA_DATA_SHORT_ALL$Base_S[i]}}
  
  
  
