@@ -102,45 +102,21 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
   
   
-  
-  
-  
   ##
-  ##   2/10/2025  
+  ##   2/12/2025  
   ##  Factor base load down. Make base loads for electric and only for thermal is dhw is thermal. 
   ##  Make electric base load 60% of the lowest month. Then subtract from Elect Where do I allocate the rest? 
-  ##  
-  ## 
-  ## 
-  
-  
-  
-  
-   # TSUS_EPA_DATA_SHORT_ALL %>% 
-   
-   # mutate(Elect_kBTU = Elect_kBTU - Base_E) %>% 
-   # mutate(NGas_kbtu = NGas_kbtu - Base_NG) %>% 
-   # mutate(Steam_btu = Steam_btu - Base_S) -> TSUS_EPA_DATA_SHORT_ALL
- 
- 
- 
- # for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU)) { 
- #  if(TSUS_EPA_DATA_SHORT_ALL$Elect_use[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] = TSUS_EPA_DATA_SHORT_ALL$Base_E[i]}}
- #  
- # for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu)) { 
- #  if(TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu[i] = TSUS_EPA_DATA_SHORT_ALL$Base_NG[i]}}
- #
- # for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Steam_btu)) { 
- #  if(TSUS_EPA_DATA_SHORT_ALL$Steam_use[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$Steam_btu[i] = TSUS_EPA_DATA_SHORT_ALL$Base_S[i]}}
- 
- 
- 
- 
- 
- 
- 
- 
- 
+  ##  Make base electric 30% of the lowest electric monthly consumption. This is to account for constant 
+  ##  use pumps towers, controls, and lighting. 
+  ##
+  ##
+  ##
+  ##
+  ##
+  ##  GET THE MATH RIGHT HERE. 
+  for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU)) { 
+  if(TSUS_EPA_DATA_SHORT_ALL$Elect_use[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] = TSUS_EPA_DATA_SHORT_ALL$Base_E[i] + 11 * TSUS_EPA_DATA_SHORT_ALL$Base_E}else{   
+  TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] - 0.3 * TSUS_EPA_DATA_SHORT_ALL$Base_E[i] }}
  
  
  
