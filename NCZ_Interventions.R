@@ -103,14 +103,12 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   
   
   ##
-  ##   2/13/2025  
-  ##  Factor base load down. Make base loads for electric and only for thermal is dhw is thermal. 
-  ##  Make electric base load 60% of the lowest month. Then subtract from Elect Where do I allocate the rest? 
-  ##  Make base electric 30% of the lowest electric monthly consumption. This is to account for constant 
-  ##  use pumps towers, controls, and lighting. 
-  ##  Maybe i come up with a base tenant load. and allocate base building base to just controlable laods 
-  ##
-  ##
+  ##   2/17/2025  
+  ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption 
+  ##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
+  ##  I can change at anytime. Will need to build in a trigger for direct metered verses sub-metered here.  
+  ##  However note that tenants will also have useage associated with temperature control and this may show
+  ##  up in my interventions. Also I need to move to a base that factors on consumption per-workday. 
   ##
   ##
   ##  GET THE MATH RIGHT HERE. 
