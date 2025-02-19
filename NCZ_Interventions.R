@@ -103,18 +103,26 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   
   
   ##
+  ##
+  ##
+  ##
+  ##
   ##   2/17/2025  
-  ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption 
+  ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
   ##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
-  ##  I can change at anytime. Will need to build in a trigger for direct metered verses sub-metered here.  
-  ##  However note that tenants will also have useage associated with temperature control and this may show
-  ##  up in my interventions. Also I need to move to a base that factors on consumption per-workday. 
+  ##   I can change at anytime. Will need to build in a trigger for direct metered verses sub-metered here.  
+  ##   However note that tenants will also have usage associated with temperature control and this may show
+  ##   up in my interventions. Also I need to move to a base that factors on consumption per-workday. 
+  ##   
+  ##   Subtract 60% of Base_E from Elect_kBtu at every month, and remember this. 
+  ##
+  ##
+  ##
   ##
   ##
   ##  GET THE MATH RIGHT HERE. 
-  for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU)) { 
-  if(TSUS_EPA_DATA_SHORT_ALL$Elect_use[i] == "Base Loads") {TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] = TSUS_EPA_DATA_SHORT_ALL$Base_E[i] + 11 * TSUS_EPA_DATA_SHORT_ALL$Base_E}else{   
-  TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] - 0.3 * TSUS_EPA_DATA_SHORT_ALL$Base_E[i] }}
+  TenantBasePercentage <- 60
+  for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU)) {TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] = TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] - (TenantBasePercentage / 100) * TSUS_EPA_DATA_SHORT_ALL$Base_E[i]}
   ##
   ##
   ##
@@ -126,7 +134,6 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
  
  #  Base calculations for all fuel types   
-
 TSUS_EPA_DATA_SHORT_ALL %>%  
   group_by(Building, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use) %>%  
   summarise(Elect = sum(Elect_kBTU), NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) %>%  
