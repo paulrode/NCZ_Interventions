@@ -101,40 +101,25 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    mutate(Diesel_use = ifelse(Generator == "Diesel", "Generator", ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads")))) -> TSUS_EPA_DATA_SHORT_ALL
  
   TenantBasePercentage <- 60
-  for(i in 1:length(TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU)) {TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] = TSUS_EPA_DATA_SHORT_ALL$Elect_kBTU[i] - (TenantBasePercentage / 100) * TSUS_EPA_DATA_SHORT_ALL$Base_E[i]}
-  
- 
-  ##   2/24/2025
-  ##
-  ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
-  ##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
-  ##   I can change at anytime. Will need to build in a trigger for direct metered verses sub-metered here.  
-  ##   However note that tenants will also have usage associated with temperature control and this may show
-  ##   up in my interventions. Also I need to move to a base that factors on consumption per-workday. 
-  ##   
-  ##   Subtract 60% of Base_E from Elect_kBtu at every month, and remember this.
-  ##   On command line 108 need to get into this dataframe the 60% base i subtracted from Elect_kBTU
-  ##
+  TSUS_EPA_DATA_SHORT_ALL %>%  
+  mutate(Elect_kBTU = Elect_kBTU - (TenantBasePercentage / 100) * Base_E) %>% 
+  mutate(Base_E = (TenantBasePercentage / 100) * Base_E)  -> TSUS_EPA_DATA_SHORT_ALL
+
 
  #  Base calculations for all fuel types   
 TSUS_EPA_DATA_SHORT_ALL %>%  
   group_by(Building, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use) %>%  
-  summarise(Elect = sum(Elect_kBTU), ElectBase = sum(TenantBasePercentage/100 * Base_E), NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) %>%  
-  mutate("Elect_kWH" = Elect/3.418, "Steam_Mlb" = Steam/1194) %>%  
-  select(Building, Elect_kWH, ElectBase, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use ) -> EndUseAllocation
+  summarise(Elect = sum(Elect_kBTU), Base_E = sum(Base_E) , NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) %>%  
+  mutate("Elect_kWH" = Elect/3.418, "Base_E_kWH" = Base_E/3.418, "Steam_Mlb" = Steam/1194) %>%  
+  select(Building, Elect_kWH, Base_E_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use ) -> EndUseAllocation
  
-
-
-
-
 
 # Buildings with missing data not making it though analysis. 
 (TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
 
 
 EndUseAllocation %>% 
-  filter(Building != "1275 Crossman" & Building != "1345 Crossman" & Building != "1395 Crossman" & Building != "1375 Crossman") %>% 
-  select( -Note) -> EndUseAllocation
+  filter(Building != "1275 Crossman" & Building != "1345 Crossman" & Building != "1395 Crossman" & Building != "1375 Crossman")  -> EndUseAllocation
 
 remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
@@ -149,7 +134,22 @@ Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Avail
 ##### Reorder Interventions Here
 Interventions <-Interventions %>% arrange(Order)
 
-
+##   2/26/2025
+##
+##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
+##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
+##   I can change at anytime. Will need to build in a trigger for direct metered verses sub-metered here.  
+##   However note that tenants will also have usage associated with temperature control and this may show
+##   up in my interventions. Also I need to move to a base that factors on consumption per-workday. 
+##   
+##   Subtract 60% of Base_E from Elect_kBtu at every month, and remember this.
+##   On command line 108 need to get into this data frame the 60% base i subtracted from Elect_kBTU
+##   Make the Base_E column .6 * Base_E and carry this as the tenant base load. 
+##
+##   Work out the next block. Check the join for "primary .... "
+##
+##
+##
 
 
 
