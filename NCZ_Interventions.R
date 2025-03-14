@@ -147,13 +147,13 @@ Interventions <-Interventions %>% arrange(Order)
 ##   Make the Base_E column .6 * Base_E and carry this as the tenant base load. 
 ##
 ##   Work out the next block. Check the join for "primary .... "
-##
+##   Working on EUA_Elect. need to get this back in my head. 
 ##
 ##
 
 
 
-EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use", "Primary Heating", "Primary Cooling", "Primary DHW", "Generator")]
+EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use")]
 EUA_Elect %>%  
   group_by(Building, Elect_use) %>%  
   summarise(Elect = sum(Elect)) %>% 
