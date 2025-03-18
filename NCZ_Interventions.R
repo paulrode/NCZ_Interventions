@@ -24,6 +24,9 @@ options(dplyr.summarise.inform = FALSE)  # Suppress text in Knit printout.
 # Savings categories are Heating, Cooling, Base, Heating & Cooling & Base, Heating & Cooling, 
 #
 
+
+
+
 # Read in Portfolio Manager data
 # Import first sheet
 TSUS_EPA_DATA_SHEETS <-excel_sheets("data/Energy Star_Energy Use by Calendar Month_US Properties.xlsx")
@@ -100,10 +103,21 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
    mutate(Diesel_use = ifelse(Generator == "Diesel", "Generator", ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads")))) -> TSUS_EPA_DATA_SHORT_ALL
  
+  
+  
+  #### STOP HERE ####
+  
+  
+  
   TenantBasePercentage <- 60
   TSUS_EPA_DATA_SHORT_ALL %>%  
   mutate(Elect_kBTU = Elect_kBTU - (TenantBasePercentage / 100) * Base_E) %>% 
   mutate(Base_E = (TenantBasePercentage / 100) * Base_E)  -> TSUS_EPA_DATA_SHORT_ALL
+  
+  
+  
+  
+  
 
 
  #  Base calculations for all fuel types   
