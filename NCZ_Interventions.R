@@ -70,7 +70,8 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
              Diesel_btu = sum(`Diesel\r\n(kBtu)`/Y, na.rm=TRUE)) -> TSUS_EPA_DATA_SHORT_ALL
  
  
- 
+ #### STOP HERE ####
+ #   3/18/2025 
 
  # Putting in here the total BTU sum over all fuels.
  
@@ -105,7 +106,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
   
   
-  #### STOP HERE ####
+ 
   
   
   
@@ -119,7 +120,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   
   
 
-
+ # This is where we introduce EndUseAllocation 
  #  Base calculations for all fuel types   
 TSUS_EPA_DATA_SHORT_ALL %>%  
   group_by(Building, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use) %>%  
