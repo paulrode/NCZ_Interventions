@@ -22,10 +22,6 @@ options(dplyr.summarise.inform = FALSE)  # Suppress text in Knit printout.
 # column and in the electric column the COP of the replacements. 
 # Need to add 3 columns to the intervention sheet.Building name as it appears in Portfolio Manager, then the savings catagories, then the order to be taken. 
 # Savings categories are Heating, Cooling, Base, Heating & Cooling & Base, Heating & Cooling, 
-#
-
-
-
 
 # Read in Portfolio Manager data
 # Import first sheet
@@ -70,15 +66,15 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
              Diesel_btu = sum(`Diesel\r\n(kBtu)`/Y, na.rm=TRUE)) -> TSUS_EPA_DATA_SHORT_ALL
  
  
- #### STOP HERE ####
- #   3/18/2025 
 
  # Putting in here the total BTU sum over all fuels.
  
  TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
  TSUS_EPA_DATA_SHORT_ALL %>% 
      mutate(Total_btu = Elect_kBTU + NGas_kbtu + Steam_btu + Oil2_btu + Oil4_btu + Diesel_btu) -> TSUS_EPA_DATA_SHORT_ALL
-
+ format(TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu, scientific = FALSE) -> TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu
+ 
+ 
  TSUS_EPA_DATA_SHORT_ALL %>% 
   group_by(Building) %>% 
   reframe(DateM, Elect_kBTU, NGas_kbtu, Steam_btu, Oil2_btu, Oil4_btu, Diesel_btu, Total_btu, "Base_kBTU" = min(Total_btu),  "Base_E" = min(Elect_kBTU), "Base_NG" = min(NGas_kbtu), "Base_S" = min(Steam_btu), "Base_2" = min(Oil2_btu), "Base_4" = min(Oil4_btu), "Base_D" = min(Diesel_btu)) -> TSUS_EPA_DATA_SHORT_ALL
@@ -104,11 +100,10 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
    mutate(Diesel_use = ifelse(Generator == "Diesel", "Generator", ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads")))) -> TSUS_EPA_DATA_SHORT_ALL
  
-  
-  
- 
-  
-  
+  ##### STOP HERE ####################
+  ###   3/24/2025     ################
+  ####################################
+  # need to look at the below and make the dataframe balance out 
   
   TenantBasePercentage <- 60
   TSUS_EPA_DATA_SHORT_ALL %>%  
@@ -116,8 +111,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   mutate(Base_E = (TenantBasePercentage / 100) * Base_E)  -> TSUS_EPA_DATA_SHORT_ALL
   
   
-  
-  
+
   
 
  # This is where we introduce EndUseAllocation 
@@ -149,7 +143,7 @@ Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Avail
 ##### Reorder Interventions Here
 Interventions <-Interventions %>% arrange(Order)
 
-##   2/26/2025
+##   
 ##
 ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
 ##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
