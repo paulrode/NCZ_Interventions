@@ -100,10 +100,20 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
    mutate(Diesel_use = ifelse(Generator == "Diesel", "Generator", ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads")))) -> TSUS_EPA_DATA_SHORT_ALL
  
-  ##### STOP HERE ####################
-  ###   3/24/2025     ################
+  
+  
+  
+  
   ####################################
-  # need to look at the below and make the dataframe balance out 
+  ####################################
+  ##### STOP HERE ####################
+  ###   3/25/2025     ################
+  ####################################
+  # here is the approach i will be taking. 
+  # calculate base_e as the lowest electric use month and place in a column.
+  # take Y percentage of Base_E and associate that to what tenants use non-weather dependent. 
+  # Call Y * Base_E -> Tenant Electric. 
+  # subtract Base_E from total and electric 
   
   TenantBasePercentage <- 60
   TSUS_EPA_DATA_SHORT_ALL %>%  
