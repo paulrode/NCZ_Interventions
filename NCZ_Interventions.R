@@ -100,30 +100,28 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
    mutate(Diesel_use = ifelse(Generator == "Diesel", "Generator", ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads")))) -> TSUS_EPA_DATA_SHORT_ALL
  
+
+  TenantBasePercentage <- 60
+  TSUS_EPA_DATA_SHORT_ALL %>%  
+  mutate(Base_E = (1 - TenantBasePercentage / 100) * Base_E)  -> TSUS_EPA_DATA_SHORT_ALL
   
+
+  ################################################
+  ################################################
+  ##### STOP HERE ################################
+  ###   3/25/2025     ############################
+  ################################################
   
-  
-  
-  ####################################
-  ####################################
-  ##### STOP HERE ####################
-  ###   3/25/2025     ################
-  ####################################
   # here is the approach i will be taking. 
   # calculate base_e as the lowest electric use month and place in a column.
   # take Y percentage of Base_E and associate that to what tenants use non-weather dependent. 
   # Call Y * Base_E -> Tenant Electric. 
   # subtract Base_E from total and electric 
-  
-  TenantBasePercentage <- 60
-  TSUS_EPA_DATA_SHORT_ALL %>%  
-  mutate(Elect_kBTU = Elect_kBTU - (TenantBasePercentage / 100) * Base_E) %>% 
-  mutate(Base_E = (TenantBasePercentage / 100) * Base_E)  -> TSUS_EPA_DATA_SHORT_ALL
+  # Make Base_E just that energy that is non-tenant, or base building base energy. 
+  # Formula should be { Base_E = (1 - TenantBasePercentage / 100) * Base_E)  }
   
   
-
   
-
  # This is where we introduce EndUseAllocation 
  #  Base calculations for all fuel types   
 TSUS_EPA_DATA_SHORT_ALL %>%  
@@ -131,7 +129,13 @@ TSUS_EPA_DATA_SHORT_ALL %>%
   summarise(Elect = sum(Elect_kBTU), Base_E = sum(Base_E) , NGas = sum(NGas_kbtu), Steam = sum(Steam_btu), Oil2 = sum(Oil2_btu), Oil4 = sum(Oil4_btu), Diesel = sum(Diesel_btu), Total = sum(Total_btu)) %>%  
   mutate("Elect_kWH" = Elect/3.418, "Base_E_kWH" = Base_E/3.418, "Steam_Mlb" = Steam/1194) %>%  
   select(Building, Elect_kWH, Base_E_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use ) -> EndUseAllocation
- 
+
+################################################  
+################################################  
+################################################  
+################################################  
+  
+   
 
 # Buildings with missing data not making it though analysis. 
 (TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
