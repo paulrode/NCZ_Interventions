@@ -109,16 +109,15 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   ################################################
   ################################################
   ##### STOP HERE ################################
-  ###   3/25/2025     ############################
+  ###   4/1/2025     ############################
   ################################################
   
-  # here is the approach i will be taking. 
-  # calculate base_e as the lowest electric use month and place in a column.
-  # take Y percentage of Base_E and associate that to what tenants use non-weather dependent. 
-  # Call Y * Base_E -> Tenant Electric. 
-  # subtract Base_E from total and electric 
-  # Make Base_E just that energy that is non-tenant, or base building base energy. 
-  # Formula should be { Base_E = (1 - TenantBasePercentage / 100) * Base_E)  }
+  # Approach on how to separate tenant load from buildings loads. 
+  # Calculate base_e as the lowest electric use month and place in a column. 
+  # Take Y percentage of Base_E and associate that to what tenants use non-weather dependent. 
+  # { Base_E = (1 - TenantBasePercentage / 100) * Base_E)  } * Base_E -> Base_E, keep total as is.  
+  # 
+  
   
   
   
