@@ -2,7 +2,7 @@
 
 my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", 
                  "tsibbledata", "knitr", "purrr" ,"formattable", "scales", "tidyr" , "gridExtra")
-  
+   
   
 # Took these out but need to keep them front of mind "timetk" , "recipes" 
 
