@@ -110,25 +110,26 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    mutate(Oil4_use = ifelse(Base_2 == Oil2_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
    mutate(Diesel_use = ifelse(Generator == "Diesel", "Generator", ifelse(Base_D == Diesel_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads")))) -> TSUS_EPA_DATA_SHORT_ALL
  
+  ################################################
+  ################################################
+  ##### STOP HERE ################################
+  ###   4/28/2025     ############################
+  ################################################
+  
+  # Approach on how to separate tenant load from buildings loads. 
+  # Select base_e as the lowest electric use month and place in a column. 
+  # Take Y percentage of Base_E and associate that to what tenants use non-weather dependent. 
+  # { Base_E' = (1 - TenantBasePercentage / 100) * Base_E)  } -> Base_E, keep total as is.  
+  # The assumption is that Tenant Base Energy is constant. Take this out of decarb 
+  # efficiency measures. 
+  # 
 
   TenantBasePercentage <- 60
   TSUS_EPA_DATA_SHORT_ALL %>%  
   mutate(Base_E = (1 - TenantBasePercentage / 100) * Base_E)  -> TSUS_EPA_DATA_SHORT_ALL
   
 
-  ################################################
-  ################################################
-  ##### STOP HERE ################################
-  ###   4/14/2025     ############################
-  ################################################
   
-  # Approach on how to separate tenant load from buildings loads. 
-  # Calculate base_e as the lowest electric use month and place in a column. 
-  # Take Y percentage of Base_E and associate that to what tenants use non-weather dependent. 
-  # { Base_E = (1 - TenantBasePercentage / 100) * Base_E)  } -> Base_E, keep total as is.  
-  # The assumption is that Tenant Base Energy is constant over a week meaning a weekly average. Take this out of decarb 
-  # efficiency measures. 
-  # 
   
   # This is where we introduce EndUseAllocation 
   #  Base calculations for all fuel types   
