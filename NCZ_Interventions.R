@@ -131,7 +131,11 @@ TSUS_EPA_DATA_SHORT_ALL %>%
   mutate("Elect_kWH" = Elect/3.418, "Base_E_kWH" = Base_E/3.418, "Steam_Mlb" = Steam/1194) %>%  
   select(Building, Elect_kWH, Base_E_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use ) -> EndUseAllocation
 
-#  4/28/2025 need to trace out where NGas_kbtu becomes a chr type from number, 
+
+
+
+
+#  5/1/2025 Line 75 has error that causes NGas format turn to chr 
 ################################################  
 ################################################  
 ################################################  
