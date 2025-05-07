@@ -2,7 +2,7 @@
 
 my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", 
                  "tsibbledata", "knitr", "purrr" ,"formattable", "scales", "tidyr" , "gridExtra")
-   
+  
   
 # Took these out but need to keep them front of mind "timetk" , "recipes" 
 
@@ -10,8 +10,8 @@ invisible( lapply(my_packages, require, character.only = TRUE))# Alternate Start
 
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
- place <- "Home"  #Where are we working today. 
-# place <- "work"
+# place <- "Home"  #Where are we working today. 
+ place <- "work"
 if (place == "Home"){setwd("C:/Users/paulr/OneDrive/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
