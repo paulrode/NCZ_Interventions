@@ -10,8 +10,8 @@ invisible( lapply(my_packages, require, character.only = TRUE))# Alternate Start
 
 #Set up environment 
 `%notin%` <- Negate(`%in%`)
-# place <- "Home"  #Where are we working today. 
- place <- "work"
+place <- "Home"  #Where are we working today. 
+# place <- "work"
 if (place == "Home"){setwd("C:/Users/paulr/OneDrive/Documents/R/NCZ_Interventions")} else {setwd("C:/Users/prode/OneDrive - Tishman Speyer/Documents/R/NCZ_Interventions")}
 if (!file.exists("data")) { dir.create("data")}
 rm(place, my_packages ) #Clean up
@@ -72,7 +72,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  TSUS_EPA_DATA_SHORT_ALL[is.na(TSUS_EPA_DATA_SHORT_ALL)] = 0
  TSUS_EPA_DATA_SHORT_ALL %>% 
      mutate(Total_btu = Elect_kBTU + NGas_kbtu + Steam_btu + Oil2_btu + Oil4_btu + Diesel_btu) -> TSUS_EPA_DATA_SHORT_ALL
- format(TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu, scientific = FALSE) -> TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu
+ as.numeric(format(TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu, digits = 2, scientific = FALSE)) -> TSUS_EPA_DATA_SHORT_ALL$NGas_kbtu
  
  
  TSUS_EPA_DATA_SHORT_ALL %>% 
@@ -135,7 +135,7 @@ TSUS_EPA_DATA_SHORT_ALL %>%
 
 
 
-#  5/1/2025 Line 75 has error that causes NGas format turn to chr 
+#  5/8/2025  
 ################################################  
 ################################################  
 ################################################  
