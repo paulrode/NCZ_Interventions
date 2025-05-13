@@ -123,7 +123,7 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   mutate(Base_E = (1 - TenantBasePercentage / 100) * Base_E)  -> TSUS_EPA_DATA_SHORT_ALL
 
  
-  # This is where we introduce EndUseAllocation 
+  # This is where we introduce EndUseAllocation made from TSUS_EPA_DATA_SHORT_ALL
   #  Base calculations for all fuel types   
 TSUS_EPA_DATA_SHORT_ALL %>%  
   group_by(Building, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use) %>%  
@@ -131,17 +131,6 @@ TSUS_EPA_DATA_SHORT_ALL %>%
   mutate("Elect_kWH" = Elect/3.418, "Base_E_kWH" = Base_E/3.418, "Steam_Mlb" = Steam/1194) %>%  
   select(Building, Elect_kWH, Base_E_kWH, Steam_Mlb, Elect, NGas, Steam, Oil2, Oil4, Diesel, Elect_use, NG_use, Steam_use, Oil2_use, Oil4_use, Diesel_use ) -> EndUseAllocation
 
-
-
-
-
-#  5/8/2025  
-################################################  
-################################################  
-################################################  
-################################################  
-  
-   
 
 # Buildings with missing data not making it though analysis. 
 (TSUS_EPA_DATA_SHEETS[TSUS_EPA_DATA_SHEETS %notin% unique(TSUS_EPA_DATA_SHORT_ALL$Building)] )
@@ -163,7 +152,10 @@ Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Avail
 ##### Reorder Interventions Here
 Interventions <-Interventions %>% arrange(Order)
 
-##   
+
+
+
+##   5/12/2025
 ##
 ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
 ##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
@@ -177,9 +169,7 @@ Interventions <-Interventions %>% arrange(Order)
 ##
 ##   Work out the next block. Check the join for "primary .... "
 ##   Working on EUA_Elect. need to get this back in my head. 
-##
-##
-
+##   Check the selection of columns below. Like look up with "Elect" comes from. 
 
 
 EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use")]
