@@ -153,25 +153,6 @@ Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Avail
 Interventions <-Interventions %>% arrange(Order)
 
 
-
-
-##   5/12/2025
-##
-##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
-##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
-##   I can change at anytime. Will need to build in a trigger for direct metered verses sub-metered here.  
-##   However note that tenants will also have usage associated with temperature control and this may show
-##   up in my interventions. Also I need to move to a base that factors on consumption per-workday. 
-##   
-##   Subtract 60% of Base_E from Elect_kBtu at every month, and remember this.
-##   On command line 108 need to get into this data frame the 60% base i subtracted from Elect_kBTU
-##   Make the Base_E column .6 * Base_E and carry this as the tenant base load. 
-##
-##   Work out the next block. Check the join for "primary .... "
-##   Working on EUA_Elect. need to get this back in my head. 
-##   Check the selection of columns below. Like look up with "Elect" comes from. 
-
-
 EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use")]
 EUA_Elect %>%  
   group_by(Building, Elect_use) %>%  
@@ -260,15 +241,21 @@ rm(Savings)
 
 
 
-
-
-
-
-
-
-
-
-
+##   5/13/2025
+##
+##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
+##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
+##   I can change at anytime. Will need to build in a trigger for direct metered verses sub-metered here.  
+##   However note that tenants will also have usage associated with temperature control and this may show
+##   up in my interventions. Also I need to move to a base that factors on consumption per-workday. 
+##   
+##   Subtract 60% of Base_E from Elect_kBtu at every month, and remember this.
+##   On command line 108 need to get into this data frame the 60% base i subtracted from Elect_kBTU
+##   Make the Base_E column .6 * Base_E and carry this as the tenant base load. 
+##
+##   Work out the next block. Check the join for "primary .... "
+##   Working on EUA_Elect. need to get this back in my head. 
+##   Check the selection of columns below. Like look up with "Elect" comes from. 
 
 
 # Run down Savings Measures tabulating savings from ratios. 
