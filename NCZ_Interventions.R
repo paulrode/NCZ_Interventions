@@ -99,10 +99,9 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
  
  
  
- 
+ # Here is where the load types are put in. Heating, Cooling Base. 
  
   TSUS_EPA_DATA_SHORT_ALL %>% 
-  
    mutate(Elect_use = ifelse(Base_E == Elect_kBTU, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>%
    mutate(NG_use = ifelse(Base_NG == NGas_kbtu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
    mutate(Steam_use = ifelse(Base_S == Steam_btu, "Base Loads", ifelse(DateM %in% c(1,2,3,11,12,10), "Heating Loads", "Cooling Loads"))) %>% 
@@ -213,7 +212,7 @@ testfit_cols <- colnames(testfit1)
 
 
 testfit1 %>% 
-  select(1, 3, 10, 11:13) -> testfit1
+  select(1, 3, 10, 11:14) -> testfit1
 
 # Bringing in Interventions. 
 right_join(testfit1, Interventions, by = "Building", multiple = "all", relationship = "many-to-many") -> Savings
@@ -241,7 +240,7 @@ rm(Savings)
 
 
 
-##   5/19/2025
+##   5/22/2025
 ##
 ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
 ##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
@@ -253,13 +252,10 @@ rm(Savings)
 ##   On command line 108 need to get into this data frame the 60% base i subtracted from Elect_kBTU
 ##   Make the Base_E column .6 * Base_E and carry this as the tenant base load. 
 ##
-##   Work out the next block. Check the join for "primary .... "
-##   Working on EUA_Elect. need to get this back in my head. 
-##   Check the selection of columns below. Like look up with "Elect" comes from. 
+##   Need to debug the electrification table buld also I see ngas allocated to cooling need to correct that in the creation of the end use. 
 
 
 # Run down Savings Measures tabulating savings from ratios. 
-
 
 for(i in 1:length(Savings_Measures$Load)) { 
   if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Elect" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton"  )  {
