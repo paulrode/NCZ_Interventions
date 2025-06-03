@@ -240,7 +240,7 @@ rm(Savings)
 
 
 
-##   5/22/2025
+##   6/2/2025
 ##
 ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
 ##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
@@ -257,7 +257,7 @@ rm(Savings)
 
 # Run down Savings Measures tabulating savings from ratios. 
 
-for(i in 1:length(Savings_Measures$Load)) { 
+for(i in 1: length(Savings_Measures$Load)) { 
   if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Elect" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton"  )  {
     Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Base[i];
     if (i < length(Savings_Measures$Load)) {
