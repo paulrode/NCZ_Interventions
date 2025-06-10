@@ -240,7 +240,7 @@ rm(Savings)
 
 
 
-##   6/2/2025
+##   6/9/2025
 ##
 ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
 ##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
