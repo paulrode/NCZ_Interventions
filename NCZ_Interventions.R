@@ -240,7 +240,7 @@ rm(Savings)
 
 
 
-##   6/9/2025
+##   6/16/2025
 ##
 ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
 ##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
@@ -253,7 +253,10 @@ rm(Savings)
 ##   Make the Base_E column .6 * Base_E and carry this as the tenant base load. 
 ##
 ##   Need to debug the electrification table buld also I see ngas allocated to cooling need to correct that in the creation of the end use. 
-
+##   Found that Base and cooling alone are in the wrong "Saved..." columns.  
+##
+##
+##
 
 # Run down Savings Measures tabulating savings from ratios. 
 
