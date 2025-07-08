@@ -240,11 +240,11 @@ rm(Savings)
 
 
 
-##   6/23/2025
+##   7/7/2025
 ##
 ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
 ##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
-##   I can change at anytime. Will need to build in a trigger for direct metered verses sub-metered here.  
+##   I can change at anytime, it is at line 120. Will need to build in a trigger for direct metered verses sub-metered here.  
 ##   However note that tenants will also have usage associated with temperature control and this may show
 ##   up in my interventions. Also I need to move to a base that factors on consumption per-workday. 
 ##   
@@ -255,10 +255,10 @@ rm(Savings)
 ##   Need to debug the electrification table buld also I see ngas allocated to cooling need to correct that in the creation of the end use. 
 ##   Found that Base and cooling alone are in the wrong "Saved..." columns.  
 ##
+##   
 ##
 ##
-
-# Run down Savings Measures tabulating savings from ratios. 
+##   Run down Savings Measures tabulating savings from ratios. 
 
 for(i in 1: length(Savings_Measures$Load)) { 
   if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Elect" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton"  )  {
