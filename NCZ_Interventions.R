@@ -235,12 +235,13 @@ Electrification_f <- function(i){a <- i + 2* i}
 
 Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings_Electrificaiton
 Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Measures
+format(Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`, number, digits = 2 ) -> Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`
 
 rm(Savings)
 
 
 
-##   7/7/2025
+##   7/21/2025
 ##
 ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
 ##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
@@ -258,7 +259,7 @@ rm(Savings)
 ##   
 ##
 ##
-##   Run down Savings Measures tabulating savings from ratios. 
+##   Run down Savings Measures tabulating savings from ratios manuallyto check. 
 
 for(i in 1: length(Savings_Measures$Load)) { 
   if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Elect" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton"  )  {
