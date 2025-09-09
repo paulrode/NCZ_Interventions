@@ -241,8 +241,12 @@ rm(Savings)
 
 
 
-##   9/3/2025 why is change in electric in savings measures a chr? 
+##   9/8/2025 why is change in electric in savings measures a chr? 
 ##  
+##   For some reason I have a chr format now in change in elect feature. 
+##
+##
+##
 ##   Need to account for a large tenant base load. For now say 60% of the lowest electric consumption (Base_E)
 ##   Period is the fixed base. The other base will be the building services base. Made 60% a variable
 ##   I can change at anytime, it is at line 120. Will need to build in a trigger for direct metered verses sub-metered here.  
