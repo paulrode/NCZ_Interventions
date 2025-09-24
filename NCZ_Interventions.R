@@ -241,8 +241,9 @@ rm(Savings)
 
 
 
-##   9/8/2025 why is change in electric in savings measures a chr? 
-##  
+##   9/23/2025 why is change in electric in savings measures a chr? 
+##   Need a check on a measure being in interventions and the affected fule source does not exist. 
+##   Need a loop to allow no electrificaiton measures to exist. 
 ##   For some reason I have a chr format now in change in elect feature. 
 ##
 ##
