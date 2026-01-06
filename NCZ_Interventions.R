@@ -266,6 +266,11 @@ rm(Savings)
 ##
 ##   Run down Savings Measures tabulating savings from ratios manuallyto check. 
 
+
+##    Error below in the code Error in Savings_Measures$`Heating Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] : 
+##.   non-numeric argument to binary operator. 
+
+
 for(i in 1: length(Savings_Measures$Load)) { 
   if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Elect" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton"  )  {
     Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Base[i];
