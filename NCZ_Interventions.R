@@ -267,8 +267,9 @@ rm(Savings)
 ##   Run down Savings Measures tabulating savings from ratios manuallyto check. 
 
 
-##    Error below in the code Error in Savings_Measures$`Heating Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] : 
-##.   non-numeric argument to binary operator. 
+##    1/5/2026 Error below in the code Error in Savings_Measures$`Heating Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] : 
+##    non-numeric argument to binary operator. 
+##.   1/6/2026 the problme is on line 240 where i am changing the format from sci to num 
 
 
 for(i in 1: length(Savings_Measures$Load)) { 
