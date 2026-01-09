@@ -235,7 +235,7 @@ Electrification_f <- function(i){a <- i + 2* i}
 
 Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings_Electrificaiton
 Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Measures
-format(Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`, scientific = FALSE ) -> Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`
+format(Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`, scientific = NA ) -> Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`
 
 rm(Savings)
 
