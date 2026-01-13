@@ -235,7 +235,7 @@ Electrification_f <- function(i){a <- i + 2* i}
 
 Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings_Electrificaiton
 Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Measures
-format(Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`, scientific = NA ) -> Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`
+#as.numeric(format(Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`, scientific = NA ) -> Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`)
 
 rm(Savings)
 
@@ -718,7 +718,10 @@ for (i in 1: nrow(Savings_Measures)) {
   }}}
   
   #################################################################################################################
-  #  PROBLEMS AS OF  11/12/2024
+  #  PROBLEMS AS OF  1/12/2025
+  #
+  #  Somehow lost $load in Savings measures. 
+  #
   #
   #  Need plan and code for when there is no electrification strategies 
   #  I think this block of code is for buildings with 2 load types so i assumed i needed to double up the change in kWh
