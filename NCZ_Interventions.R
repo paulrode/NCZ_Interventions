@@ -718,9 +718,10 @@ for (i in 1: nrow(Savings_Measures)) {
   }}}
   
   #################################################################################################################
-  #  PROBLEMS AS OF  1/12/2025
+  #  PROBLEMS AS OF  1/13/2025
   #
-  #  Somehow lost $load in Savings measures. 
+  #  Somehow lost $load in Savings measures. Check Line 706's select command. 
+  #
   #
   #
   #  Need plan and code for when there is no electrification strategies 
