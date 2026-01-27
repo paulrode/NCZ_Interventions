@@ -696,6 +696,13 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
   
 }
 
+#
+#
+#    STOP HERE 1/26/2026
+#
+#
+
+
 
 # This is where we jump down to if there is no lines in the Savings_Electrification table. 
 
@@ -703,7 +710,7 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
   
   Savings_Measures  %>%
     mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
-    select(-c(4,5,6,8,14,15,16)) -> Savings_Measures
+        select(-c(4,5,6,8,14,15,16)) -> Savings_Measures
 
 for (i in 1: nrow(Savings_Measures)) { 
   if(Savings_Measures$Load[i] == "Steam_Mlb") {Savings_Measures$Saved[i] * 1.194 -> Savings_Measures$`Change in Steam Consumption, kLbs`[i];
@@ -718,7 +725,7 @@ for (i in 1: nrow(Savings_Measures)) {
   }}}
   
   #################################################################################################################
-  #  PROBLEMS AS OF  1/13/2025
+  #  PROBLEMS AS OF  1/26/2025
   #
   #  Somehow lost $load in Savings measures. Check Line 706's select command. 
   #
