@@ -698,7 +698,7 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
 
 #
 #
-#    STOP HERE 1/26/2026
+#    STOP HERE 1/27/2026
 #
 #
 
@@ -710,8 +710,10 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
   
   Savings_Measures  %>%
     mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
-        select(-c(4,5,6,8,14,15,16)) -> Savings_Measures
-
+        select(-c(5,6,8,14,15,16)) -> Savings_Measures
+#  select(-c(4,5,6,8,14,15,16)) -> Savings_Measures (this is what the line above was before 1/27/2026)
+  
+  
 for (i in 1: nrow(Savings_Measures)) { 
   if(Savings_Measures$Load[i] == "Steam_Mlb") {Savings_Measures$Saved[i] * 1.194 -> Savings_Measures$`Change in Steam Consumption, kLbs`[i];
     Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] <- 0;
