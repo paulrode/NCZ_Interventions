@@ -709,8 +709,7 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
 # Move savings to native innervation columns for Measures  
   
   Savings_Measures  %>%
-    mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
-        select(-c(5,6,8,14,15,16)) -> Savings_Measures
+    mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating)  -> Savings_Measures
 #  select(-c(4,5,6,8,14,15,16)) -> Savings_Measures (this is what the line above was before 1/27/2026)
   
   
@@ -727,9 +726,6 @@ for (i in 1: nrow(Savings_Measures)) {
   }}}
   
   #################################################################################################################
-  #  PROBLEMS AS OF  1/26/2025
-  #
-  #  Somehow lost $load in Savings measures. Check Line 706's select command. 
   #
   #
   #

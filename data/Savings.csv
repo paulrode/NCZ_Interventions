@@ -1,14 +1,13 @@
-"","Building","SQFT","Intervention Name","Order","Description of Measure","Change in Electricity Consumption Reduction (kWh)","Change in Natural Gas Use(MMBtu)","Change in Steam Consumption, kLbs","Base Loads","Cooling Loads","Heating Loads","Savings","Saved_Base","Saved_Cooling","Saved_Heating"
-"1","222 N LaSalle",1018838,"Retrocommissioning  (RCx)",1,"Implement ECMs from ComEd report",765869.67846906,0,0,NA,NA,NA,NA,NA,NA,NA
-"2","222 N LaSalle",1018838,"Converge Network People counters",2,"Technology enablement  - Access control Converge Network People counters",12913.3728653379,0,0,NA,NA,NA,NA,NA,NA,NA
-"3","222 N LaSalle",1018838,"BMS Expansion and optimizations",3,"Chiller plant instrumentation",239732.526754385,0,0,NA,NA,NA,NA,NA,NA,NA
-"4","222 N LaSalle",1018838,"CHW Pumping VFD Retrofit",4,"Add FVD's to CHW and CW pumps",92866.5635195559,0,0,NA,NA,NA,NA,NA,NA,NA
-"5","222 N LaSalle",1018838,"Fan powered box retrofit",5,"Add DDC, ECM Motors and sensors",116540.272474453,0,0,NA,NA,NA,NA,NA,NA,NA
-"6","222 N LaSalle",1018838,"Façade / Window air stopping",6,"caulking and general air stopping",23074.9739499417,0,0,NA,NA,NA,NA,NA,NA,NA
-"7","222 N LaSalle",1018838,"Elevator energy revovery",7,"Optional add to elevator package",4569.16577376672,0,0,NA,NA,NA,NA,NA,NA,NA
-"8","222 N LaSalle",1018838,"Roof replacment",8,"EOL replacement adding insulation",5757.20600051046,0,0,NA,NA,NA,NA,NA,NA,NA
-"9","222 N LaSalle",1018838,"Solar",9,"Rooftop solar",18185.2797795915,0,0,NA,NA,NA,NA,NA,NA,NA
-"10","222 N LaSalle",1018838,"POU hot water heaters",9.1,"Restroom DHW POU with planed refresh",17821.5741839997,0,0,NA,NA,NA,NA,NA,NA,NA
-"11","222 N LaSalle",1018838,"Heat recovery for  winter operation",9.2,"AHU Recovery coils for OA",350747.78431103,0,0,NA,NA,NA,NA,NA,NA,NA
-"12","222 N LaSalle",1018838,"New High Efficiency Windows",9.3,"High Eff Windows",334737.210321281,0,0,NA,NA,NA,NA,NA,NA,NA
-"13","222 N LaSalle",1018838,"New High Efficiency Electric 1300ton  Chiller",9.4,"Chiller EOL Replacement",87177.7627107165,0,0,NA,NA,NA,NA,NA,NA,NA
+"","Building","SQFT","Load","Base Loads","Cooling Loads","Heating Loads","Intervention Name","Savings","Description of Measure","Change in Natural Gas Use(MMBtu)","Change in Steam Consumption, kLbs","Saved_Base","Saved_Cooling","Saved_Heating","Saved","Change in Electricity Consumption Reduction (kWh)"
+"1","222 N LaSalle",1018838,"Elect",3121260.8,17216251.4666667,26338171.1666667,"Retrocommissioning  (RCx)","Heating & Cooling","Implement ECMs from ComEd report",0,0,0,1032975.088,1580290.27,2613265.358,NA
+"2","222 N LaSalle",1018838,"Elect",3121260.8,16183276.3786667,24757880.8966667,"Converge Network People counters","Heating & Cooling & Base","Technology enablement  - Access control Converge Network People counters",0,0,3121.2608,16183.2763786667,24757.8808966667,44062.4180753333,NA
+"3","222 N LaSalle",1018838,"Elect",3118139.5392,16167093.102288,24733123.01577,"BMS Expansion and optimizations","Heating & Cooling","Chiller plant instrumentation",0,0,0,323341.86204576,494662.4603154,818004.32236116,NA
+"4","222 N LaSalle",1018838,"Elect",3118139.5392,15843751.2402422,24238460.5554546,"CHW Pumping VFD Retrofit","Cooling","Add FVD's to CHW and CW pumps",0,0,0,316875.024804845,0,316875.024804845,NA
+"5","222 N LaSalle",1018838,"Elect",3118139.5392,15526876.2154374,24238460.5554546,"Fan powered box retrofit","Heating & Cooling","Add DDC, ECM Motors and sensors",0,0,0,155268.762154374,242384.605554546,397653.36770892,NA
+"6","222 N LaSalle",1018838,"Elect",3118139.5392,15371607.453283,23996075.9499001,"Façade / Window air stopping","Heating & Cooling","caulking and general air stopping",0,0,0,30743.214906566,47992.1518998001,78735.3668063661,NA
+"7","222 N LaSalle",1018838,"Elect",3118139.5392,15340864.2383765,23948083.7980003,"Elevator energy revovery","Base","Optional add to elevator package",0,0,15590.697696,0,0,15590.697696,NA
+"8","222 N LaSalle",1018838,"Elect",3102548.841504,15340864.2383765,23948083.7980003,"Roof replacment","Heating & Cooling","EOL replacement adding insulation",0,0,0,7670.43211918823,11974.0418990001,19644.4740181884,NA
+"9","222 N LaSalle",1018838,"Elect",3102548.841504,15333193.8062573,23936109.7561013,"Solar","Base","Rooftop solar",0,0,62050.97683008,0,0,62050.97683008,NA
+"10","222 N LaSalle",1018838,"Elect",3040497.86467392,15333193.8062573,23936109.7561013,"Heat recovery for  winter operation","Heating","AHU Recovery coils for OA",0,0,0,0,1196805.48780506,1196805.48780506,NA
+"11","222 N LaSalle",1018838,"Elect",3040497.86467392,15333193.8062573,22739304.2682962,"New High Efficiency Windows","Heating & Cooling","High Eff Windows",0,0,0,459995.814187718,682179.128048886,1142174.9422366,NA
+"12","222 N LaSalle",1018838,"Elect",3040497.86467392,14873197.9920695,22057125.1402473,"New High Efficiency Electric 1300ton  Chiller","Cooling","Chiller EOL Replacement",0,0,0,297463.959841391,0,297463.959841391,NA
