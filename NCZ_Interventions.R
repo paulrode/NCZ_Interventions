@@ -142,7 +142,12 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 
 # Read in Building Intervention File                                                                                         
 # when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.
- 
+# This is the place where we put in different buildings. 
+#
+#
+#
+#
+
 
 Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available", sheet = 1)%>% 
   select(1:12) %>% 
@@ -725,16 +730,12 @@ for (i in 1: nrow(Savings_Measures)) {
     Savings_Measures$`Change in Natural Gas Use(MMBtu)`[i] <- 0;
   }}}
   
-  #################################################################################################################
-  #
-  #
+  #######################################################################################################################################
   #
   #  Need plan and code for when there is no electrification strategies 
   #  I think this block of code is for buildings with 2 load types so i assumed i needed to double up the change in kWh
   #  Why is cooling being assigned to oil in case where oil is delivered in summer? Beause I make assigments by date of fuel delivery.
-  # *******************************************************************************
-  # *******************************************************************************
-  #################################################################################################################
+  #######################################################################################################################################
   
   
   # Moving Electric up 
