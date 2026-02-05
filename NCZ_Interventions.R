@@ -140,12 +140,10 @@ EndUseAllocation %>%
 
 remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
+#
 # Read in Building Intervention File                                                                                         
 # when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.
 # This is the place where we put in different buildings. 
-#
-#
-#
 #
 
 
