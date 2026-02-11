@@ -1,14 +1,10 @@
 
-
+#LOAD PACKAGES AND SET UP THE ENVIROMENT 
 my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", 
                  "tsibbledata", "knitr", "purrr" ,"formattable", "scales", "tidyr" , "gridExtra")
-  
-  
-# Took these out but need to keep them front of mind "timetk" , "recipes" 
 
 invisible( lapply(my_packages, require, character.only = TRUE))# Alternate Start Point     
 
-#Set up environment 
 `%notin%` <- Negate(`%in%`)
 place <- "Home"  #Where are I working today. 
 # place <- "Work"
@@ -23,8 +19,9 @@ options(dplyr.summarise.inform = FALSE)  # Suppress text in Knit printout.
 # Need to add 3 columns to the intervention sheet.Building name as it appears in Portfolio Manager, then the savings catagories, then the order to be taken. 
 # Savings categories are Heating, Cooling, Base, Heating & Cooling & Base, Heating & Cooling, 
 
-# Read in Portfolio Manager data
-# Import first sheet
+
+# READ IN ES PORTFOLIO MANAGER DATA 
+
 TSUS_EPA_DATA_SHEETS <-excel_sheets("data/Energy Star_Energy Use by Calendar Month_US Properties.xlsx")
 TSUS_EPA_DATA <- read_excel("data/Energy Star_Energy Use by Calendar Month_US Properties.xlsx",skip = 5, na = "Not Available", sheet = 1)
 apply(TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)], 2, function(row) as.numeric(row)) -> TSUS_EPA_DATA[2:ncol(TSUS_EPA_DATA)]
@@ -33,8 +30,6 @@ mutate(Building = TSUS_EPA_DATA_SHEETS[1])-> TSUS_EPA_DATA_LONG
 TSUS_EPA_DATA_LONG$Month <-  my(TSUS_EPA_DATA_LONG$Month)
 TSUS_EPA_DATA_LONG_ALL <- TSUS_EPA_DATA_LONG
 
-
-# Get rest of sheets in
 for (i  in 2:length(TSUS_EPA_DATA_SHEETS)) {
   "TSUS_EPA_DATA" <- read_excel("data/Energy Star_Energy Use by Calendar Month_US Properties.xlsx",skip = 5, na = "Not Available", sheet = i)
    TSUS_EPA_DATA$Month <-  my(TSUS_EPA_DATA$Month)
@@ -52,7 +47,6 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
    select(1,10,9, 3:8) -> TSUS_EPA_DATA_SHORT_ALL
  remove("TSUS_EPA_DATA", "TSUS_EPA_DATA_LONG", "TSUS_EPA_DATA_LONG_ALL", i )
 
- # just above is where you can select the Portfolio Manager years to use. ####
  
  # Average out 'Y' years 
  Y <- 3
@@ -89,15 +83,6 @@ spread(TSUS_EPA_DATA_LONG_ALL, key = CarbonSource, value = Value) -> TSUS_EPA_DA
   str_sub(BuildingData$`Primary Cooling`, start = 1L, end = 1L),
   str_sub(BuildingData$`Primary DHW`, start = 1L, end = 1L),
   str_sub(BuildingData$Generator, start = 1L, end = 1L), sep=""))-> BuildingData
-
- 
- 
- 
- 
- 
- 
- 
- 
  
  # Here is where the load types are put in. Heating, Cooling Base. 
  
