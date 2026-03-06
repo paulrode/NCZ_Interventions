@@ -5,6 +5,9 @@ my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidyte
 
 invisible( lapply(my_packages, require, character.only = TRUE))# Alternate Start Point     
 
+
+
+
 `%notin%` <- Negate(`%in%`)
 place <- "Home"  #Where are I working today. 
 # place <- "Work"
