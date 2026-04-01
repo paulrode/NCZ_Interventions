@@ -134,13 +134,17 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 # This is the place where we put in different buildings. 
 #
 
-
 Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available", sheet = 2)%>% 
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 
   select(1, 4,2,3,5,6,7,8)
 ##### Reorder Interventions Here
 Interventions <-Interventions %>% arrange(Order)
+as.numeric(format(Interventions$`Change in Electricity Consumption Reduction (kWh)`, digits = 2, scientific = FALSE)) -> Interventions$`Change in Electricity Consumption Reduction (kWh)`
+as.numeric(format(Interventions$`Change in Natural Gas Use(MMBtu)`, digits = 2, scientific = FALSE)) -> Interventions$`Change in Natural Gas Use(MMBtu)`
+as.numeric(format(Interventions$`Change in Steam Consumption, kLbs`, digits = 2, scientific = FALSE)) -> Interventions$`Change in Steam Consumption, kLbs`
+
+
 
 
 EUA_Elect <- EndUseAllocation[c("Building", "Elect", "Elect_use")]
@@ -555,21 +559,6 @@ for(i in 1: length(Savings_Measures$Load)) {
     # 10/31/2024 - put solar in as a key to sort on and in the interventin file place the AC kWh in the % file. 
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                    
-    
   }}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 
 
@@ -664,6 +653,19 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
                     }}}}}}}}}}}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 Savings_Electrificaiton  %>%
   mutate("Saved" = Saved_Base + Saved_Cooling + Saved_Heating) %>% 
   select(-c(4,5,6,8,14,15,16)) -> Savings_Electrificaiton 
@@ -689,7 +691,7 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
 
 #
 #
-#    STOP HERE 1/27/2026
+#    STOP HERE 3/31/2026
 #
 #
 
