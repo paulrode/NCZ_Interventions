@@ -687,12 +687,22 @@ Savings_Electrificaiton  %>%
 ################################################################################
 ################################################################################
 
+#
+#.     4/9/2026
+#
+#.   check the code statement below on what happens if a building has both gas
+#.   and steam for the creation of the electrician file. check out first block
+#.   and the use of the Load tag of Steam and Steam_Mlb, 
+#
+#
 
 
 if(Savings_Measures$Load[1] == "NGas"){
   filter(Savings_Electrificaiton,  Load == "NGas") -> Savings_Electrificaiton 
 }else{
   filter(Savings_Electrificaiton,  Load == "Steam_Mlb") -> Savings_Electrificaiton }
+
+
 
 
 for (i in 1:nrow(Savings_Electrificaiton)) { 
