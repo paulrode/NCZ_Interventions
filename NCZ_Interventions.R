@@ -1,4 +1,6 @@
 
+
+
 #LOAD PACKAGES AND SET UP THE ENVIROMENT 
 my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", 
                  "tsibbledata", "knitr", "purrr" ,"formattable", "scales", "tidyr" , "gridExtra")
@@ -567,6 +569,23 @@ for(i in 1: length(Savings_Measures$Load)) {
 nrow(Savings_Electrificaiton) -> b
 
 #  Now make the electrification tables 
+#
+#
+#
+#
+#
+#.   5/5/2026
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
+i <- 0
 
 if(b != 0){
 
@@ -651,6 +670,8 @@ for(i in 1:length(Savings_Electrificaiton$Load)) {
               if(Savings_Electrificaiton$Saved_Base[i] != 0 & i < length(Savings_Electrificaiton$Load)+1){Savings_Electrificaiton$`Base Loads`[i+1] <- Savings_Electrificaiton$`Base Loads`[i] + Savings_Electrificaiton$Saved_Base[i]}}};
       
                     }}}}}}}}}}}
+
+
 
 
 
