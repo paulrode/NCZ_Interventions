@@ -142,6 +142,11 @@ Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Avail
   select(1, 4,2,3,5,6,7,8)
 ##### Reorder Interventions Here
 Interventions <-Interventions %>% arrange(Order)
+
+
+#
+# this is where i am failing in the elect line. 
+#
 as.numeric(format(Interventions$`Change in Electricity Consumption Reduction (kWh)`, digits = 2, scientific = FALSE)) -> Interventions$`Change in Electricity Consumption Reduction (kWh)`
 as.numeric(format(Interventions$`Change in Natural Gas Use(MMBtu)`, digits = 2, scientific = FALSE)) -> Interventions$`Change in Natural Gas Use(MMBtu)`
 as.numeric(format(Interventions$`Change in Steam Consumption, kLbs`, digits = 2, scientific = FALSE)) -> Interventions$`Change in Steam Consumption, kLbs`
@@ -569,21 +574,6 @@ for(i in 1: length(Savings_Measures$Load)) {
 nrow(Savings_Electrificaiton) -> b
 
 #  Now make the electrification tables 
-#
-#
-#
-#
-#
-#.   5/5/2026
-#
-#
-#
-#
-#
-#
-#
-#
-#
 
 i <- 0
 
@@ -701,29 +691,6 @@ if(Savings_Electrificaiton$Load[i] == "Steam_Mlb") {Savings_Electrificaiton$Save
 }}
   
 }
-
-#.  Error in `[<-`:
-#.    ! Assigned data `value` must be compatible with row subscript `i`.
-#.  ✖ 6 rows must be assigned.
-#.  ✖ Element 1 of assigned data has 0 rows.
-#.  ℹ Only vectors of size 1 are recycled.
-#.  Caused by error in `vectbl_recycle_rhs_rows()`:
-#.    ! Can't recycle input of size 0 to size 6.
-#.  Run `rlang::last_trace()` to see where the error occurred.
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-#                           5/3/2026 
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-################################################################################
-
 
 # This is where we jump down to if there is no lines in the Savings_Electrification table. 
 
