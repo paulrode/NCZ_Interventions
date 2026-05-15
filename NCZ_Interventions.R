@@ -147,6 +147,9 @@ Interventions <-Interventions %>% arrange(Order)
 #
 # this is where i am failing in the elect line. 
 #
+
+
+
 as.numeric(format(Interventions$`Change in Electricity Consumption Reduction (kWh)`, digits = 2, scientific = FALSE)) -> Interventions$`Change in Electricity Consumption Reduction (kWh)`
 as.numeric(format(Interventions$`Change in Natural Gas Use(MMBtu)`, digits = 2, scientific = FALSE)) -> Interventions$`Change in Natural Gas Use(MMBtu)`
 as.numeric(format(Interventions$`Change in Steam Consumption, kLbs`, digits = 2, scientific = FALSE)) -> Interventions$`Change in Steam Consumption, kLbs`
