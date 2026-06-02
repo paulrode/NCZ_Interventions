@@ -1,6 +1,9 @@
 
 
 
+
+
+
 #LOAD PACKAGES AND SET UP THE ENVIROMENT 
 my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", 
                  "tsibbledata", "knitr", "purrr" ,"formattable", "scales", "tidyr" , "gridExtra")
@@ -135,8 +138,18 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 # when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.
 # This is the place where we put in different buildings. 
 #
+#
+#
+#
+#
+#.    6/1/2026.  need to make a col_type c() statement for the 16 columns in the excel ss. 
+#
+#
+#
+#
+#
 
-Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available", sheet = 2)%>% 
+Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available", col_types = c("text", "text", "numeric", "text", "text", "text", "numeric", "text", "numeric","numeric","numeric","numeric","numeric","numeric", "numeric", "text" ) ,sheet = 2)%>% 
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 
   select(1, 4,2,3,5,6,7,8)
@@ -147,7 +160,7 @@ Interventions <-Interventions %>% arrange(Order)
 #
 #
 #
-# 5/18/2026 nulled out the one below. look into using the command trimws() 
+#
 #
 #
 #
