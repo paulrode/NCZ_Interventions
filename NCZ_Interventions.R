@@ -142,14 +142,14 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 #
 #
 #
-#     6/2/2026
+#     6/23/2026
 #
 #     Took this out of the funciton below col_types = c("text", "text", "numeric", "text", "text", "text", "numeric", "text", "numeric","numeric","numeric","numeric","numeric","numeric", "numeric", "text" ) ,
 #     Going to try the trimws function. 
-#
+#. Working line 152 next isolate it and do a col_type string for all coluns in the source file. 
 #
 
-Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available",  sheet = 2)%>% 
+Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available",  sheet = 2, col_types = c("text", "text", "text", "numeric", "text", "numeric", "numeric", "numeric"))%>% 
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 
   select(1, 4,2,3,5,6,7,8)
