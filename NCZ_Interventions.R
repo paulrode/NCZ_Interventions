@@ -149,7 +149,11 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 #. Working line 152 next isolate it and do a col_type string for all coluns in the source file. 
 #
 
-Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available",  sheet = 2, col_types = c("text", "text", "text", "numeric", "text", "numeric", "numeric", "numeric"))%>% 
+#. Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available",  sheet = 2, col_types = c("text", "text", "text", "numeric", "text", "numeric", "numeric", "numeric"))%>% 
+
+
+Interventions <- read.csv("data/Interventions_i.csv", blank.lines.skip = TRUE)
+  
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 
   select(1, 4,2,3,5,6,7,8)
