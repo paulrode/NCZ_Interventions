@@ -142,7 +142,7 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 #
 #
 #
-#     6/23/2026
+#     6/25/2026
 #
 #     Took this out of the funciton below col_types = c("text", "text", "numeric", "text", "text", "text", "numeric", "text", "numeric","numeric","numeric","numeric","numeric","numeric", "numeric", "text" ) ,
 #     Going to try the trimws function. 
@@ -152,7 +152,7 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 #. Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available",  sheet = 2, col_types = c("text", "text", "text", "numeric", "text", "numeric", "numeric", "numeric"))%>% 
 
 
-Interventions <- read.csv("data/Interventions_i.csv", blank.lines.skip = TRUE)
+Interventions <- read.csv("data/Interventions_i.csv")
   
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 

@@ -1,30 +1,13 @@
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,
 Building,Savings,Order,Intervention Name,Description of Measure,Intervention Type,"Additional Up-Front Cost (Net rebates from utilities or state energy offices, or federal programs)",Up Front Cost: Capex or R&M,Change in Electricity Consumption Reduction (kWh),Change in Natural Gas Use(MMBtu),"Change in Steam Consumption, kLbs",Useful Life/Lifespan,Earliest Possible Year,Change in Opex (O&M),Energy Savings Passthrough?,"Sources (Citations, Links, Consulting Reports, etc.)"
-One Federal,Heating & Cooling & Base,1,Retrocommissioning  (RCx),Complete BMS commissioning ,Retrofit," $ 9,000,000 ",R&M,  0.05 ,  -   ,  0.05 ,10,2025, $ -   ,No,RCx proposals 
-One Federal,Heating & Cooling,2,Optimal Start Stop ,Sequence implementation in BMS,Retrofit," $ 65,000 ",R&M,  0.01 ,  -   ,  0.01 ,12,2024," $ 5,000.00 ",No,Controls Vendor
-One Federal,Cooling,3,Chiller Plant Optimization,Analytic Program ontop of BMS,Retrofit," $ 8,000,000 ",R&M,  0.04 ,  -   ,  -   ,12,2024," $ 5,000.00 ",No,Optimun Energy 
-One Federal,Base,4,Elevator energy revovery,Optional add to elevator package,Capital Project Enhancement," $ 200,000 ",Capex,  0.01 ,  -   ,  0.01 ,25,2035, $ -   ,No,Schindler
-One Federal,Cooling,5,DriveLine Retrofits ,Electrificaiton,Electrification," $ 3,000,000 ",Capex,-0.8,  -   ,  1.00 ,30,2028,"($10,000.00)",No,York
-One Federal,Cooling,5,New Electric Chillers ,Electrificaiton,Electrification," $ 8,000,000 ",Capex,-0.65,  -   ,  3.00 ,30,2028,"($25,000.00)",No,York
-One Federal,Base,6,DHW to Point of Use ,Electrificaiton,Capital Project Enhancement," $ 380,000 ",R&M,-0.05,  -   ,  1.00 ,12,2024, $ -   ,No,Eng
-One Federal,Heating & Cooling,7,Façade air stopping ,caulking and general air stopping,Retrofit," $ 2,000,000 ",R&M,  0.01 ,  -   ,  0.01 ,15,2023, $ -   ,No,Eng
-One Federal,Heating & Cooling,8,New High Efficiency Windows ,New Windows tripple pane R6@30SHG,Capital Project Enhancement," $ 22,958,333 ",Capex,  0.06 ,  -   ,  0.06 ,10,2028, $ -   ,No,Eng
-One Federal,Heating & Cooling,9,Spandrel and column insulation,Insulation at TI's,Capital Project Enhancement," $ 1,000,000 ",Capex,  0.01 ,  -   ,  0.01 ,15,2024, $ -   ,No,Eng
-One Federal,Heating,10,Electric Risistance Coils & ASHP ,Electrificaiton,Electrification," $ 19,200,000 ",Capex,-1.5,  -   ,  1.00 ,40,2030," $ 25,000.00 ",No,Eng
-One Federal,Heating,10,Electric Risistance Coils & ElectricHW Boiler ,Electrificaiton,Electrification," $ 5,200,000 ",Capex,-1,  -   ,  1.00 ,40,2030,"($10,000.00)",No,Eng
-One Federal,Heating,10,Electric Steam Boiler ,Electrificaiton,Electrification," $ 2,500,000 ",R&M,-0.9,  -   ,  1.00 ,15,2026,"($35,000.00)",No,Eng
+222 N LaSalle,Heating & Cooling,1,Retrocommissioning  (RCx) xxxxxxxx,Implement ECMs from ComEd report ,Retrofit + Training,48000, R&M ,0.06,,,10,2025,0,,Engineering
+222 N LaSalle,Heating & Cooling & Base,2,Converge Network People counters ,Technology enablement  - Access control Converge Network People counters ,Capital Project ,2083660, Capex ,0.001,,,15,2025,0,,Engineering
+222 N LaSalle,Heating & Cooling,3,BMS Expansion and optimizations,Chiller plant instrumentation,Capex,500000, Capex ,0.02,,,15,2026,-15000,,Engineering
+222 N LaSalle,Cooling,4,CHW Pumping VFD Retrofit ,Add FVD's to CHW and CW pumps ,Capex,275000,Capex,0.02,,,20,2025,0,,Engineering
+222 N LaSalle,Heating & Cooling,5,Fan powered box retrofit ,"Add DDC, ECM Motors and sensors",Capital Project Enhancement,2880000, Capex ,0.01,,,20,2028,0,,Engineering
+222 N LaSalle,Heating & Cooling,6,Façade / Window air stopping ,caulking and general air stopping,Retrofit,1300000, R&M ,0.002,,,15,2025,0,,Engineering
+222 N LaSalle,Base,7,Elevator energy revovery,Optional add to elevator package,Capital Project Enhancement,120000, Capex ,0.005,,,20,2025,0,,Engineering
+222 N LaSalle,Heating & Cooling,8,Roof replacment ,EOL replacement adding insulation,Capital Project ,7958000, Capex ,0.0005,,,35,2029,0,,Engineering
+222 N LaSalle,Base,9,Solar ,Rooftop solar ,Capital Project ,400000, Capex ,0.02,,,25,2030,0,,Engineering
+222 N LaSalle,Heating,9.2,Heat recovery for  winter operation ,AHU Recovery coils for OA ,Capital Project ,2100000, Capex ,0.05,,,35,2025,0,,Engineering
+222 N LaSalle,Heating & Cooling,9.3,New High Efficiency Windows ,High Eff Windows ,Capex,54100000, Capex ,0.03,,,40,2035,0,,Engineering
+222 N LaSalle,Cooling,9.4,New High Efficiency Electric 1300ton  Chiller ,Chiller EOL Replacement,Capital Project Enhancement,1950000, Capex ,0.02,,,35,2030,0,,Engineering
