@@ -142,7 +142,7 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 #
 #
 #
-#     6/25/2026
+#     6/29/2026
 #
 #     Took this out of the funciton below col_types = c("text", "text", "numeric", "text", "text", "text", "numeric", "text", "numeric","numeric","numeric","numeric","numeric","numeric", "numeric", "text" ) ,
 #     Going to try the trimws function. 
