@@ -1,9 +1,6 @@
 
 
 
-
-
-
 #LOAD PACKAGES AND SET UP THE ENVIROMENT 
 my_packages <- c("tidyverse", "vroom" , "janitor" , "glue" , "tsibble" , "tidytext","lubridate", "fable", "tsibbledata", "ggplot2", "forecast", "tseries", "rio", "zoo", "readxl", 
                  "tsibbledata", "knitr", "purrr" ,"formattable", "scales", "tidyr" , "gridExtra")
@@ -133,7 +130,7 @@ EndUseAllocation %>%
 
 remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS) 
 
-#
+#========================================================================
 # Read in Building Intervention File                                                                                         
 # when filling out the intervention excel sheet place % reductions in fuel typ, use negitive as an increase in load.
 # This is the place where we put in different buildings. 
@@ -142,9 +139,9 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 #
 #
 #
-#     6/29/2026
+#     7/7/2026
 #
-#     Took this out of the funciton below col_types = c("text", "text", "numeric", "text", "text", "text", "numeric", "text", "numeric","numeric","numeric","numeric","numeric","numeric", "numeric", "text" ) ,
+#     Took this out of the functon below col_types = c("text", "text", "numeric", "text", "text", "text", "numeric", "text", "numeric","numeric","numeric","numeric","numeric","numeric", "numeric", "text" ) ,
 #     Going to try the trimws function. 
 #. Working line 152 next isolate it and do a col_type string for all coluns in the source file. 
 #
