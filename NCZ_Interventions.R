@@ -139,7 +139,7 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 #
 #
 #
-#     7/7/2026
+#     7/13/2026
 #
 #     Took this out of the functon below col_types = c("text", "text", "numeric", "text", "text", "text", "numeric", "text", "numeric","numeric","numeric","numeric","numeric","numeric", "numeric", "text" ) ,
 #     Going to try the trimws function. 
@@ -256,8 +256,8 @@ length(Savings$Load) -> rows
 rows/fuels
 Electrification_f <- function(i){a <- i + 2* i}
 
-Savings %>% filter(`Description of Measure` == "Electrificaiton") -> Savings_Electrificaiton
-Savings %>%  filter(`Description of Measure` != "Electrificaiton") -> Savings_Measures
+Savings %>% filter(`Description.of.Measure` == "Electrificaiton") -> Savings_Electrificaiton
+Savings %>%  filter(`Description.of.Measure` != "Electrificaiton") -> Savings_Measures
 #as.numeric(format(Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`, scientific = NA ) -> Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`)
 
 rm(Savings)
