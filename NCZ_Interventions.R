@@ -139,7 +139,8 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 #
 #
 #
-#     7/13/2026
+#     7/27/2026
+#. need to add electricification measures. then function to omit making an electrificaiton file if no measures exists. 
 #
 #     Took this out of the functon below col_types = c("text", "text", "numeric", "text", "text", "text", "numeric", "text", "numeric","numeric","numeric","numeric","numeric","numeric", "numeric", "text" ) ,
 #     Going to try the trimws function. 
