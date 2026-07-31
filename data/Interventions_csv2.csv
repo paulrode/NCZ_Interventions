@@ -1,0 +1,14 @@
+Interventions_csv2
+Building,Savings,Order,Intervention Name,Description of Measure,Intervention Type,"Additional Up-Front Cost (Net rebates from utilities or state energy offices, or federal programs)",Up Front Cost: Capex or R&M,Change in Electricity Consumption Reduction (kWh),Change in Natural Gas Use(MMBtu),"Change in Steam Consumption, kLbs",Useful Life/Lifespan,Earliest Possible Year,Change in Opex (O&M),Energy Savings Passthrough?,"Sources (Citations, Links, Consulting Reports, etc.)"
+Trial ,Heating & Cooling,1,Retrocommissioning  (RCx) xxxxxxxx,Implement ECMs from ComEd report ,Retrofit + Training,48000, R&M ,0.06,,,10,2025,0,,Engineering
+222 N LaSalle,Heating & Cooling & Base,2,Converge Network People counters ,Technology enablement  - Access control Converge Network People counters ,Capital Project ,2083660, Capex ,0.001,,,15,2025,0,,Engineering
+222 N LaSalle,Heating & Cooling,3,BMS Expansion and optimizations,Chiller plant instrumentation,Capex,500000, Capex ,0.02,,,15,2026,-15000,,Engineering
+222 N LaSalle,Cooling,4,CHW Pumping VFD Retrofit ,Add FVD's to CHW and CW pumps ,Capex,275000,Capex,0.02,,,20,2025,0,,Engineering
+222 N LaSalle,Heating & Cooling,5,Fan powered box retrofit ,"Add DDC, ECM Motors and sensors",Capital Project Enhancement,2880000, Capex ,0.01,,,20,2028,0,,Engineering
+222 N LaSalle,Heating & Cooling,6,Façade / Window air stopping ,caulking and general air stopping,Retrofit,1300000, R&M ,0.002,,,15,2025,0,,Engineering
+222 N LaSalle,Base,7,Elevator energy revovery,Optional add to elevator package,Capital Project Enhancement,120000, Capex ,0.005,,,20,2025,0,,Engineering
+222 N LaSalle,Heating & Cooling,8,Roof replacment ,EOL replacement adding insulation,Capital Project ,7958000, Capex ,0.0005,,,35,2029,0,,Engineering
+222 N LaSalle,Base,9,Solar ,Rooftop solar ,Capital Project ,400000, Capex ,0.02,,,25,2030,0,,Engineering
+222 N LaSalle,Heating,9.2,Heat recovery for  winter operation ,AHU Recovery coils for OA ,Capital Project ,2100000, Capex ,0.05,,,35,2025,0,,Engineering
+222 N LaSalle,Heating & Cooling,9.3,New High Efficiency Windows ,High Eff Windows ,Capex,54100000, Capex ,0.03,,,40,2035,0,,Engineering
+222 N LaSalle,Cooling,9.4,New High Efficiency Electric 1300ton  Chiller,Chiller EOL Replacement,Capital Project Enhancement,1950000, Capex ,0.02,,,35,2030,0,,Engineering
