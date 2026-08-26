@@ -156,7 +156,7 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 
 
 
-Interventions <- read_excel("data/Interventions_xls.xlsx")
+Interventions <- read_excel("data/Interventions_xls.xlsx", col_names = TRUE)
   
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 
