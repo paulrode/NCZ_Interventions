@@ -139,7 +139,7 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 #
 #
 #
-#     7/27/2026
+#     9/16/2026
 #. need to add electricification measures. then function to omit making an electrificaiton file if no measures exists. 
 #
 #     Took this out of the functon below col_types = c("text", "text", "numeric", "text", "text", "text", "numeric", "text", "numeric","numeric","numeric","numeric","numeric","numeric", "numeric", "text" ) ,
@@ -150,13 +150,13 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 #. Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available",  sheet = 2, col_types = c("text", "text", "text", "numeric", "text", "numeric", "numeric", "numeric"))%>% 
 
 
-#Interventions <- read.csv("data/Interventions_csv2.csv", header = TRUE, sep = ",") %>%
+Interventions <- read.csv("data/Interventions_csv2.csv", header = TRUE, sep = ",") %>%
 
 
 
 
 
-Interventions <- read_excel("data/Interventions_xls.xlsx", col_names = TRUE)
+# Interventions <- read_excel("data/Interventions_xls.xlsx", col_names = TRUE)
   
   select(1:12) %>% 
   select( -6, -7, -8,-12) %>% 
