@@ -150,7 +150,7 @@ remove(TSUS_EPA_DATA_SHORT_ALL, TSUS_EPA_DATA_SHEETS)
 #. Interventions <- read_excel("data/Interventions.xlsx",skip = 16, na = "Not Available",  sheet = 2, col_types = c("text", "text", "text", "numeric", "text", "numeric", "numeric", "numeric"))%>% 
 
 
-Interventions <- read.csv("data/Interventions_csv2.csv", header = TRUE, sep = ",") %>%
+Interventions <- read.csv("data/Interventions_csv2.csv", header = TRUE, sep = ",", skip = 1) %>%
 
 
 #================>>>>>>>>>>>>><<<<<<<<<<<<++++++++++++++++++++++
