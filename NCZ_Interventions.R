@@ -304,7 +304,7 @@ rm(Savings)
 ##    non-numeric argument to binary operator. 
 ##    1/6/2026 the problme is on line 240 where i am changing the format from sci to num 
 ##.   11/5/2026 my error starts here Error in if (Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] ==  : argument is of length zero
-
+## need to walk throuhg logic block below and work out what happens when there are zero elements in a dataframe. 
 
 for(i in 1: length(Savings_Measures$Load)) { 
   if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Elect" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton"  )  {
