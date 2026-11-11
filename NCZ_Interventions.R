@@ -307,7 +307,7 @@ rm(Savings)
 ## need to walk throuhg logic block below and work out what happens when there are zero elements in a dataframe. 
 
 for(i in 1: length(Savings_Measures$Load)) { 
-  if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Elect" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton"  )  {
+  if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Elect" & Savings_Measures$Description.of.Measure[i] != "Electrificaiton"  )  {
     Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Electricity Consumption Reduction (kWh)`[i] -> Savings_Measures$Saved_Base[i];
     if (i < length(Savings_Measures$Load)) {
     if (Savings_Measures$Load[i] == Savings_Measures$Load[i+1]) {
@@ -316,8 +316,8 @@ for(i in 1: length(Savings_Measures$Load)) {
     Savings_Measures$`Heating Loads`[i] -> Savings_Measures$`Heating Loads`[i+1] }}
   }else{ 
     
-  if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Steam_Mlb" & Savings_Measures$`Description of Measure`[i] != "Electrificaiton" ) {
-    Savings_Measures$`Base Loads`[i] * Savings_Measures$`Change in Steam Consumption, kLbs`[i] -> Savings_Measures$Saved_Base[i];
+  if(Savings_Measures$Savings[i] == "Base" & Savings_Measures$Load[i] == "Steam_Mlb" & Savings_Measures$Description.of.Measure[i] != "Electrificaiton" ) {
+    Savings_Measures$`Base Loads`[i] * Savings_Measures$Change.in.Steam.Consumption..kLbs[i] -> Savings_Measures$Saved_Base[i];
     if (i < length(Savings_Measures$Load)) {
     if (Savings_Measures$Load[i] == Savings_Measures$Load[i+1]) {
     Savings_Measures$`Base Loads`[i] - Savings_Measures$Saved_Base[i] -> Savings_Measures$`Base Loads`[i+1];
